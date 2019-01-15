@@ -5,19 +5,20 @@
   
 
   
-  <title>ZhangM</title>
+  <title>20190115 | ZhangM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  <meta name="description" content="leetcode第7题">
 <meta name="keywords" content="教程">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZhangM">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20190115">
+<meta property="og:url" content="http://yoursite.com/2019/01/15/20190115/index.html">
 <meta property="og:site_name" content="ZhangM">
-<meta property="og:description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+<meta property="og:description" content="leetcode第7题">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-01-15T09:52:55.195Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZhangM">
-<meta name="twitter:description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+<meta name="twitter:title" content="20190115">
+<meta name="twitter:description" content="leetcode第7题">
   
     <link rel="alternate" href="/atom.xml" title="ZhangM" type="application/atom+xml">
   
@@ -68,9 +69,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-20190115" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-20190115" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/15/20190115/" class="article-date">
   <time datetime="2019-01-15T09:43:28.000Z" itemprop="datePublished">2019-01-15</time>
@@ -87,8 +86,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/15/20190115/">20190115</a>
+    <h1 class="article-title" itemprop="name">
+      20190115
     </h1>
   
 
@@ -96,12 +95,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>leetcode第7题<br>
-        
-          </p><p class="article-more-link">
-            <a href="/2019/01/15/20190115/#more">Read More</a>
-          </p>
-        
+        <p>leetcode第7题<br><a id="more"></a></p>
+<p>##【leetcode第7题】<br>Given a 32-bit signed integer, reverse digits of an integer.</p>
+<p>Example 1:</p>
+<blockquote>
+<p>Input: 123<br>Output: 321<br>Example 2:</p>
+</blockquote>
+<blockquote>
+<p>Input: -123<br>Output: -321<br>Example 3:</p>
+</blockquote>
+<blockquote>
+<p>Input: 120<br>Output: 21<br>Note:<br>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.</p>
+</blockquote>
+<p>##【c++】<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int reverse(int x) &#123;</span><br><span class="line">       </span><br><span class="line">        long y=0;</span><br><span class="line">        while(x)&#123; </span><br><span class="line">            y=y*10+x%10;</span><br><span class="line">            x/=10;</span><br><span class="line">        &#125;</span><br><span class="line">       return (y&gt;INT_MIN &amp;&amp; y&lt;INT_MAX)?y:0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>###关于INT_MAX INT_MIN的运算<br>Value of INT_MAX is +2147483647.<br>Value of INT_MIN is -2147483648.<br>因为int占4字节32位，根据二进制编码的规则，INT_MAX = 2^31-1，INT_MIN= -2^31.C/C++中，所有超过该限值的数，都会出现溢出，出现warning，但是并不会出现error。如果想表示的整数超过了该限值，可以使用长整型long long 占8字节64位。</p>
+<p>由于二进制编码按原码、补码和反码的规则进行运算，所有程序中对INT_MAX和INT_MIN的运算应当格外注意，在出现溢出的时候，不遵循数学规则。</p>
+<p>INT_MAX + 1 = INT_MIN</p>
+<p>INT_MIN - 1 = INT_MAX</p>
+<p>abs(INT_MIN) = INT_MIN</p>
+<p>比较有趣的是，INT_MAX + 1 &lt; INT_MAX， INT_MIN - 1 &gt; INT_MIN, abs(INT_MIN) &lt; 0.</p>
+
       
     </div>
     <footer class="article-footer">
@@ -111,58 +124,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-2019011401" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/14/2019011401/" class="article-date">
-  <time datetime="2019-01-14T13:44:05.000Z" itemprop="datePublished">2019-01-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/14/2019011401/">查找两个数组的中间值</a>
-    </h1>
+    <a href="/2019/01/14/2019011401/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">查找两个数组的中间值</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>leetcode第4题<br>
-        
-          </p><p class="article-more-link">
-            <a href="/2019/01/14/2019011401/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/14/2019011401/" data-id="cjqxkxl4y0000n8tcp7tums5h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arrays/">Arrays</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
