@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="ZhangM">
 <meta property="og:description" content="leetcode第4题">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-01-15T08:51:33.748Z">
+<meta property="og:updated_time" content="2019-01-15T09:11:28.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="查找两个数组的中间值">
 <meta name="twitter:description" content="leetcode第4题">
@@ -96,79 +96,37 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>leetcode第4题<br><a id="more"></a></p>
-<p>【leetcode第4题】<br>There are two sorted arrays nums1 and nums2 of size m and n respectively.<br>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).<br>You may assume nums1 and nums2 cannot be both empty.</p>
+<p>##【leetcode第4题】<br>There are two sorted arrays nums1 and nums2 of size m and n respectively.<br>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).<br>You may assume nums1 and nums2 cannot be both empty.</p>
 <p><strong>Example 1:<br>nums1 = [1, 3]<br>nums2 = [2]<br>The median is 2.0
-</strong>Example 2:<br>nums1 = [1, 2]<br>nums2 = [3, 4]<br>The median is (2 + 3)/2 = 2.5<br>【思路】<br>首先理解什么是中间值，在统计学里面就是用于把一个数集分为两个等长的子集，一个子集总是比另一个大。当我们理解了中间值的使用，我们就和答案非常接近了。</p>
-<p>首先把A从一个随机的位置i分成两个部分：<br>           left_A             |        right_A<br>     A[0], A[1], …, A[i-1]  |  A[i], A[i+1], …, A[m-1]<br>A有m个元素，因此有m-1种切割的方式， len(left_A) = i, len(right_A) = m - i<br>（i=0时，left_A为空；i=m，right_A为空）<br>同样的，把B从一个随机的位置j分成两个部分：<br>           left_B             |        right_B<br>     B[0], B[1], …, B[j-1]  |  B[j], B[j+1], …, B[n-1]<br>把A和B放在一起，则有：<br>           left_part          |        right_part<br>     A[0], A[1], …, A[i-1]  |  A[i], A[i+1], …, A[m-1]<br>     B[0], B[1], …, B[j-1]  |  B[j], B[j+1], …, B[n-1]<br>按照中间值的含义，如果：<br>1) len(left_part) == len(right_part)<br>2) max(left_part) &lt;= min(right_part)<br>那么median = (max(left_part) + min(right_part))/2.<br>具体表示就是：<br>(1) i + j == m - i + n - j<br> (or:如果m+n为奇数，i+j比m-i+n-j多1则<br>      i + j == m - i + n - j + 1)<br>    if n &gt;= m, we just need to set: i = 0 ~ m, j = (m + n + 1)/2 - i<br> (为什么n&gt;=m，因为i有可能取到m，若同时n&lt;m则j将为负数，会得到无效解)<br>(2) B[j-1] &lt;= A[i] and A[i-1] &lt;= B[j]<br>因此我们应该做的是：<br>    Searching i in [0, m], to find an object <code>i</code> that:<br>        B[j-1] &lt;= A[i] and A[i-1] &lt;= B[j], ( where j = (m + n + 1)/2 - i )<br>这个搜索i的过程具体描述为：<br>     <1> 设置imin = 0, imax = m, 在[imin, imax]里面展开搜索</1></p>
-<pre><code>&lt;2&gt; i = (imin + imax)/2, j = (m + n + 1)/2 - i
+</strong>Example 2:<br>nums1 = [1, 2]<br>nums2 = [3, 4]<br>The median is (2 + 3)/2 = 2.5</p>
+<p>##【思路】<br>首先理解什么是中间值，在统计学里面就是用于把一个数集分为两个等长的子集，一个子集总是比另一个大。当我们理解了中间值的使用，我们就和答案非常接近了。</p>
+<p>首先把A从一个随机的位置i分成两个部分：<br>           left_A             |        right_A<br>     A[0], A[1], …, A[i-1]  |  A[i], A[i+1], …, A[m-1]<br>A有m个元素，因此有m-1种切割的方式， len(left_A) = i, len(right_A) = m - i<br>（i=0时，left_A为空；i=m，right_A为空）<br>同样的，把B从一个随机的位置j分成两个部分：<br>           left_B             |        right_B<br>     B[0], B[1], …, B[j-1]  |  B[j], B[j+1], …, B[n-1]<br>把A和B放在一起，则有：<br>           left_part          |        right_part<br>     A[0], A[1], …, A[i-1]  |  A[i], A[i+1], …, A[m-1]<br>     B[0], B[1], …, B[j-1]  |  B[j], B[j+1], …, B[n-1]<br>按照中间值的含义，如果：<br>1) len(left_part) == len(right_part)<br>2) max(left_part) &lt;= min(right_part)<br>那么median = (max(left_part) + min(right_part))/2.<br>具体表示就是：<br>(1) i + j == m - i + n - j<br> (or:如果m+n为奇数，i+j比m-i+n-j多1则<br>      i + j == m - i + n - j + 1)<br>    if n &gt;= m, we just need to set: i = 0 ~ m, j = (m + n + 1)/2 - i<br> (为什么n&gt;=m，因为i有可能取到m，若同时n&lt;m则j将为负数，会得到无效解)<br>(2) B[j-1] &lt;= A[i] and A[i-1] &lt;= B[j]<br>因此我们应该做的是：<br>    Searching i in [0, m], to find an object <code>i</code> that:<br>        B[j-1] &lt;= A[i] and A[i-1] &lt;= B[j], ( where j = (m + n + 1)/2 - i )<br>这个搜索i的过程具体描述为：<br>     1 设置imin = 0, imax = m, 在[imin, imax]里面展开搜索</p>
+<pre><code>2 i = (imin + imax)/2, j = (m + n + 1)/2 - i
 
-&lt;3&gt; 现在我们有len(left_part)==len(right_part).有三种情况：
+3 现在我们有len(left_part)==len(right_part).有三种情况：
 
-   &lt;a&gt; B[j-1] &lt;= A[i] and A[i-1] &lt;= B[j]
-       找到了i，可以停止搜索了。
-   &lt;b&gt; B[j-1] &gt; A[i]
-       B的左侧最大值比A的右侧最小值大了，说明A[i]太小，需要向右移动i，i增大同时j会减小。
-       要增大i的话，要调整搜索范围变成[i+1, imax]，因此设置imin = i+1，回到&lt;2&gt;.
-   &lt;c&gt; A[i-1] &gt; B[j]
-       A的左侧最大值比B的右侧最小值大了，说明A[i-1]太大，需要向左移动i，i减小同时j会增大。
-       要减小i的话，要调整搜索范围变成[imin, i-1]，因此设置imin = i+1，回到&lt;2&gt;.
-</code></pre><p>i搜索到之后，中间值为：<br>     m+n为奇数时：max(A[i-1], B[j-1])<br>     m+n为偶数时：(max(A[i-1], B[j-1]) + min(A[i], B[j]))/2<br>接下来我们来考虑极限情况， i=0,i=m,j=0,j=n时，A[i-1],B[j-1],A[i],B[j]中的某些可能会不存在，因此我们就不用同时检查B[j-1] &lt;= A[i]和 A[i-1] &lt;= B[j].只检查其中一个就够了。<br>所以我们应该做的是：<br>    Searching i in [0, m], to find an object <code>i</code> that:<br>        (j == 0 or i == m or B[j-1] &lt;= A[i]) and<br>        (i == 0 or j == n or A[i-1] &lt;= B[j])<br>        where j = (m + n + 1)/2 - i<br>在一个搜索循环里，我们只会遇到三种情况：<br>     <a> (j == 0 or i == m or B[j-1] &lt;= A[i]) and<br>         (i == 0 or j = n or A[i-1] &lt;= B[j])<br>          找到了i可以停止了</a></p>
-<pre><code>&lt;b&gt; i &lt; m and B[j - 1] &gt; A[i]
-     i太小，需要增大
+  &gt; a B[j-1] &lt;= A[i] and A[i-1] &lt;= B[j]
+  &gt;     找到了i，可以停止搜索了。
+  &gt; b B[j-1] &gt; A[i]
+  &gt;     B的左侧最大值比A的右侧最小值大了，说明A[i]太小，需要向右移动i，i增大同时j会减小。
+  &gt;     要增大i的话，要调整搜索范围变成[i+1, imax]，因此设置imin = i+1，回到2.
+  &gt; c A[i-1] &gt; B[j]
+  &gt;    A的左侧最大值比B的右侧最小值大了，说明A[i-1]太大，需要向左移动i，i减小同时j会增大。
+  &gt;     要减小i的话，要调整搜索范围变成[imin, i-1]，因此设置imax = i-1，回到2.
+</code></pre><p>i搜索到之后，中间值为：<br>     m+n为奇数时：max(A[i-1], B[j-1])<br>     m+n为偶数时：(max(A[i-1], B[j-1]) + min(A[i], B[j]))/2<br>接下来我们来考虑极限情况， i=0,i=m,j=0,j=n时，A[i-1],B[j-1],A[i],B[j]中的某些可能会不存在，因此我们就不用同时检查B[j-1] &lt;= A[i]和 A[i-1] &lt;= B[j].只检查其中一个就够了。<br>所以我们应该做的是：<br>    Searching i in [0, m], to find an object <code>i</code> that:<br>        (j == 0 or i == m or B[j-1] &lt;= A[i]) and<br>        (i == 0 or j == n or A[i-1] &lt;= B[j])<br>        where j = (m + n + 1)/2 - i<br>在一个搜索循环里，我们只会遇到三种情况：<br>     &gt;a (j == 0 or i == m or B[j-1] &lt;= A[i]) and<br>     &gt;    (i == 0 or j = n or A[i-1] &lt;= B[j])<br>     &gt;     找到了i可以停止了</p>
+<pre><code>&gt;b i &lt; m and B[j - 1] &gt; A[i]
+&gt;    i太小，需要增大
 
-&lt;c&gt; i &gt; 0 and A[i - 1] &gt; B[j]
-     i太大，需要减小
-</code></pre><p>（由于i &lt; m ==&gt; j &gt; 0 和 i &gt; 0 ==&gt; j &lt; n，因此<b>和<c>不用检查j）<br>【解】<br>def median(A, B):<br>    m, n = len(A), len(B)<br>    if m &gt; n:<br>        A, B, m, n = B, A, n, m<br>    if n == 0:<br>        raise ValueError<br>    imin, imax, half_len = 0, m, (m + n + 1) / 2<br>    while imin &lt;= imax:<br>        i = (imin + imax) / 2<br>        j = half_len - i<br>        if i &lt; m and B[j-1] &gt; A[i]:</c></b></p>
-<pre><code>    # i is too small, must increase it
-    imin = i + 1
-elif i &gt; 0 and A[i-1] &gt; B[j]:
-    # i is too big, must decrease it
-    imax = i - 1
-else:
-    # i is perfect
-    if i == 0: max_of_left = B[j-1]
-    elif j == 0: max_of_left = A[i-1]
-    else: max_of_left = max(A[i-1], B[j-1])
-    if (m + n) % 2 == 1:
-        return max_of_left
-    if i == m: min_of_right = B[j]
-    elif j == n: min_of_right = A[i]
-    else: min_of_right = min(A[i], B[j])
-    return (max_of_left + min_of_right) / 2.0
-</code></pre><p>【c++】<br>class Solution {<br>public:<br>    double findMedianSortedArrays(vector<int>&amp; nums1, vector<int>&amp; nums2) {<br>        vector<int> A=nums1,B=nums2,p;<br>        int m=nums1.size(), n=nums2.size(),pass=0;<br>        if(m&gt;n){<br>            pass=m;<br>            m=n;<br>            n=pass;<br>            p=A;<br>            A=B;<br>            B=p;<br>        }<br>        int imin=0,imax=m;<br>        int max_of_left=0,min_of_right=0;<br>        int i=0,j=0;<br>        while (imin &lt;= imax ){<br>            i = (imin + imax) / 2;<br>            j = (m + n + 1) / 2 - i;<br>            if(i &lt; m &amp;&amp; B[j-1] &gt; A[i]){<br>                imin=i+1;<br>            }<br>            else if( i &gt; 0 &amp;&amp; A[i-1] &gt; B[j]){<br>                imax=i-1;</int></int></int></p>
-<pre><code>        }
-        else{
-            if(i==0){
-                max_of_left = B[j-1];
-            }
-            else if(j == 0){
-                max_of_left = A[i-1];
-            }else{
-                max_of_left = max(A[i-1], B[j-1]);
-            }
-            if ((m + n) % 2 == 1){
-                return max_of_left;
-            } 
-            if(i==m){
-                min_of_right = B[j];
-            }
-            else if(j == n){
-                min_of_right = A[i];
-            }else{
-                min_of_right = min(A[i], B[j]);
-            }
-            return (max_of_left + min_of_right) / 2.0;
-        }
-    }
-    return 0;
-
-}
-</code></pre><p>};</p>
+&gt;c i &gt; 0 and A[i - 1] &gt; B[j]
+&gt;     i太大，需要减小
+</code></pre><p>（由于i &lt; m ==&gt; j &gt; 0 和 i &gt; 0 ==&gt; j &lt; n，因此b和c不用检查j）</p>
+<p>##【解】<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">def median(A, B):</span><br><span class="line">    m, n = len(A), len(B)</span><br><span class="line">    if m &gt; n:</span><br><span class="line">        A, B, m, n = B, A, n, m</span><br><span class="line">    if n == 0:</span><br><span class="line">        raise ValueError</span><br><span class="line">    imin, imax, half_len = 0, m, (m + n + 1) / 2</span><br><span class="line">    while imin &lt;= imax:</span><br><span class="line">        i = (imin + imax) / 2</span><br><span class="line">        j = half_len - i</span><br><span class="line">        if i &lt; m and B[j-1] &gt; A[i]:</span><br><span class="line">            # i is too small, must increase it</span><br><span class="line">            imin = i + 1</span><br><span class="line">        elif i &gt; 0 and A[i-1] &gt; B[j]:</span><br><span class="line">            # i is too big, must decrease it</span><br><span class="line">            imax = i - 1</span><br><span class="line">        else:</span><br><span class="line">            # i is perfect</span><br><span class="line">            if i == 0: max_of_left = B[j-1]</span><br><span class="line">            elif j == 0: max_of_left = A[i-1]</span><br><span class="line">            else: max_of_left = max(A[i-1], B[j-1])</span><br><span class="line">            if (m + n) % 2 == 1:</span><br><span class="line">                return max_of_left</span><br><span class="line">            if i == m: min_of_right = B[j]</span><br><span class="line">            elif j == n: min_of_right = A[i]</span><br><span class="line">            else: min_of_right = min(A[i], B[j])</span><br><span class="line">            return (max_of_left + min_of_right) / 2.0</span><br></pre></td></tr></table></figure></p>
+<p>【c++】<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) &#123;</span><br><span class="line">        vector&lt;int&gt; A=nums1,B=nums2,p;</span><br><span class="line">        int m=nums1.size(), n=nums2.size(),pass=0;</span><br><span class="line">        if(m&gt;n)&#123;</span><br><span class="line">            pass=m;</span><br><span class="line">            m=n;</span><br><span class="line">            n=pass;</span><br><span class="line">            p=A;</span><br><span class="line">            A=B;</span><br><span class="line">            B=p;</span><br><span class="line">        &#125;</span><br><span class="line">        int imin=0,imax=m;</span><br><span class="line">        int max_of_left=0,min_of_right=0;</span><br><span class="line">        int i=0,j=0;</span><br><span class="line">        while (imin &lt;= imax )&#123;</span><br><span class="line">            i = (imin + imax) / 2;</span><br><span class="line">            j = (m + n + 1) / 2 - i;</span><br><span class="line">            if(i &lt; m &amp;&amp; B[j-1] &gt; A[i])&#123;</span><br><span class="line">                imin=i+1;</span><br><span class="line">            &#125;</span><br><span class="line">            else if( i &gt; 0 &amp;&amp; A[i-1] &gt; B[j])&#123;</span><br><span class="line">                imax=i-1;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(i==0)&#123;</span><br><span class="line">                    max_of_left = B[j-1];</span><br><span class="line">                &#125;</span><br><span class="line">                else if(j == 0)&#123;</span><br><span class="line">                    max_of_left = A[i-1];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    max_of_left = max(A[i-1], B[j-1]);</span><br><span class="line">                &#125;</span><br><span class="line">                if ((m + n) % 2 == 1)&#123;</span><br><span class="line">                    return max_of_left;</span><br><span class="line">                &#125; </span><br><span class="line">                if(i==m)&#123;</span><br><span class="line">                    min_of_right = B[j];</span><br><span class="line">                &#125;</span><br><span class="line">                else if(j == n)&#123;</span><br><span class="line">                    min_of_right = A[i];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    min_of_right = min(A[i], B[j]);</span><br><span class="line">                &#125;</span><br><span class="line">                return (max_of_left + min_of_right) / 2.0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/14/2019011401/" data-id="cjqxirs9y0000ewtc2rr8uzne" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/14/2019011401/" data-id="cjqxjg7270000wctcx38xf973" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arrays/">Arrays</a></li></ul>
