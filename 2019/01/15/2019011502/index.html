@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    tensorflow随笔 |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-2019011502" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      tensorflow随笔
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/15/2019011502/" class="article-date">
+  <time datetime="2019-01-15T13:18:12.000Z" itemprop="datePublished">2019-01-15</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/tensorflow/">tensorflow</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h3 id="CNN网络搭建"><a href="#CNN网络搭建" class="headerlink" title="CNN网络搭建"></a>CNN网络搭建</h3><a id="more"></a>
+<p><strong>CNN网络结构</strong></p>
+<p>输入的图像shape为 [batch_size, height, width, depth]</p>
+<p>第一层：卷积层 conv1</p>
+<p>第二层：池化层 pool1</p>
+<p>第三层：标准化层 norm1</p>
+<p>第四层：卷积层 conv2</p>
+<p>第五层：标准化层 norm2</p>
+<p>第六层：池化层 pool2</p>
+<p>第七层：全联接层 local1</p>
+<p>第八层：全联接层 local2</p>
+<p>第九层：输出层 softmax_linear</p>
+<p><strong>tf.nn.conv1d( value, filters, stride,padding,use_cudnn_on_gpu=None,data_format=None, name=None)</strong></p>
+<p>value的格式为：[batch, in_width, in_channels]，batch为样本维，表示多少个样本，in_width为宽度维，表示样本的宽度，in_channels维通道维，表示样本有多少个通道。 事实上，也可以把格式看作如下:[batch, 行数, 列数]，把每一个样本看作一个平铺开的二维数组。这样的话可以方便理解。</p>
+<p>filters：在注释中，filters的格式为：[filter_width, in_channels, out_channels]。按照value的第二种看法，filter_width可以看作每次与value进行卷积的行数，in_channels表示value一共有多少列（与value中的in_channels相对应）。out_channels表示输出通道，可以理解为一共有多少个卷积核，即卷积核的数目。</p>
+<p>stride：一个整数，表示步长，每次（向下）移动的距离（TensorFlow中解释是向右移动的距离，这里可以看作向下移动的距离）。</p>
+<p>padding：同conv2d，value是否需要在下方填补0。</p>
+<p><strong>tf.nn.conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None, name=None) </strong></p>
+<p>除去name参数用以指定该操作的name，与方法有关的一共五个参数：</p>
+<ul>
+<li>input：<br>指需要做卷积的输入图像，它要求是一个Tensor，具有[batch, in_height, in_width, in_channels]这样的shape，具体含义是[训练时一个batch的图片数量, 图片高度, 图片宽度, 图像通道数]，注意这是一个4维的Tensor，要求类型为float32和float64其中之一。</li>
+</ul>
+<ul>
+<li>filter：<br>相当于CNN中的卷积核，它要求是一个Tensor，具有[filter_height, filter_width, in_channels, out_channels]这样的shape，具体含义是[卷积核的高度，卷积核的宽度，图像通道数，卷积核个数]，要求类型与参数input相同，有一个地方需要注意，第三维in_channels，就是参数input的第四维。</li>
+</ul>
+<ul>
+<li>strides：卷积时在图像每一维的步长，这是一个一维的向量，长度4。</li>
+</ul>
+<ul>
+<li>padding：<br>string类型的量，只能是”SAME”,”VALID”其中之一，这个值决定了不同的卷积方式（后面会介绍）</li>
+</ul>
+<ul>
+<li>use_cudnn_on_gpu： bool类型，是否使用cudnn加速，默认为true。</li>
+</ul>
+<p><strong>tf.nn.max_pool(value, ksize, strides, padding, name=None)</strong><br>参数是四个，和卷积很类似：</p>
+<ul>
+<li><p>第一个参数value：需要池化的输入，一般池化层接在卷积层后面，所以输入通常是feature map，依然是[batch, height, width, channels]这样的shape</p>
+</li>
+<li><p>第二个参数ksize：池化窗口的大小，取一个四维向量，一般是[1, height, width, 1]，因为我们不想在batch和channels上做池化，所以这两个维度设为了1</p>
+</li>
+<li><p>第三个参数strides：和卷积类似，窗口在每一个维度上滑动的步长，一般也是[1, stride,stride, 1]</p>
+</li>
+<li><p>第四个参数padding：和卷积类似，可以取’VALID’ 或者’SAME’</p>
+</li>
+<li><p>返回一个Tensor，类型不变，shape仍然是[batch, height, width, channels]这种形式</p>
+</li>
+</ul>
+<p><strong>tf.get_variable(name,  shape, initializer):</strong> </p>
+<p>name就是变量的名称，shape是变量的维度，initializer是变量初始化的方式。</p>
+<ul>
+<li><p>tf.constant_initializer：常量初始化函数</p>
+</li>
+<li><p>tf.random_normal_initializer：正态分布</p>
+</li>
+<li><p>tf.truncated_normal_initializer：截取的正态分布</p>
+</li>
+<li><p>tf.random_uniform_initializer：均匀分布</p>
+</li>
+<li><p>tf.zeros_initializer：全部是0</p>
+</li>
+<li><p>tf.ones_initializer：全是1</p>
+</li>
+<li><p>tf.uniform_unit_scaling_initializer：满足均匀分布，但不影响输出数量级的随机值</p>
+</li>
+</ul>
+<ol>
+<li><p>tf.constant_initializer：常量初始化函数</p>
+</li>
+<li><p>tf.random_normal_initializer：正态分布</p>
+</li>
+<li><p>tf.truncated_normal_initializer：截取的正态分布</p>
+</li>
+<li><p>tf.random_uniform_initializer：均匀分布</p>
+</li>
+<li><p>tf.zeros_initializer：全部是0</p>
+</li>
+<li><p>tf.ones_initializer：全是1</p>
+</li>
+<li><p>tf.uniform_unit_scaling_initializer：满足均匀分布，但不影响输出数量级的随机值</p>
+</li>
+</ol>
+<p><strong>tf.variable_scope</strong>可以让变量有相同的命名，包括tf.get_variable得到的变量，还有tf.Variable的变量。</p>
+<p><strong>tf.name_scope</strong>可以让变量有相同的命名，只是限于tf.Variable的变量。</p>
+<p><strong>tf.truncated_normal_initializer()</strong>，或者简写为tf.TruncatedNormal()生成截断正态分布的随机数，这个初始化方法好像在tf中用得比较多。它有四个参数（mean=0.0, stddev=1.0, seed=None, dtype=dtypes.float32)，分别用于指定均值、标准差、随机数种子和随机数的数据类型，一般只需要设置stddev这一个参数就可以了。</p>
+<p><strong>tf.multiply（）</strong>两个矩阵中对应元素各自相乘<br> <strong>tf.matmul（）</strong>将矩阵a乘以矩阵b，生成a * b。</p>
+<p><strong>np<em>.</em>prod()</strong>函数用来计算所有元素的乘积，对于有多个维度的数组可以指定轴，如axis=1指定计算每一行的乘积。</p>
+<p><strong>np.sqrt(x) </strong> 计算数组各元素的平方根。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/15/2019011502/" data-id="cjqz5xwsi0008s4tc3rycs0zt" class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/01/16/2019011601/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            强化学习入门大纲
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/01/15/20190115/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">32位有符号整数的反转数字</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
