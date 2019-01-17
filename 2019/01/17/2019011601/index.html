@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>
-    强化学习入门知识 |
+    Qlearning和sarsa |
     
     ZhangM</title>
   
@@ -35,7 +35,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      强化学习入门知识
+      Qlearning和sarsa
     </h1>
   
 
@@ -44,8 +44,8 @@
 
     
       <div class="article-meta">
-        <a href="/2019/01/16/2019011601/" class="article-date">
-  <time datetime="2019-01-16T03:42:23.000Z" itemprop="datePublished">2019-01-16</time>
+        <a href="/2019/01/17/2019011601/" class="article-date">
+  <time datetime="2019-01-17T03:42:23.000Z" itemprop="datePublished">2019-01-17</time>
 </a>
         
   <div class="article-category">
@@ -59,11 +59,11 @@
       
       
       
-        <p>瞎瘠薄学</p>
+        <p>强化学习</p>
 <a id="more"></a>
 <p>强化学习 (Reinforcement Learning) 是一个机器学习大家族中的分支, 由于近些年来的技术突破, 和深度学习 (Deep Learning) 的整合, 使得强化学习有了进一步的运用. 比如让计算机学着玩游戏, AlphaGo 挑战世界围棋高手, 都是强化学习在行的事. 强化学习也是让你的程序从对当前环境完全陌生, 成长为一个在环境中游刃有余的高手.</p>
-<h4 id="1-1-强化学习与监督学习，非监督学习之间的关系"><a href="#1-1-强化学习与监督学习，非监督学习之间的关系" class="headerlink" title="1.1 强化学习与监督学习，非监督学习之间的关系"></a>1.1 <strong>强化学习与监督学习，非监督学习之间的关系</strong><img src="https://img-blog.csdn.net/20180202094621583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ3N3dzQwNA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></h4><p>1.2 强化学习的学习过程</p>
-<p>强化学习它有自己的一套学习方法，下图是强化学习的示意图：</p>
+<p>[TOC]</p>
+<h4 id="1-1-强化学习与监督学习，非监督学习之间的关系"><a href="#1-1-强化学习与监督学习，非监督学习之间的关系" class="headerlink" title="1.1 强化学习与监督学习，非监督学习之间的关系"></a>1.1 强化学习与监督学习，非监督学习之间的关系<img src="https://img-blog.csdn.net/20180202094621583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ3N3dzQwNA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></h4><h4 id="1-2-强化学习的学习过程"><a href="#1-2-强化学习的学习过程" class="headerlink" title="1.2 强化学习的学习过程"></a>1.2 强化学习的学习过程</h4><p>强化学习它有自己的一套学习方法，下图是强化学习的示意图：</p>
 <p><img src="https://img-blog.csdn.net/20180202094806935?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ3N3dzQwNA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
 <p>从图上我们可以看到强化学习它由两部分组成：智能体和环境。我们可以这样理解，俗话解释一下：</p>
 <p>比如，我们从沙发旁走到门口，当我们起身之后，首先大脑获取路的位置信息，然后我们确定从当前位置向前走一步，不幸运的是我们撞墙了，这明显是个负反馈，因此环境会给我们一个负奖励，告诉我们这是一个比较差的走路方式，因此我们尝试换个方向走（走哪个方向比较好呢，后文会会讲到随机策略、确定性策略等策略决策），就这样不断的和环境交互尝试，最终找到一套策略，确保我们能够从沙发旁边走到门口。在这个过程中会得到一个最大的累计期望奖励。基于以上过程，非常值得一提的是奖励函数的设置，因为这个强化学习过程中对智能体动作好坏的评价。</p>
@@ -83,7 +83,9 @@
 <h5 id="Q-Learning-决策"><a href="#Q-Learning-决策" class="headerlink" title="Q-Learning 决策"></a>Q-Learning 决策</h5><p><img src="D:\hexo\web2\source\_posts\2019011601\q2.png" alt=""></p>
 <p>假设我们的行为准则已经学习好了, 现在我们处于状态s1, 我在写作业, 我有两个行为 a1, a2, 分别是看电视和写作业, 根据我的经验, 在这种 s1 状态下, a2 写作业 带来的潜在奖励要比 a1 看电视高, 这里的潜在奖励我们可以用一个有关于 s 和 a 的 Q 表格代替, 在我的记忆Q表格中, Q(s1, a1)=-2 要小于 Q(s1, a2)=1, 所以我们判断要选择 a2 作为下一个行为. 现在我们的状态更新成 s2 , 我们还是有两个同样的选择, 重复上面的过程, 在行为准则Q 表中寻找 Q(s2, a1) Q(s2, a2) 的值, 并比较他们的大小, 选取较大的一个. 接着根据 a2 我们到达 s3 并在此重复上面的决策过程. Q learning 的方法也就是这样决策的. 看完决策, 我看在来研究一下这张行为准则 Q 表是通过什么样的方式更改, 提升的.</p>
 <h5 id="Q-Learning-更新-¶"><a href="#Q-Learning-更新-¶" class="headerlink" title="Q-Learning 更新 ¶"></a>Q-Learning 更新 <a href="https://morvanzhou.github.io/tutorials/machine-learning/ML-intro/4-03-q-learning/#Q-Learning-%E6%9B%B4%E6%96%B0" target="_blank" rel="noopener">¶</a></h5><p><img src="D:\hexo\web2\source\_posts\2019011601\q3.png" alt=""></p>
-<p>所以我们回到之前的流程, 根据 Q 表的估计, 因为在 s1 中, a2 的值比较大, 通过之前的决策方法, 我们在 s1 采取了 a2, 并到达 s2, 这时我们开始更新用于决策的 Q 表, 接着我们并没有在实际中采取任何行为, 而是再想象自己在 s2 上采取了每种行为, 分别看看两种行为哪一个的 Q 值大, 比如说 Q(s2, a2) 的值比 Q(s2, a1) 的大, 所以我们把大的 Q(s2, a2) 乘上一个衰减值 gamma (比如是0.9) 并加上到达s2时所获取的奖励 R (这里还没有获取到我们的棒棒糖, 所以奖励为 0), 因为会获取实实在在的奖励 R , 我们将这个作为我现实中 Q(s1, a2) 的值, 但是我们之前是根据 Q 表估计 Q(s1, a2) 的值. 所以有了现实和估计值, 我们就能更新Q(s1, a2) , 根据 估计与现实的差距, 将这个差距乘以一个学习效率 alpha 累加上老的 Q(s1, a2) 的值 变成新的值. 但时刻记住, 我们虽然用 maxQ(s2) 估算了一下 s2 状态, 但还没有在 s2 做出任何的行为, s2 的行为决策要等到更新完了以后再重新另外做. 这就是 off-policy 的 Q learning 是如何决策和学习优化决策的过程.</p>
+<p>所以我们回到之前的流程, 根据 Q 表的估计, 因为在 s1 中, a2 的值比较大, 通过之前的决策方法, 我们在 s1 采取了 a2, 并到达 s2, 这时我们开始更新用于决策的 Q 表。</p>
+<p>接着我们<strong>并没有在实际中采取任何行为</strong>, 而是再想象自己在 s2 上采取了每种行为, 分别看看两种行为哪一个的 Q 值大。比如说 Q(s2, a2) 的值比 Q(s2, a1) 的大, 所以我们把大的 Q(s2, a2) 乘上一个衰减值 gamma (比如是0.9) 并加上到达s2时所获取的奖励 R (这里还没有获取到我们的棒棒糖, 所以奖励为 0), 因为会获取实实在在的奖励 R , 我们将这个作为我现实中 Q(s1, a2) 的值。 但是我们之前是根据 Q 表估计 Q(s1, a2) 的值， 所以有了现实和估计值，我们就能更新Q(s1, a2) ， 根据 估计与现实的差距，将这个差距乘以一个学习效率 alpha 累加上老的 Q(s1, a2) 的值 变成新的值。 </p>
+<p>但时刻记住，我们虽然用 maxQ(s2) 估算了一下 s2 状态，但还没有在 s2 做出任何的行为，s2 的行为决策要等到更新完了以后再重新另外做。这就是 <strong>off-policy</strong> 的 Q learning 是如何决策和学习优化决策的过程.</p>
 <h5 id="Q-Learning-整体算法"><a href="#Q-Learning-整体算法" class="headerlink" title="Q-Learning 整体算法"></a>Q-Learning 整体算法</h5><p><img src="D:\hexo\web2\source\_posts\2019011601\q4.png" alt=""></p>
 <p>这一张图概括了我们之前所有的内容. 这也是 Q learning 的算法, 每次更新我们都用到了 Q 现实和 Q 估计, 而且 Q learning 的迷人之处就是 在 Q(s1, a2) 现实 中, 也包含了一个 Q(s2) 的最大估计值, 将对下一步的衰减的最大估计和当前所得到的奖励当成这一步的现实, 很奇妙吧.</p>
 <p> 最后我们来说说这套算法中一些参数的意义. </p>
@@ -95,15 +97,39 @@
 <li><p>gamma 是对未来 reward 的衰减值. 我们可以这样想象.</p>
 </li>
 </ul>
-<h5 id="Q-Learning-中的-Gamma"><a href="#Q-Learning-中的-Gamma" class="headerlink" title="Q-Learning 中的 Gamma"></a>Q-Learning 中的 Gamma</h5><p><img src="D:\hexo\web2\source\_posts\2019011601\q5.png" alt=""></p>
+<h5 id="Q-Learning-中的-Gamma"><a href="#Q-Learning-中的-Gamma" class="headerlink" title="Q-Learning 中的 Gamma"></a>Q-Learning 中的 Gamma</h5><p><img src="D:\hexo\web2\source\_posts\2019011601\q5.png" alt="q5"></p>
 <p>我们重写一下 Q(s1) 的公式, 将 Q(s2) 拆开, 因为Q(s2)可以像 Q(s1)一样,是关于Q(s3) 的, 所以可以写成这样, 然后以此类推, 不停地这样写下去, 最后就能写成这样, 可以看出Q(s1) 是有关于之后所有的奖励, 但这些奖励正在衰减, 离 s1 越远的状态衰减越严重. </p>
 <p>不好理解? 行, 我们想象 Qlearning 的机器人天生近视眼, gamma = 1 时, 机器人有了一副合适的眼镜, 在 s1 看到的 Q 是未来没有任何衰变的奖励, 也就是机器人能清清楚楚地看到之后所有步的全部价值, 但是当 gamma =0, 近视机器人没了眼镜, 只能摸到眼前的 reward, 同样也就只在乎最近的大奖励, 如果 gamma 从 0 变到 1, 眼镜的度数由浅变深, 对远处的价值看得越清楚, 所以机器人渐渐变得有远见, 不仅仅只看眼前的利益, 也为自己的未来着想.</p>
-<p>loading…</p>
+<h4 id="2-4-Sarsa"><a href="#2-4-Sarsa" class="headerlink" title="2.4 Sarsa"></a>2.4 Sarsa</h4><p>在强化学习中 Sarsa 和 Q learning及其类似, 这节内容会基于之前的 Q learning. 和上次一样, 我们还是使用写作业和看电视这个例子. 没写完作业去看电视被打, 写完了作业有糖吃.</p>
+<h5 id="Sarsa决策"><a href="#Sarsa决策" class="headerlink" title="Sarsa决策"></a>Sarsa决策</h5><p><img src="D:\hexo\web2\source\_posts\2019011601\s2.png" alt="s2"></p>
+<p>Sarsa 的决策部分和 [Q learning]一模一样, 因为我们使用的是 Q 表的形式决策, 所以我们会在 Q 表中挑选值较大的动作值施加在环境中来换取奖惩. 但是不同的地方在于 Sarsa 的更新方式是不一样的.</p>
+<h5 id="Sarsa-更新行为准则"><a href="#Sarsa-更新行为准则" class="headerlink" title="Sarsa 更新行为准则"></a>Sarsa 更新行为准则</h5><p><img src="D:\hexo\web2\source\_posts\2019011601\s3.png" alt="s3"></p>
+<p>同样, 我们会经历正在写作业的状态 s1, 然后再挑选一个带来最大潜在奖励的动作 a2, 这样我们就到达了 继续写作业状态 s2, 而在这一步, 如果你用的是 Q learning, 你会观看一下在 s2 上选取哪一个动作会带来最大的奖励。但是在真正要做决定时, 却不一定会选取到那个带来最大奖励的动作, Q-learning 在这一步只是估计了一下接下来的动作值。</p>
+<p>而 Sarsa 是实践派, 他说到做到, 在 s2 这一步估算的动作也是接下来要做的动作。所以 Q(s1, a2) 现实的计算值, 我们也会稍稍改动, 去掉maxQ, 取而代之的是在 s2 上我们实实在在选取的 a2 的 Q 值. 最后像 Q learning 一样, 求出现实和估计的差距 并更新 Q 表里的 Q(s1, a2)。</p>
+<h5 id="对比Sarsa和Q-learning"><a href="#对比Sarsa和Q-learning" class="headerlink" title="对比Sarsa和Q-learning"></a>对比Sarsa和Q-learning</h5><h5 id=""><a href="#" class="headerlink" title=""></a><img src="D:\hexo\web2\source\_posts\2019011601\s4.png" alt="s4"></h5><p>从算法来看, 这就是他们两最大的不同之处：</p>
+<p>因为 Sarsa 是说到做到型，所以我们也叫他 on-policy，在线学习，学着自己在做的事情。</p>
+<p> 而 Q learning 是说到但并不一定做到， 所以它也叫作 Off-policy，离线学习，而因为有了 maxQ，Q-learning 也是一个特别勇敢的算法。</p>
+<p><img src="D:\hexo\web2\source\_posts\2019011601\s5.png" alt="s5"></p>
+<p>为什么说他勇敢呢， 因为 Q learning 机器人永远都会选择最近的一条通往成功的道路，不管这条路会有多危险；而 Sarsa 则是相当保守，他会选择离危险远远的，拿到宝藏是次要的，保住自己的小命才是王道，这就是使用 Sarsa 方法的不同之处。</p>
+<p>这种不同之处使得 Sarsa 相对于 Qlearning更加的胆小。因为 Qlearning 永远都是想着 <code>maxQ</code>最大化， 因为这个 <code>maxQ</code> 而变得贪婪， 不考虑其他非 <code>maxQ</code> 的结果。我们可以理解成 Qlearning 是一种贪婪、大胆、勇敢的算法，对于错误、 死亡并不在乎；而 Sarsa 是一种保守的算法，他在乎每一步决策，对于错误和死亡比较敏感。两种算法都有他们的好处，比如在实际中，你比较在乎机器的损害，用一种保守的算法，在训练时就能减少损坏的次数。</p>
+<h5 id="什么是Sarsa（lambda）"><a href="#什么是Sarsa（lambda）" class="headerlink" title="什么是Sarsa（lambda）"></a>什么是Sarsa（lambda）</h5><p>现在我们知道了Sarsa是一种在线学习法，但是这个 lambda 到底是什么。</p>
+<p>其实吧, Sarsa 是一种单步更新法，在环境中每走一步，更新一次自己的行为准则，我们可以在这样的 Sarsa 后面打一个括号， 说他是 Sarsa(0)， 因为他等走完这一步以后直接更新行为准则。如果延续这种想法，走完这步，再走一步，然后再更新，我们可以叫他 Sarsa(1)。同理， 如果等待回合完毕我们一次性再更新呢，比如这回合我们走了 n 步，那我们就叫 Sarsa(n)。为了统一这样的流程，我们就有了一个 lambda值来代替我们想要选择的步数，这也就是 Sarsa(lambda) 的由来。我们看看最极端的两个例子，对比单步更新和回合更新，看看回合更新的优势在哪里。</p>
+<p><img src="D:\hexo\web2\source\_posts\2019011601\sl3.png" alt="sl3"></p>
+<p>虽然我们每一步都在更新，但是在没有获取宝藏的时候，我们现在站着的这一步的没有得到任何更新，也就是直到获取宝藏时，我们才为获取到宝藏的上一步更新为：这一步很好, 和获取宝藏是有关联的，而之前为了获取宝藏所走的所有步都被认为和获取宝藏没关系。回合更新虽然我要等到这回合结束，才开始对本回合所经历的所有步都添加更新，但是这所有的步都是和宝藏有关系的，都是为了得到宝藏需要学习的步，所以每一个脚印在下回合被选则的几率又高了一些。在这种角度来看，回合更新似乎会有效率一些。</p>
+<p>我们看看这种情况，还是使用单步更新的方法在每一步都进行更新，但是同时记下之前的寻宝之路。你可以想像，每走一步，插上一个小旗子，这样我们就能清楚的知道除了最近的一步，找到宝物时还需要更新哪些步了。</p>
+<p> 不过, 有时候情况可能没有这么乐观。开始的几次，因为完全没有头绪，我可能在原地打转了很久，然后才找到宝藏，那些重复的脚步真的对我拿到宝藏很有必要吗? 答案我们都知道。所以Sarsa(lambda)就来拯救你啦。</p>
+<h5 id="Lambda含义与取值"><a href="#Lambda含义与取值" class="headerlink" title="Lambda含义与取值"></a>Lambda含义与取值</h5><p><img src="D:\hexo\web2\source\_posts\2019011601\sl4.png" alt=""></p>
+<p>其实 lambda 就是一个衰变值, 他可以让你知道离奖励越远的步可能并不是让你最快拿到奖励的步, 所以我们想象我们站在宝藏的位置, 回头看看我们走过的寻宝之路, 离宝藏越近的脚印越看得清, 远处的脚印太渺小, 我们都很难看清, 那我们就索性记下离宝藏越近的脚印越重要, 越需要被好好的更新。和之前我们提到过的 奖励衰减值 gamma 一样, lambda 是脚步衰减值, 都是一个在 0 和 1 之间的数。</p>
+<p><img src="D:\hexo\web2\source\_posts\2019011601\sl5.png" alt=""></p>
+<p>当 lambda 取0, 就变成了 Sarsa 的单步更新；当 lambda 取 1, 就变成了回合更新, 对所有步更新的力度都是一样。当 lambda 在 0 和 1 之间, 取值越大, 离宝藏越近的步更新力度越大。这样我们就不用受限于单步更新的每次只能更新最近的一步, 我们可以更有效率的更新所有相关步了。</p>
+<p>Sarsa-lambda 是基于 Sarsa 方法的升级版, 他能更有效率地学习到怎么样获得好的 reward. 如果说 Sarsa 和 Qlearning 都是每次获取到 reward, 只更新获取到 reward 的前一步. 那 Sarsa-lambda 就是更新获取到 reward 的前 lambda 步. lambda 是在 [0, 1] 之间取值,</p>
+<p>如果 lambda = 0, Sarsa-lambda 就是 Sarsa, 只更新获取到 reward 前经历的最后一步.</p>
+<p>如果 lambda = 1, Sarsa-lambda 更新的是 获取到 reward 前所有经历的步.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/16/2019011601/" data-id="cjr0aec3x000esotcr39m6kz5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/17/2019011601/" data-id="cjr0oitx8000h2ctcu4ut7nh1" class="article-share-link">Share</a>
       
     </footer>
 
@@ -113,19 +139,19 @@
     
   <nav class="article-nav">
     
-      <a href="/2019/01/16/2019011602/" class="article-nav-link">
+      <a href="/2019/01/17/2019011701/" class="article-nav-link">
         <strong class="article-nav-caption">前一篇</strong>
         <div class="article-nav-title">
           
-            实现将字符串转换为整数的atoi
+            Policy Gradients
           
         </div>
       </a>
     
     
-      <a href="/2019/01/15/2019011502/" class="article-nav-link">
+      <a href="/2019/01/16/2019011602/" class="article-nav-link">
         <strong class="article-nav-caption">后一篇</strong>
-        <div class="article-nav-title">tensorflow随笔</div>
+        <div class="article-nav-title">实现将字符串转换为整数的atoi</div>
       </a>
     
   </nav>

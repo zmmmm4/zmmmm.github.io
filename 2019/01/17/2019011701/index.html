@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Policy Gradients |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-2019011701" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Policy Gradients
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/17/2019011701/" class="article-date">
+  <time datetime="2019-01-17T08:49:05.000Z" itemprop="datePublished">2019-01-17</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/reinforcement-learning/">reinforcement learning</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>策略梯度</p>
+<a id="more"></a>
+<p>强化学习是一个通过奖惩来学习正确行为的机制. 家族中有很多种不一样的成员, 有学习奖惩值, 根据自己认为的高价值选行为, 比如 Q learning, Deep Q Network, 也有不通过分析奖励值, 直接输出行为的方法, 这就是今天要说的 Policy Gradients 了. </p>
+<p>Policy gradient 是 RL 中另外一个大家族, 他借用神经网络，在无穷多的动作中计算价值, 从而选择行为。不像 Value-based 方法 (Q learning, Sarsa), 他也要接受环境信息 (observation), 不同的是他<strong>要输出不是 action 的 value, 而是具体的那一个 action</strong>, 这样 policy gradient 就跳过了 value 这个阶段. 而且个人认为 Policy gradient 最大的一个优势是: 输出的这个 action 可以是一个连续的值, 之前我们说到的 value-based 方法输出的都是不连续的值, 然后再选择值最大的 action. 而 policy gradient 可以在一个连续分布上选取 action.</p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p><img src="D:\hexo\web2\source\_posts\2019011701\2159902-13d5d1a3acbf2157.png" alt=""></p>
+<p>在深度强化学习中，<strong>Policy Π 可以看做是一个参数为 θ 的神经网络</strong>，输入当前的state，输出可能的action的概率分布，选择概率最大的一个action作为要执行的操作。</p>
+<p>Policy Gradient不通过误差反向传播，它通过观测信息选出一个行为直接进行反向传播，当然出人意料的是他并没有误差，而是利用reward奖励直接对选择行为的可能性进行增强和减弱，好的行为会被增加下一次被选中的概率，不好的行为会被减弱下次被选中的概率。</p>
+<p>以游戏为例，从游戏开始到结束，叫做一个episode，简单理解为回合。episode结束，游戏过程中所有的reward相加得到该回合的总reward（角色挂与未挂可能是一个负reward或一个大的正reward）。</p>
+<p><img src="D:\hexo\web2\source\_posts\2019011701\2159902-ddae732feac73216.png" alt=""></p>
+<p>这里强化学习的目标就是学习一个Policy，即一个网络，使其每看到一个画面，做出一个action, 并做到最终获得最大总reward。</p>
+<h4 id="算法细节"><a href="#算法细节" class="headerlink" title="算法细节"></a>算法细节</h4><p>游戏的进程相应的可以表示成state,action交替的序列：</p>
+<p><img src="D:\hexo\web2\source\_posts\2019011701\2159902-2083b56a56aada88.png" alt=""></p>
+<p>游戏引擎（Environment）产生一个画面（state）,接着神经网络玩家（Actor）产生一个action，接着影响Environment，并产生下一个state，如此反复到游戏结束，一个完整的序列（1-T）为一个Trajectory，一轮游戏一轮回合，或者叫一轮采样。该序列发生的概率，即在策略Π 的参数为θ 情况下Trajectory τ发生的概率：</p>
+<p><img src="D:\hexo\web2\source\_posts\2019011701\2159902-4ddd6fd020512976.png" alt=""></p>
+<p>这样在此Trajectory下会得到一个总的回报R(τ)，可以想到，玩游戏有很大的随机性，不同的action就可能会有不同的state，反之亦然。因此R(τ)实际是一个变量（根据游戏场景过程的变化而变化），因此为了衡量一个策略Π的好坏，需要考虑一个期望的回报R_E(τ)。游戏的过程当然也不可能穷举，因此就需要采样来计算期望回报（“平均”回报），可以理解为Policy固定情况下反复的试玩N回合游戏，每回合的reward<strong><em>以回合发生概率为权重相加取平均</em></strong>，即为当前策略的期望reward。目标也就是<strong><em>不断更新Policy的参数θ，使期望reward得到最大</em></strong>。<em>**</em></p>
+<p><img src="D:\hexo\web2\source\_posts\2019011701\2159902-9f56dcfcdca9ffca.png" alt=""></p>
+<h4 id="策略梯度提升"><a href="#策略梯度提升" class="headerlink" title="策略梯度提升"></a>策略梯度提升</h4><p>有了目标，下面就是用合适的方法，使期望reward最大，一种方法便是策略梯度提升的方法（与最小化loss的梯度下降相对）。由上面可知期望reward是参数θ的函数，所以参数更新的方式为：</p>
+<p><img src="D:\hexo\web2\source\_posts\2019011701\2159902-aea1a369ca61875b.png" alt=""></p>
+<p>下面的问题就是期望reward对θ的导数的求法，走一波公式推导：</p>
+<p><img src="D:\hexo\web2\source\_posts\2019011701\2159902-0e5293f2a59fb71f.png" alt=""></p>
+<p>公式推导并不复杂，主要是蓝框里的一个常用小技巧变换（同时乘和除f(x)）。然后第二行等式到第三行将累加转换为期望表示；接着约等于N次采样的期望值。第三行到第四行将上面的p_{θ}(τ)带入，去掉与θ无关的环境相关概率p(s_{t+1}|s_t, a_t)和p(s_1),得到最终结果：</p>
+<p><img src="D:\hexo\web2\source\_posts\2019011701\2159902-666c1f7037af194e.png" alt=""></p>
+<p>下面就是不断采样，更新参数的过程（根据当前策略玩游戏，得回报，修正策略）：</p>
+<p><img src="D:\hexo\web2\source\_posts\2019011701\2159902-8a275b32e2655751.png" alt=""></p>
+<p>图示左边表示根据当前policy参数采样得到N个Trajectory，计算一次期望reward，然后梯度上升的方法更新policy参数，用更新后的policy再进行下一轮采样，如此往复直到收敛，得到期望reward最大的policy。最终该policy（神经网络表示）就学会了根据游戏画面做合适的action，最终赢得游戏。</p>
+<h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><ul>
+<li>连续的动作空间（或者高维空间）中更加高效；</li>
+<li>可以实现随机化的策略；</li>
+<li>某种情况下，价值函数可能比较难以计算，而策略函数较容易。</li>
+</ul>
+<h5 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h5><ul>
+<li>通常收敛到局部最优而非全局最优</li>
+<li>评估一个策略通常低效（这个过程可能慢，但是具有更高的可变性，其中也会出现很多并不有效的尝试，而且方差高</li>
+</ul>
+<h3 id="REINFORCE方法"><a href="#REINFORCE方法" class="headerlink" title="REINFORCE方法"></a>REINFORCE方法</h3><p><img src="D:\hexo\web2\source\_posts\2019011601\5-1-1.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/17/2019011701/" data-id="cjr0oitww00062ctcmpj2yiim" class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/01/17/2019011601/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">Qlearning和sarsa</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
