@@ -63,7 +63,7 @@
 <p>字符串可以在组成整数的字符之后包含其他字符，这些字符将被忽略，并且对该函数的行为没有影响。</p>
 <p>如果str中的第一个非空格字符序列不是有效的整数，或者由于str为空或只包含空格字符而不存在这样的序列，则不执行转换。如果无法执行有效的转换，则返回零值。</p>
 <a id="more"></a>
-<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p><strong>Note:</strong></p>
+<h2><span id="problem">Problem</span></h2><p><strong>Note:</strong></p>
 <ul>
 <li><p>Only the space character <code>&#39; &#39;</code> is considered as whitespace character.</p>
 </li>
@@ -82,12 +82,12 @@
 </li>
 </ul>
 <hr>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>【c++】</p>
+<h2><span id="solution">Solution</span></h2><p>【c++】</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">int myAtoi(string str) &#123;</span><br><span class="line">    long result = 0;</span><br><span class="line">    int indicator = 1;</span><br><span class="line">    for(int i = 0; i&lt;str.size();)</span><br><span class="line">    &#123;</span><br><span class="line">        i = str.find_first_not_of(&apos; &apos;);</span><br><span class="line">        if(str[i] == &apos;-&apos; || str[i] == &apos;+&apos;)</span><br><span class="line">            indicator = (str[i++] == &apos;-&apos;)? -1 : 1;</span><br><span class="line">        while(&apos;0&apos;&lt;= str[i] &amp;&amp; str[i] &lt;= &apos;9&apos;) </span><br><span class="line">        &#123;</span><br><span class="line">            result = result*10 + (str[i++]-&apos;0&apos;);</span><br><span class="line">            if(result*indicator &gt;= INT_MAX) return INT_MAX;</span><br><span class="line">            if(result*indicator &lt;= INT_MIN) return INT_MIN;                </span><br><span class="line">        &#125;</span><br><span class="line">        return result*indicator;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/16/2019011602/" data-id="cjr0oitwv00052ctctg9s125b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/16/2019011602/" data-id="cjr0p3l0o0005rctcgxev53zw" class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arrays/">Arrays</a></li></ul>
 

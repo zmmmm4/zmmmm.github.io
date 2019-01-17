@@ -60,15 +60,15 @@
       
       
         <p>leetcode第7题<br><a id="more"></a></p>
-<h1 id="【leetcode第7题】"><a href="#【leetcode第7题】" class="headerlink" title="【leetcode第7题】"></a>【leetcode第7题】</h1><p>Given a 32-bit signed integer, reverse digits of an integer.</p>
+<h1><span id="leetcode第7题">【leetcode第7题】</span></h1><p>Given a 32-bit signed integer, reverse digits of an integer.</p>
 <p>给定一个32位有符号整数，得到该整数的反转数字。</p>
 <blockquote>
 <p>Example 1:<br>Input: 123<br>Output: 321<br>Example 2:<br>Input: -123<br>Output: -321<br>Example 3:<br>Input: 120<br>Output: 21<br>Note:<br>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.</p>
 <p>假设我们正在处理一个环境，只能在32位带符号整数存储整数范围：[−231,  231 − 1]。</p>
 <p>对于这个问题，假设函数在反整数溢出时返回0。</p>
 </blockquote>
-<h1 id="【c-】"><a href="#【c-】" class="headerlink" title="【c++】"></a>【c++】</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int reverse(int x) &#123;</span><br><span class="line">        long y=0;</span><br><span class="line">        while(x)&#123; </span><br><span class="line">            y=y*10+x%10;</span><br><span class="line">            x/=10;</span><br><span class="line">        &#125;</span><br><span class="line">       return (y&gt;INT_MIN &amp;&amp; y&lt;INT_MAX)?y:0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="关于INT-MAX-INT-MIN的运算"><a href="#关于INT-MAX-INT-MIN的运算" class="headerlink" title="关于INT_MAX INT_MIN的运算"></a>关于INT_MAX INT_MIN的运算</h1><p>Value of INT_MAX is +2147483647.<br>Value of INT_MIN is -2147483648.<br>因为int占4字节32位，根据二进制编码的规则，INT_MAX = 2^31-1，INT_MIN= -2^31.</p>
+<h1><span id="c">【c++】</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int reverse(int x) &#123;</span><br><span class="line">        long y=0;</span><br><span class="line">        while(x)&#123; </span><br><span class="line">            y=y*10+x%10;</span><br><span class="line">            x/=10;</span><br><span class="line">        &#125;</span><br><span class="line">       return (y&gt;INT_MIN &amp;&amp; y&lt;INT_MAX)?y:0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1><span id="关于int_max-int_min的运算">关于INT_MAX INT_MIN的运算</span></h1><p>Value of INT_MAX is +2147483647.<br>Value of INT_MIN is -2147483648.<br>因为int占4字节32位，根据二进制编码的规则，INT_MAX = 2^31-1，INT_MIN= -2^31.</p>
 <p>C/C++中，所有超过该限值的数，都会出现溢出，出现warning，但是并不会出现error。</p>
 <p>如果想表示的整数超过了该限值，可以使用长整型long long 占8字节64位。</p>
 <p>由于二进制编码按原码、补码和反码的规则进行运算，所有程序中对INT_MAX和INT_MIN的运算应当格外注意，在出现溢出的时候，不遵循数学规则。</p>
@@ -80,7 +80,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/15/20190115/" data-id="cjr0oitwq00012ctcphb7khcs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/15/20190115/" data-id="cjr0p3l0j0001rctcomctqv1u" class="article-share-link">Share</a>
       
     </footer>
 
