@@ -60,6 +60,67 @@
 
     
       
+        <article id="post-2019011702" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/01/17/2019011702/">Container With Most Water</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/17/2019011702/" class="article-date">
+  <time datetime="2019-01-17T14:54:51.000Z" itemprop="datePublished">2019-01-17</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1><span id="问题">问题</span></h1><p>Given <em>n</em> non-negative integers <em>a1</em>, <em>a2</em>, …, <em>an</em> , where each represents a point at coordinate (<em>i</em>, <em>ai</em>). <em>n</em> vertical lines are drawn such that the two endpoints of line <em>i</em> is at (<em>i</em>, <em>ai</em>) and (<em>i</em>, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
+<p><strong>Note:</strong> You may not slant the container and <em>n</em> is at least 2.</p>
+<p>给定n个非负整数a1 a2…， an，其中每个点表示坐标(i, ai)上的一个点。画n条垂直线，使直线i的两个端点分别为(i, ai)和(i, 0)，找出两条直线，它们与x轴一起构成一个容器，使容器中含有最多的水。</p>
+<p>注意:容器不能倾斜，n至少为2。</p>
+<p>因为所求水是【两个直线x轴的差 * 短直线的y轴值】，先要使前者尽量大，所以从头和尾开始推进，计算当前面积，然后</p>
+<p>1.长的一边先保留，推进短的一边。这种方法慢一些。</p>
+<p>2.两边都找下一个比短边长的，比短边还短的直接忽略。这种方法快。</p>
+<h1><span id="c解">C++解</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">30ms：</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxArea(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int i=0,j=height.size()-1;</span><br><span class="line">        int water=0;</span><br><span class="line">        while(i&lt;j)&#123;</span><br><span class="line">            water=max(water,min(height[i],height[j])*(j-i));</span><br><span class="line">            if(height[i]&lt;height[j])&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return water;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">16ms:</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public:</span><br><span class="line">    int maxArea(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">       int water = 0;</span><br><span class="line">       int i = 0, j = height.size() - 1;</span><br><span class="line">       while (i &lt; j) &#123;</span><br><span class="line">           int h = min(height[i], height[j]);</span><br><span class="line">           water = max(water, (j - i) * h);</span><br><span class="line">           while (height[i] &lt;= h &amp;&amp; i &lt; j) i++;</span><br><span class="line">           while (height[j] &lt;= h &amp;&amp; i &lt; j) j--;</span><br><span class="line">       &#125;</span><br><span class="line">    return water;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1><span id="python写法">python写法</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def maxArea(self, height):</span><br><span class="line">        i, j = 0, len(height) - 1</span><br><span class="line">        water = 0</span><br><span class="line">        while i &lt; j:</span><br><span class="line">            water = max(water, (j - i) * min(height[i], height[j]))</span><br><span class="line">            if height[i] &lt; height[j]:</span><br><span class="line">                i += 1</span><br><span class="line">            else:</span><br><span class="line">                j -= 1</span><br><span class="line">        return water</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/17/2019011702/" data-id="cjr0skzzu0009h8tckldh37mi" class="article-share-link">Share</a>
+      
+    </footer>
+  
+  </div>
+  
+  
+  
+
+  
+
+</article>
+
+
+
+      
         <article id="post-2019011701" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <div class="article-inner">
@@ -99,66 +160,13 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/17/2019011701/" data-id="cjr0p3l0p0006rctcpluulvj2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/17/2019011701/" data-id="cjr0skzzr0006h8tcrqmo5s9d" class="article-share-link">Share</a>
       
     </footer>
-
+  
   </div>
-
   
-
   
-
-</article>
-
-
-
-      
-        <article id="post-20190116001" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/01/17/20190116001/">Qlearning和sarsa</a>
-    </h2>
-  
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/01/17/20190116001/" class="article-date">
-  <time datetime="2019-01-17T03:42:23.000Z" itemprop="datePublished">2019-01-17</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/reinforcement-learning/">reinforcement learning</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-      
-        <p>强化学习</p>
-        
-          <a class="article-more-link" href="/2019/01/17/20190116001/">阅读全文</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/17/20190116001/" data-id="cjr0p3l1c000hrctc3rxbv1ia" class="article-share-link">Share</a>
-      
-    </footer>
-
-  </div>
-
   
 
   
@@ -207,12 +215,68 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/17/2019011601/" data-id="cjr0p3l1f000irctcgz3z2ah6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/17/2019011601/" data-id="cjr0sl009000jh8tc4mxbgghk" class="article-share-link">Share</a>
       
     </footer>
+  
+  </div>
+  
+  
+  
 
+  
+
+</article>
+
+
+
+      
+        <article id="post-20190116001" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/01/17/20190116001/">Qlearning和sarsa</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/17/20190116001/" class="article-date">
+  <time datetime="2019-01-17T03:42:23.000Z" itemprop="datePublished">2019-01-17</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/reinforcement-learning/">reinforcement learning</a>
   </div>
 
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>强化学习</p>
+        
+          <a class="article-more-link" href="/2019/01/17/20190116001/">阅读全文</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/17/20190116001/" data-id="cjr0sl00c000kh8tcgg9z1g8f" class="article-share-link">Share</a>
+      
+    </footer>
+  
+  </div>
+  
+  
   
 
   
@@ -263,14 +327,15 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/16/2019011602/" data-id="cjr0p3l0o0005rctcgxev53zw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/16/2019011602/" data-id="cjr0skzzp0005h8tctc191b59" class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arrays/">Arrays</a></li></ul>
 
     </footer>
-
+  
   </div>
-
+  
+  
   
 
   
@@ -319,12 +384,13 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/15/2019011502/" data-id="cjr0p3l0m0004rctc3eck4kev" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/15/2019011502/" data-id="cjr0skzzn0004h8tcvw103qm4" class="article-share-link">Share</a>
       
     </footer>
-
+  
   </div>
-
+  
+  
   
 
   
@@ -373,12 +439,13 @@
       
     </p></div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/15/20190115/" data-id="cjr0p3l0j0001rctcomctqv1u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/15/20190115/" data-id="cjr0skzzj0001h8tc4ou48eei" class="article-share-link">Share</a>
       
     </footer>
-
+  
   </div>
-
+  
+  
   
 
   
@@ -427,14 +494,15 @@
       
     </p></div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/14/2019011401/" data-id="cjr0p3l0e0000rctcjrpxnin1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/14/2019011401/" data-id="cjr0skzze0000h8tclcq1v8ay" class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arrays/">Arrays</a></li></ul>
 
     </footer>
-
+  
   </div>
-
+  
+  
   
 
   
