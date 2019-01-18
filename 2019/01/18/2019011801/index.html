@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    分层强化学习 |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-2019011801" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      分层强化学习
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/18/2019011801/" class="article-date">
+  <time datetime="2019-01-18T12:48:07.000Z" itemprop="datePublished">2019-01-18</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/reinforcement-learning/">reinforcement learning</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2><span id="为什么会出现分层强化学习">为什么会出现分层强化学习</span></h2><p>​        强化学习要研究的问题是智能体（agents）如何 在一个环境（environment）中学到 一 定的策略（policy），使得长期的奖赏（reward）最大。 但是传统 的强化学习方法面临着维度灾难，即当环境较为复杂或者任务较为困难时，agent的状态（state）空间过 大，会导致需要学习的参数以及所需的存储空间急速增长，强化学习难以取得理想的效果。 为了解决 维度灾难，研究者提出了分层强化学习（hierarchical reinforcement learning，HRL）。HRL 的主要目标是 将复杂的问题分解成多个小问题，分别解决小问题 从而达到解决原问题的目的。 近些年来，人们认为分层强化学习基本可以解决强化学习的维度灾 难问题，转而将研究方向转向如何将复杂的问题抽象成不同的层级，从而更好地解决这些问题。 </p>
+<h2><span id="背景知识">背景知识</span></h2><p>​        本部分主要介绍强化学习、马尔可夫决策过程mdp和半马尔可夫决策过程semi-mdp的相关内容和背景知识。</p>
+<h3><span id="rl与mdp">RL与MDP</span></h3><p>​        强化学习主要研究的问题是agent通过和environment直接交互的过程来学习策略，使得达到目标后的总体奖励最大。大多数关于强化学习RL的研究都建立在马尔可夫决策过程MDP上。</p>
+<p>​        MDP可以表示为一 个五元组〈Ｓ，Ａ，Ｐ，Ｒ，γ〉。 其中，Ｓ为环境状态state的有限集合，集合中某个状态表示为s∈S；A为动作 action的有限集合，集合中某个动作表示为 a∈A，A 为状态s下可执行的动作集合；P状态转移方程，P(s′|s,a) 表示在状态s执行动作a后将以 P的概率跳转到状态 s′；R为奖赏函数；γ 为折损系数， ０≤γ≤１。 </p>
+<p>​        假设一个agent观察到自己的状态s，此 时它选择一个动作a，它会得到一个即时的奖赏ｒ=R(s,a)，然后以 P(s′ |s,a) 的概率达到下一个状态s′。 马尔可夫决策过程有马尔可夫性，即系统的下个状态只与当前状态有关，与之前的状态无关。 当马尔可夫决策过程中作出决策时，只需要考虑当前的状态，而不需要历史数据，这样大大降低了问题的复杂度。 </p>
+<p>​        强化学习需要agent学习到一个策略 π，通过 π (s,a) 的值来指导agent进行动作的选择。 给定一个策略 π 和一个状态 s ，Ｖ表示 从s开始按照策略 π 进行选择可以得到的<strong>期望累积奖赏</strong>。 我们将 Ｖ 称作值函数， 强化学习的目标是学到一个最优的策略 π，最大化每一个状态下的 Ｖ 值，此时的最优值函数记作 Ｖ。 </p>
+<p>​        除了值函数，期望累计奖赏也可以用动作-值函数来表示，记作Ｑ，表示给定一个策略 π ，在状态 s 上执行动作 a 可以得到的期望累积奖赏。 我们也将 Ｑ(s,a) 叫作 Ｑ 函数，我们也希望通过学习到一个最优的Ｑ函数Ｑ∗，使agent可以直接通过Ｑ函数来选择当前状态下应该执行的动作。</p>
+<p>​       经过多年的研究，已经出现一些算法，致力于解决传统的强化学习问题，比如Ｑ⁃learning、蒙特卡洛方法（Monte-Carlo learning）、时 序 差 分方法（temporal-difference learning）等。其中 Ｑ⁃learning 方法常常在分层强化学习中被使用。Ｑ⁃learning通 过不断迭代更新Ｑ函数的值来逼近最优的Ｑ∗。</p>
+<h3><span id="smdp">SMDP</span></h3><p>​        马尔可夫决策过程中，选择一个动作后，agent 会立刻根据状态转移方程P跳转到下一个状态，而在半马尔可夫决策过程SMDP中，当前状态到下 一个状态的步数是个随机变量 τ，即在某个状态s下选择一个动作a，经过 τ 步才会以一个概率转移到下一个状态s′。 此时的状态转移概率是s 和 τ 的联合概率P（s′,τ |s,a）。 根据 τ 的定义域不同，SMDP所定义的系统也有所不同。 当 τ 的取值为实数值，则SMDP构建了一个连续时间-离散事件系统；而当 τ 的取值为正整 数，则是一个离散时间SMDP。 出于简单考虑，绝大部分分层强化学习都是在离散时间SMDP上进行讨论。 </p>
+<h2><span id="分层强化学习">分层强化学习</span></h2><p>​        分层强化学习是将复杂的强化学习问题分解成一些容易解决的子问题，通过分别解决这些子问题，最终解决原本的强化学习问题。 常见的分层强化学习方法可以大致分为四大类，分别为基于选项的强化学习、基于分层抽象机 的分层强化学习、基于 MaxQ函 数分解的分层强化学习，以及端到端的分层强化学习。本节将对它们逐一进行探讨。 </p>
+<h3><span id="基于选项的分层强化学习">基于选项的分层强化学习</span></h3><p>​        基于option的分层强化学习的过程如下：假设 agent 当前在某个状态，选择一个 option，通过这个 option的策略，agent 选择了一个动作或者另一个 option。 若选择了一个动作，则直接执行转移到下一 个状态；若选择了另一个 option，则用选择的新 option继续选择，直到最后得出一个动作。</p>
+<p>​        <strong>*<em>最简单的option为直接定义在MDP上的马尔可夫option， 是一个三元组(，，仃，r)。其中：lC_S是option入口状态集合； 仃：s×A[0，1]为option内部策略；T：汕[O，1]为option终 止条件。当option被激活后，agent根据仃选择执行的动作，最 后根据r随机终止。对于任意动作口∈A可看成是单步op</em><br><em>fion。</em><br>另一种比较灵活的option是半马尔可夫option，其内部策 略和终止条件均依赖于option激活后所经历的状态、动作和回 报等历史。令n表示历史集，形式上半马尔可夫option也是一 个三元组(，，仃，r)。，的含义与马尔可夫option的，相同，但内 部策略和终止条件分别定义为仃：口XA一[0。1]和T：n一 [0，1]。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/18/2019011801/" data-id="cjr26f2kj0006lwtcupf9h90h" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reinforcement-learning/">reinforcement learning</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/01/17/2019011702/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">Container With Most Water</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
