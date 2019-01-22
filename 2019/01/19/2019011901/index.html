@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>
-    Integer to Roman |
+    Integer to Roman and roman to integer |
     
     ZhangM</title>
   
@@ -35,7 +35,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Integer to Roman
+      Integer to Roman and roman to integer
     </h1>
   
 
@@ -59,8 +59,8 @@
       
       
       
-        <p>leetcode第12题<br><a id="more"></a></p>
-<h1><span id="问题">问题</span></h1><p>罗马数字由七种不同的符号表示:I、V、X、L、C、D和M。</p>
+        <p>leetcode第12题和13题<br><a id="more"></a></p>
+<h1><span id="问题1">问题1</span></h1><p>罗马数字由七种不同的符号表示:I、V、X、L、C、D和M。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Symbol       Value</span><br><span class="line">I             1</span><br><span class="line">V             5</span><br><span class="line">X             10</span><br><span class="line">L             50</span><br><span class="line">C             100</span><br><span class="line">D             500</span><br><span class="line">M             1000</span><br></pre></td></tr></table></figure>
 <p>例如，2在罗马数字中写成II，只是两个1相加。12写成，XII，也就是X + II。数字27写成XXVII，也就是XX + V + II。</p>
 <p>罗马数字通常从左到右从大到小。然而，4的数字不是IIII。相反，数字4写成IV，因为1在5之前我们减去它得到4。同样的原理也适用于数字9，即写为IX。使用减法的情况有六种:</p>
@@ -74,10 +74,19 @@
 </ul>
 <p>  给定一个整数，将其转换为罗马数字。输入保证在1到3999之间。</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Input: 3</span><br><span class="line">Output: &quot;III&quot;</span><br><span class="line"></span><br><span class="line">Input: 4</span><br><span class="line">Output: &quot;IV&quot;</span><br><span class="line"></span><br><span class="line">Input: 9</span><br><span class="line">Output: &quot;IX&quot;</span><br><span class="line"></span><br><span class="line">Input: 58</span><br><span class="line">Output: &quot;LVIII&quot;</span><br><span class="line">Explanation: L = 50, V = 5, III = 3.</span><br></pre></td></tr></table></figure>
+<h1><span id="极其机智的解答">极其机智的解答</span></h1><p>  依次把个位十位百位千位挑出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static String intToRoman(int num) &#123;</span><br><span class="line">    String M[] = &#123;&quot;&quot;, &quot;M&quot;, &quot;MM&quot;, &quot;MMM&quot;&#125;;</span><br><span class="line">    String C[] = &#123;&quot;&quot;, &quot;C&quot;, &quot;CC&quot;, &quot;CCC&quot;, &quot;CD&quot;, &quot;D&quot;, &quot;DC&quot;, &quot;DCC&quot;, &quot;DCCC&quot;, &quot;CM&quot;&#125;;</span><br><span class="line">    String X[] = &#123;&quot;&quot;, &quot;X&quot;, &quot;XX&quot;, &quot;XXX&quot;, &quot;XL&quot;, &quot;L&quot;, &quot;LX&quot;, &quot;LXX&quot;, &quot;LXXX&quot;, &quot;XC&quot;&#125;;</span><br><span class="line">    String I[] = &#123;&quot;&quot;, &quot;I&quot;, &quot;II&quot;, &quot;III&quot;, &quot;IV&quot;, &quot;V&quot;, &quot;VI&quot;, &quot;VII&quot;, &quot;VIII&quot;, &quot;IX&quot;&#125;;</span><br><span class="line">    return M[num/1000] + C[(num%1000)/100] + X[(num%100)/10] + I[num%10];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="问题2">问题2</span></h1><p>把上一题反过来</p>
+<h1><span id="解答">解答</span></h1><p>通过从后到前处理字符串并使用映射，问题更容易解决。运行速度为88毫秒。</p>
+<p><em>string</em>::front –访问第一个字符; </p>
+<p><em>string</em>::<em>back</em> –访问最后一个字符;</p>
+<p> <em>string</em>::data –访问基础数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">int romanToInt(string s) </span><br><span class="line">&#123;</span><br><span class="line">    unordered_map&lt;char, int&gt; T = &#123; &#123; &apos;I&apos; , 1 &#125;,</span><br><span class="line">                                   &#123; &apos;V&apos; , 5 &#125;,</span><br><span class="line">                                   &#123; &apos;X&apos; , 10 &#125;,</span><br><span class="line">                                   &#123; &apos;L&apos; , 50 &#125;,</span><br><span class="line">                                   &#123; &apos;C&apos; , 100 &#125;,</span><br><span class="line">                                   &#123; &apos;D&apos; , 500 &#125;,</span><br><span class="line">                                   &#123; &apos;M&apos; , 1000 &#125; &#125;;</span><br><span class="line">                                   </span><br><span class="line">   int sum = T[s.back()];</span><br><span class="line">   for (int i = s.length() - 2; i &gt;= 0; --i) </span><br><span class="line">   &#123;</span><br><span class="line">       if (T[s[i]] &lt; T[s[i + 1]])</span><br><span class="line">       &#123;</span><br><span class="line">           sum -= T[s[i]];</span><br><span class="line">       &#125;</span><br><span class="line">       else</span><br><span class="line">       &#123;</span><br><span class="line">           sum += T[s[i]];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   return sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/19/2019011901/" data-id="cjr3m9wgi0005qotcs8cfenzy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/19/2019011901/" data-id="cjr770eh1000arwtc2yo4189k" class="article-share-link">Share</a>
       
     </footer>
   
@@ -87,6 +96,15 @@
   
     
   <nav class="article-nav">
+    
+      <a href="/2019/01/22/2019012201/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            四个数字相加等于指定数
+          
+        </div>
+      </a>
     
     
       <a href="/2019/01/18/2019011801/" class="article-nav-link">

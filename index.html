@@ -60,6 +60,61 @@
 
     
       
+        <article id="post-2019012201" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/01/22/2019012201/">四个数字相加等于指定数</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/22/2019012201/" class="article-date">
+  <time datetime="2019-01-22T01:30:40.000Z" itemprop="datePublished">2019-01-22</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>leetcode第18题<br>
+        
+          <a class="article-more-link" href="/2019/01/22/2019012201/">阅读全文</a>
+        
+      
+    </p></div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/22/2019012201/" data-id="cjr770eh3000drwtc524ebbfq" class="article-share-link">Share</a>
+      
+    </footer>
+  
+  </div>
+  
+  
+  
+
+  
+
+</article>
+
+
+
+      
         <article id="post-2019011901" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <div class="article-inner">
@@ -68,7 +123,7 @@
         
   
     <h2 itemprop="name">
-      <a class="article-title" href="/2019/01/19/2019011901/">Integer to Roman</a>
+      <a class="article-title" href="/2019/01/19/2019011901/">Integer to Roman and roman to integer</a>
     </h2>
   
 
@@ -92,14 +147,14 @@
       
       
       
-        <p>leetcode第12题<br>
+        <p>leetcode第12题和13题<br>
         
           <a class="article-more-link" href="/2019/01/19/2019011901/">阅读全文</a>
         
       
     </p></div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/19/2019011901/" data-id="cjr3m9wgi0005qotcs8cfenzy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/19/2019011901/" data-id="cjr770eh1000arwtc2yo4189k" class="article-share-link">Share</a>
       
     </footer>
   
@@ -153,22 +208,23 @@
 <h2><span id="21rl与mdp">2.1RL与MDP</span></h2><p>​        强化学习主要研究的问题是agent通过和environment直接交互的过程来学习策略，使得达到目标后的总体奖励最大。大多数关于强化学习RL的研究都建立在马尔可夫决策过程MDP上。</p>
 <h4><span id="211马尔可夫决策过程的定义">2.1.1马尔可夫决策过程的定义</span></h4><p>​        MDP可以表示为一个五元组〈Ｓ，Ａ，Ｐ，Ｒ，γ〉。 其中，Ｓ为环境状态state的有限集合，集合中某个状态表示为s∈S；A为动作 action的有限集合，集合中某个动作表示为 a∈A，A 为状态s下可执行的动作集合；P状态转移方程，P(s′|s,a) 表示在状态s执行动作a后将以 P的概率跳转到状态 s′；R为奖赏函数；γ 为折损系数， ０≤γ≤１。 </p>
 <p>​        假设一个agent观察到自己的状态s，此时它选择一个动作a，它会得到一个即时的奖赏ｒ=R(s,a)，然后以 P(s′ |s,a) 的概率达到下一个状态s′。 马尔可夫决策过程有马尔可夫性，即系统的下个状态只与当前状态有关，与之前的状态无关。 当马尔可夫决策过程中作出决策时，只需要考虑当前的状态，而不需要历史数据，这样大大降低了问题的复杂度。 </p>
-<p><img src="D:\hexo\web2\source\_posts\2019011801\131433102201.jpg" alt="01"></p>
+<img src="/2019/01/18/2019011801/131433102201.jpg" title="This is an example image">
+<p><img src="2019011801\131433102201.jpg" alt="01"></p>
 <h4><span id="212值函数">2.1.2值函数</span></h4><p>​        强化学习需要agent学习到一个策略 π，通过 π (s,a) 的值来指导agent进行动作的选择。衡量这个策略的标准依赖于回报，增强学习往往具有延迟回报的特点 : 如果在第n步输掉了棋，那么只有状态sn和动作an获得了立即回报r(sn,an)=-1，前面的所有状态立即回报均为0。所以对于之前的任意状态s和动作a，立即回报函数r(s,a)无法说明策略的好坏。因而需要定义值函数 (value function，又叫效用函数) 来表明当前状态下策略π的长期影响。 </p>
 <p>​        令Ｖ(ｓ) 表示在状态s的<strong>值函数</strong>，即从状态s开始一直按照某个策略执行最终达到终止状态的期望累计奖赏。我们的目标是希望学到一个最优的策略 π，最大化每一个状态下的Ｖ值。</p>
-<p><img src="D:\hexo\web2\source\_posts\2019011801\02.png" alt="02"></p>
+<p><img src="2019011801\02.png" alt="02"></p>
 <p>是值函数最常见的形式，式中γ∈[0,1]称为折合因子，表明了未来的回报相对于当前回报的重要程度。特别的，γ=0时，相当于只考虑立即不考虑长期回报，γ=1时，将长期回报和立即回报看得同等重要。接下来把这个值函数展开，其中ri表示未来第i步回报，s’表示下一步状态，则有：</p>
-<p><img src="D:\hexo\web2\source\_posts\2019011801\03.png" alt="03"></p>
+<p><img src="2019011801\03.png" alt="03"></p>
 <p>给定策略π和初始状态s，则动作a=π(s)，下个时刻将以概率p(s’|s,a)转向下个状态s’，那么上式的期望可以拆开，可以重写为：</p>
-<p><img src="D:\hexo\web2\source\_posts\2019011801\04.png" alt="04"></p>
+<p><img src="2019011801\04.png" alt="04"></p>
 <p>π和初始状态s是我们给定的，而初始动作a是由策略π和状态s决定的，即a=π(s)。</p>
 <h4><span id="213动作值函数">2.1.3动作值函数</span></h4><p>​        除了值函数，期望累计奖赏也可以用<strong>动作-值函数</strong>来表示，令 Ｑ(s,a)  在状态s执行动作a之后按照某个策略执行直到达到终止状态的期望累计奖赏。我们也希望通过学习到一个最优的Ｑ函数，使agent可以直接通过Ｑ函数来选择当前状态下应该执行的动作。定义动作值函数(action value functionQ函数)如下：</p>
-<p><img src="D:\hexo\web2\source\_posts\2019011801\05.png" alt="05"></p>
+<p><img src="2019011801\05.png" alt="05"></p>
 <p>给定当前状态s和当前动作a，在未来遵循策略π，那么系统将以概率p(s’|s,a)转向下个状态s’，上式可以重写为：</p>
-<p><img src="D:\hexo\web2\source\_posts\2019011801\06.png" alt="06"></p>
+<p><img src="2019011801\06.png" alt="06"></p>
 <p>在Qπ(s,a)中，不仅策略π和初始状态s是我们给定的，当前的动作a也是我们给定的，这是Qπ(s,a)和Vπ(a)的主要区别。</p>
 <p>​        知道值函数的概念后，一个MDP的最优策略可以由下式表示：</p>
-<p><img src="D:\hexo\web2\source\_posts\2019011801\07.png" alt="07"></p>
+<p><img src="2019011801\07.png" alt="07"></p>
 <p>即我们寻找的是在任意初始条件s下，能够最大化值函数的策略π*。</p>
 <p>​        经过多年的研究，已经出现一些算法，致力于解决传统的强化学习问题，比如Ｑ⁃learning、蒙特卡洛方法（Monte-Carlo learning）、时 序 差 分方法（temporal-difference learning）等。其中 Ｑ⁃learning 方法常常在分层强化学习中被使用。Ｑ⁃learning通 过不断迭代更新Ｑ函数的值来逼近最优的Ｑ∗。</p>
 <h4><span id="214qlearning">2.1.4Ｑ⁃learning</span></h4><h2><span id="22-smdp">2.2 SMDP</span></h2><p>​        青蛙在荷叶上跳动，在每个不同的荷叶上表示不同的状态，从一个荷叶跳到另一个荷叶表示状态的转移，该转移过程只依赖于现在所处荷叶，而与以前呆过的荷叶无关，如果只考虑青蛙跳跃的时刻序列，这个过程就是离散时间的马氏过程，如果考虑青蛙在荷叶上呆了一段时间，且这段时间是服从指数分布的，那这个过程是连续时间马氏过程，如果时间是非指数分布的，那这个过程是半马氏分布。</p>
@@ -182,9 +238,9 @@
 <p>​        另一种比较灵活的option是半马尔可夫option，其内部策略和终止条件均依赖于option激活后所经历的状态、动作和回报等历史。令Ω表示历史集，形式上半马尔可夫option也是一 个三元组&lt; I , Π , T&gt;。I 的含义与马尔可夫option的 I 相同，但内部策略和终止条件分别定义为 Π ：ΩXA→[0，1]和T：Ω→ [0，1]。 </p>
 <p>​         令O为option集合。如果将策略定义在options之上，即定义为 μ ：s×O→[0，1]，则形成options分层机制。在这种机制下，agent根据 μ 选择一个option执行，直到终止，agent再依照 μ 选择另一个option执行，依此类推。如果将O叠加到 MDP上，将产生一个离散时间SMDP，因而可使用SMDP所有的理论和算法。</p>
 <p>​        把MDP单步模型里的action替换成options并去掉折合因子，就可以得到最优值函数和最优option值函数：</p>
-<p><img src="D:\hexo\web2\source\_posts\2019011801\08.png" alt="08"></p>
+<p><img src="2019011801\08.png" alt="08"></p>
 <p>​        此时的Q-Learning的更新公式为：</p>
-<p><img src="D:\hexo\web2\source\_posts\2019011801\09.png" alt="09"></p>
+<p><img src="2019011801\09.png" alt="09"></p>
 <p>其中，ak为第k轮迭代时的学习率，τ 表示option  o 在执行 τ 步之后在状态 St+τ 停止，而 ｏ′ 为在 ｏ 执行 结束后的下一个option。 可以注意到，<strong>当所有的option均为one⁃step option时，这个Ｑ⁃learning就退 化为普通的Ｑ⁃learning过程。</strong> </p>
 <h3><span id="32基于分层抽象机的分层强化学习">3.2基于分层抽象机的分层强化学习</span></h3><p>​        分层抽象机（hierarchies of abstract machines,HAMs）是Parr和Russell提出的方法。和option的方法类似，HAMs的方法也是建立在SMDP 的理论基础之上的。 HAMs的主要思想是将当前所在状态以及有限状态机的状态结合考虑，从而选择不同的策略。 </p>
 <p>​        令M为一个有限MDP，{Hi}为一个有限状态机集合，每个有限状态机都有一个状态集合Si、一个概率转移方程以及一个随机函数fi。状态集合包括：action、call、choice、stop。</p>
@@ -196,22 +252,26 @@
 <li><p>choice类型的状态时，不确定地选择当前状态机地下一个状态。</p>
 </li>
 <li><p>stop类型的状态时，停止当前状态机的活动，恢复调用它的状态机的活动，同时agent根据之前的动作进行动作转移并得到奖励。（如果某个状态机H刚被调用就被随机函数初始化到了stop状态，返回的时候没有选出来要执行的动作，则M保持当前的状态。）</p>
-<p><img src="D:\hexo\web2\source\_posts\2019011801\10.png" alt="10"></p>
+<p><img src="2019011801\10.png" alt="10"></p>
 </li>
 </ul>
 <p>  ​         总之，options和HAM都是把MDP转换为了单个SMDP问题，而MAXQ和HEXQ方法创建了多个SMDP的分层，使得每个SMDP同时学习。</p>
 <h3><span id="33基于-maxq函数分解的分层强化学习">3.3基于 MaxQ函数分解的分层强化学习</span></h3><p>  ​        MaxQ 值分解是由Dietterich提出的另外一种分层强化学习的方法。首先把一个马尔可夫决策过程M分解成多个子任务{M0，M1,…,Mn}, M0为根子任务，解决了它就意味着解决了原问题M。每一个子任务都有一个终止断言T和一个动作集合A。A中的元素可以是其他的子任务也可以是一个MDP中的action。子任务的目标是转移到一个状态可以满足终止断言使得子任务完成并终止。</p>
 <p>  图１为利用MaxQ方法解决出租车问题的任务划分示意图：</p>
-<p>  <img src="D:\hexo\web2\source\_posts\2019011801\11.png" alt="11"></p>
+<p>  <img src="2019011801\11.png" alt="11"></p>
 <p>  ​        出租车问题是指一个出租车agent需要到特定位置接一位乘客并且把他送到特定的位置让其下车。 一共有6个动作，分别是上车（pickup）、下车 (dropoff），以及向东南西北四个方向开车的动作。 这里使用MaxQ方法，将原问题分解成了get和put两个子任务，这两个子任务又进行分解，get分解成一个基本动作pickup和一个子任务navigate，而put也分解成了一个基本动作dropoff和一个子任务navigate。 子任务navigate(t)表示t时刻应该开车的方向。 对于这个强化学习问题，agent首先选择get， 然后get子问题navigate，直到到达乘客所在地，然后get选择pickup动作，乘客上车。 之后agent选择put子任务，put子任务选择navigate，直到到达乘客目的地，之后put子任务选择dropoff动作，乘客下车，任务完成。 </p>
 <h3><span id="34端到端的分层强化学习">3.4端到端的分层强化学习</span></h3><p>  ​         上述3种方法，都需要人工来做很多工作， 比如人工进行option的选取，人工进行HAMs的构 建，人工划分子任务等。 人工设计不仅耗时耗力， 并且会直接影响最终强化学习结果的好坏。 近些年来人们关注如何让agent自己学到合理的分层抽象，而非人为进行划分和指定。</p>
 <p>  。。。。。。</p>
-<h2><span id="4对比">4对比</span></h2><p>  <img src="D:\hexo\web2\source\_posts\2019011801\12.png" alt="12"></p>
+<h2><span id="4对比">4对比</span></h2><p>  <img src="2019011801\12.png" alt="12"></p>
+<p>分层最优指的是：该策略是与分层结构兼容的所有分层策略中具有最高累计回报的策略。</p>
+<p>递归最优指的是：一个分层策略使得对于每个子任务，对应的策略都是最优的。</p>
+<p>分层最优策略和递归最优策略的根本区别在于，前者的子任务不仅要考虑所调用的下级子任务，也要考虑如何加入到上级子任务中；而后者的子任务没有考虑其应用环境。</p>
+<p>安全状态抽象是指值函数在抽象前后保持一致的状态抽象。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/18/2019011801/" data-id="cjr3m9wh5000nqotcqser2pbj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/18/2019011801/" data-id="cjr770ehq000srwtcukahyphi" class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reinforcement-learning/">reinforcement learning</a></li></ul>
 
@@ -274,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/17/2019011702/" data-id="cjr3m9wg70003qotcftn05bfv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/17/2019011702/" data-id="cjr770eg60005rwtcsit147yt" class="article-share-link">Share</a>
       
     </footer>
   
@@ -329,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/17/2019011701/" data-id="cjr3m9wgm0009qotcy4mcvzba" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/17/2019011701/" data-id="cjr770ega0008rwtcrerv35xo" class="article-share-link">Share</a>
       
     </footer>
   
@@ -384,7 +444,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/17/20190116001/" data-id="cjr3m9wh4000mqotcjlilre8e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/17/20190116001/" data-id="cjr770eho000rrwtcqxurnfl4" class="article-share-link">Share</a>
       
     </footer>
   
@@ -441,7 +501,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/16/2019011602/" data-id="cjr3m9wgk0008qotcobpmp1m0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/16/2019011602/" data-id="cjr770eg90007rwtctcmezonj" class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arrays/">Arrays</a></li></ul>
 
@@ -498,7 +558,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/15/2019011502/" data-id="cjr3m9wg30001qotcwztdosjz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/15/2019011502/" data-id="cjr770eh6000grwtc0a89x5lv" class="article-share-link">Share</a>
       
     </footer>
   
@@ -553,7 +613,7 @@
       
     </p></div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/15/20190115/" data-id="cjr3m9we10000qotcrfuvdnaz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/15/20190115/" data-id="cjr770e9e0000rwtcf1y0jwwi" class="article-share-link">Share</a>
       
     </footer>
   
@@ -608,7 +668,7 @@
       
     </p></div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/14/2019011401/" data-id="cjr3m9wgh0004qotcmg7jq06s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/14/2019011401/" data-id="cjr770efc0002rwtc7hquur1i" class="article-share-link">Share</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arrays/">Arrays</a></li></ul>
 
