@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    unity XML存档和读档 |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-20190309" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      unity XML存档和读档
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/09/20190309/" class="article-date">
+  <time datetime="2019-03-09T06:06:01.000Z" itemprop="datePublished">2019-03-09</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Unity/">Unity</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>源自siki学院里的一个读存档例子</p>
+<a id="more"></a>
+<p>这个游戏是一个九宫格打怪物的游戏，其中，九个格子分别存以0~8的Target Positions，每个格子有当前激活的0~3的怪物类型Monster Types 。</p>
+<h4><span id="1-新建一个save类来保存序列">1、新建一个save类来保存序列</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">[System.Serializable]</span><br><span class="line">public class Save&#123;</span><br><span class="line"></span><br><span class="line">    public List&lt;int&gt; livingTargetPositions = new List&lt;int&gt;();</span><br><span class="line">    public List&lt;int&gt; livingMonsterTypes = new List&lt;int&gt;();</span><br><span class="line"></span><br><span class="line">    public int shootNum = 0;</span><br><span class="line">    public int score = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="2-在gamemanagercs里实例化save对象并存储当前游戏状态信息">2、在GameManager.cs里实例化Save对象，并存储当前游戏状态信息。</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">private Save CreateSaveGO()</span><br><span class="line">   &#123;</span><br><span class="line">       //新建Save对象</span><br><span class="line">       Save save = new Save();</span><br><span class="line">       //遍历所有的target</span><br><span class="line">       //如果其中有处于激活状态的怪物，就把该target的位置信息和激活状态的怪物的类型添加到List中</span><br><span class="line">       foreach (GameObject targetGO in targetGOs)</span><br><span class="line">       &#123;</span><br><span class="line">           TargetManager targetManager = targetGO.GetComponent&lt;TargetManager&gt;();</span><br><span class="line">           if (targetManager.activeMonster != null)</span><br><span class="line">           &#123;</span><br><span class="line">               save.livingTargetPositions.Add(targetManager.targetPosition);</span><br><span class="line">               int type = targetManager.activeMonster.GetComponent&lt;MonsterManager&gt;().monsterType;</span><br><span class="line">               save.livingMonsterTypes.Add(type);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       //把shootNum和score保存在Save对象中</span><br><span class="line">       save.shootNum = UIManager._instance.shootNum;</span><br><span class="line">       save.score = UIManager._instance.score;</span><br><span class="line">       //返回该Save对象</span><br><span class="line">       return save;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="3-xml存档">3、XML存档</span></h4><p>需要的命名空间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using System.IO;</span><br><span class="line">using System.Xml;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">private void SaveByXml()</span><br><span class="line">   &#123;</span><br><span class="line">       Save save = CreateSaveGO();</span><br><span class="line">       //创建XML文件的存储路径</span><br><span class="line">       string filePath = Application.dataPath + &quot;/StreamingFile&quot; + &quot;/byXML.txt&quot;;</span><br><span class="line">       //创建XML文档</span><br><span class="line">       XmlDocument xmlDoc = new XmlDocument();</span><br><span class="line">       //创建根节点，即最上层节点</span><br><span class="line">       XmlElement root = xmlDoc.CreateElement(&quot;save&quot;);</span><br><span class="line">       //设置根节点中的值</span><br><span class="line">       root.SetAttribute(&quot;name&quot;, &quot;saveFile1&quot;);</span><br><span class="line"></span><br><span class="line">       //创建XmlElement</span><br><span class="line">       XmlElement target;</span><br><span class="line">       XmlElement targetPosition;</span><br><span class="line">       XmlElement monsterType;</span><br><span class="line"></span><br><span class="line">       //遍历save中存储的数据，将数据转换成XML格式</span><br><span class="line">       for(int i = 0; i &lt; save.livingTargetPositions.Count; i++)</span><br><span class="line">       &#123;</span><br><span class="line">           target = xmlDoc.CreateElement(&quot;target&quot;);</span><br><span class="line">           targetPosition = xmlDoc.CreateElement(&quot;targetPosition&quot;);</span><br><span class="line">           //设置InnerText值</span><br><span class="line">           targetPosition.InnerText = save.livingTargetPositions[i].ToString();</span><br><span class="line">           monsterType = xmlDoc.CreateElement(&quot;monsterType&quot;);</span><br><span class="line">           monsterType.InnerText = save.livingMonsterTypes[i].ToString();</span><br><span class="line"></span><br><span class="line">           //设置节点间的层级关系 root -- target -- (targetPosition, monsterType)</span><br><span class="line">           target.AppendChild(targetPosition);</span><br><span class="line">           target.AppendChild(monsterType);</span><br><span class="line">           root.AppendChild(target);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       //设置射击数和分数节点并设置层级关系  xmlDoc -- root --(target-- (targetPosition, monsterType), shootNum, score)</span><br><span class="line">       XmlElement shootNum = xmlDoc.CreateElement(&quot;shootNum&quot;);</span><br><span class="line">       shootNum.InnerText = save.shootNum.ToString();</span><br><span class="line">       root.AppendChild(shootNum);</span><br><span class="line"></span><br><span class="line">       XmlElement score = xmlDoc.CreateElement(&quot;score&quot;);</span><br><span class="line">       score.InnerText = save.score.ToString();</span><br><span class="line">       root.AppendChild(score);</span><br><span class="line"></span><br><span class="line">       xmlDoc.AppendChild(root);</span><br><span class="line">       xmlDoc.Save(filePath);</span><br><span class="line"></span><br><span class="line">       if(File.Exists(Application.dataPath + &quot;/StreamingFile&quot; + &quot;/byXML.txt&quot;))</span><br><span class="line">       &#123;</span><br><span class="line">           UIManager._instance.ShowMessage(&quot;保存成功&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>创建XML文档 XmlDocument xmlDoc = new XmlDocument();</p>
+</li>
+<li><p>创建名为save的根节点，即最上层节点</p>
+<pre><code>XmlElement root = xmlDoc.CreateElement(&quot;save&quot;);
+</code></pre></li>
+<li><p>设置根节点中的值name=saveFile1</p>
+<pre><code>root.SetAttribute(&quot;name&quot;, &quot;saveFile1&quot;);
+</code></pre></li>
+<li><p>创建XmlElement子结点</p>
+<pre><code>XmlElement target; [ target = xmlDoc.CreateElement(&quot;target&quot;); ]
+XmlElement targetPosition;
+XmlElement monsterType;
+</code></pre></li>
+<li><p>为子结点们加入内容，例如:  </p>
+<pre><code>targetPosition = xmlDoc.CreateElement(&quot;targetPosition&quot;);
+targetPosition.InnerText = save.livingTargetPositions[i].ToString();
+</code></pre></li>
+<li><p>设置结点间层级关系： target.AppendChild(targetPosition);</p>
+</li>
+<li><p>设置根节点层级关系并保存</p>
+<p>​        root.AppendChild(target);</p>
+<p>​        xmlDoc.AppendChild(root);<br>​        xmlDoc.Save(filePath);</p>
+</li>
+</ol>
+<h4><span id="4-二进制读档">4、二进制读档</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">private void LoadByXml()</span><br><span class="line">    &#123;</span><br><span class="line">        string filePath = Application.dataPath + &quot;/StreamingFile&quot; + &quot;/byXML.txt&quot;;</span><br><span class="line">        if(File.Exists(filePath))</span><br><span class="line">        &#123;</span><br><span class="line">            Save save = new Save();</span><br><span class="line">            //加载XML文档</span><br><span class="line">            XmlDocument xmlDoc = new XmlDocument();</span><br><span class="line">            xmlDoc.Load(filePath);</span><br><span class="line"></span><br><span class="line">            //通过节点名称来获取元素，结果为XmlNodeList类型</span><br><span class="line">            XmlNodeList targets = xmlDoc.GetElementsByTagName(&quot;target&quot;);</span><br><span class="line">            //遍历所有的target节点，并获得子节点和子节点的InnerText</span><br><span class="line">            if(targets.Count != 0)</span><br><span class="line">            &#123;</span><br><span class="line">                foreach(XmlNode target in targets)</span><br><span class="line">                &#123;</span><br><span class="line">                    XmlNode targetPosition = target.ChildNodes[0];</span><br><span class="line">                    int targetPositionIndex = int.Parse(targetPosition.InnerText);</span><br><span class="line">                    //把得到的值存储到save中</span><br><span class="line">                    save.livingTargetPositions.Add(targetPositionIndex);</span><br><span class="line"></span><br><span class="line">                    XmlNode monsterType = target.ChildNodes[1];</span><br><span class="line">                    int monsterTypeIndex = int.Parse(monsterType.InnerText);</span><br><span class="line">                    save.livingMonsterTypes.Add(monsterTypeIndex);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            //得到存储的射击数和分数</span><br><span class="line">            XmlNodeList shootNum = xmlDoc.GetElementsByTagName(&quot;shootNum&quot;);</span><br><span class="line">            int shootNumCount = int.Parse(shootNum[0].InnerText);</span><br><span class="line">            save.shootNum = shootNumCount;</span><br><span class="line"></span><br><span class="line">            XmlNodeList score = xmlDoc.GetElementsByTagName(&quot;score&quot;);</span><br><span class="line">            int scoreCount = int.Parse(score[0].InnerText);</span><br><span class="line">            save.score = scoreCount;</span><br><span class="line"></span><br><span class="line">            SetGame(save);</span><br><span class="line">            UIManager._instance.ShowMessage(&quot;&quot;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            UIManager._instance.ShowMessage(&quot;存档文件不存在&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>加载XML文档</p>
+<pre><code>XmlDocument xmlDoc = new XmlDocument();
+xmlDoc.Load(filePath);
+</code></pre></li>
+<li><p>获取名为target的所有节点元素们，结果为XmlNodeList类型</p>
+<pre><code>XmlNodeList targets = xmlDoc.GetElementsByTagName(&quot;target&quot;);
+</code></pre></li>
+<li><p>遍历所有的target节点们，并获得子节点和子节点的InnerText</p>
+<pre><code>foreach(XmlNode target in targets)
+</code></pre></li>
+<li><p>获取一个target节点中的第一/二个子结点的内容<br>XmlNode targetPosition = target.ChildNodes[0];</p>
+<p>int targetPositionIndex = int.Parse(targetPosition.InnerText);</p>
+<p>XmlNode monsterType = target.ChildNodes[1];</p>
+<p>int monsterTypeIndex = int.Parse(monsterType.InnerText);</p>
+</li>
+</ol>
+<h4><span id="5-通过读档信息重置我们的游戏状态分数-激活状态的怪物">5、通过读档信息重置我们的游戏状态（分数、激活状态的怪物）</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">private void SetGame(Save save)</span><br><span class="line">    &#123;</span><br><span class="line">        //先将所有的targrt里面的怪物清空，并重置所有的计时</span><br><span class="line">        foreach(GameObject targetGO in targetGOs)</span><br><span class="line">        &#123;</span><br><span class="line">            targetGO.GetComponent&lt;TargetManager&gt;().UpdateMonsters();</span><br><span class="line">        &#125;</span><br><span class="line">        //通过反序列化得到的Save对象中存储的信息，激活指定的怪物</span><br><span class="line">        for(int i = 0; i &lt; save.livingTargetPositions.Count; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            int position = save.livingTargetPositions[i];</span><br><span class="line">            int type = save.livingMonsterTypes[i];</span><br><span class="line">            targetGOs[position].GetComponent&lt;TargetManager&gt;().ActivateMonsterByType(type);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //更新UI显示</span><br><span class="line">        UIManager._instance.shootNum = save.shootNum;</span><br><span class="line">        UIManager._instance.score = save.score;</span><br><span class="line">        //调整为未暂停状态</span><br><span class="line">        UnPause();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/09/20190309/" data-id="cjt6i9qr3002xzwtcdknyw6d5" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/">Unity</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/03/10/20190310/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            unity JSON存档和读档
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/03/08/20190308/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">Hard 128 Longest Consecutive Sequence//HashMap</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

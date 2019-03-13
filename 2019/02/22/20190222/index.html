@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    easy 189 Rotate Array |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-20190222" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      easy 189 Rotate Array
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/22/20190222/" class="article-date">
+  <time datetime="2019-02-22T01:26:40.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a> / <a class="article-category-link" href="/categories/leetcode/array/">array</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>旋转数组(●’◡’●)</p>
+<a id="more"></a>
+<h1><span id="问题">问题</span></h1><p>Given an array, rotate the array to the right by <em>k</em> steps, where <em>k</em> is non-negative.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,4,5,6,7] and k = 3</span><br><span class="line">Output: [5,6,7,1,2,3,4]</span><br><span class="line">Explanation:</span><br><span class="line">rotate 1 steps to the right: [7,1,2,3,4,5,6]</span><br><span class="line">rotate 2 steps to the right: [6,7,1,2,3,4,5]</span><br><span class="line">rotate 3 steps to the right: [5,6,7,1,2,3,4]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: [-1,-100,3,99] and k = 2</span><br><span class="line">Output: [3,99,-1,-100]</span><br><span class="line">Explanation: </span><br><span class="line">rotate 1 steps to the right: [99,-1,-100,3]</span><br><span class="line">rotate 2 steps to the right: [3,99,-1,-100]</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Try to come up as many solutions as you can, there are at least 3 different ways to solve this problem.</li>
+<li>Could you do it in-place with O(1) extra space?</li>
+</ul>
+<h1><span id="解">解</span></h1><p>自己写的方法复杂度太高，去评论区学习了几种其它思路：</p>
+<h4><span id="1-对数组拷贝一份然后再旋转">1、对数组拷贝一份，然后再旋转。</span></h4><p>tc：O(n)   sc：O(n)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">void rotate(int nums[], int n, int k) </span><br><span class="line">        &#123;</span><br><span class="line">            if ((n == 0) || (k &lt;= 0))</span><br><span class="line">            &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            // Make a copy of nums</span><br><span class="line">            vector&lt;int&gt; numsCopy(n);</span><br><span class="line">            for (int i = 0; i &lt; n; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                numsCopy[i] = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            // Rotate the elements.</span><br><span class="line">            for (int i = 0; i &lt; n; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                nums[(i + k)%n] = numsCopy[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="2-从一个元素开始旋转直到旋转n个元素">2、从一个元素开始旋转，直到旋转n个元素</span></h4><p>tc：O(n)   sc：O(1)</p>
+<p>以数组1、2、3、4、5、6（k=2）为例，</p>
+<p>结果是5，6，1，2，3，4</p>
+<ol>
+<li>内部do-while做的事情是：把1放在3的位置，把3放在5的位置，把5放在1的位置，回到了起点1，则结束此循环。</li>
+<li>内部循环次数小于数组长度n，则不离开大循环while。起点+1，再次进入内部do-while。</li>
+<li>内部do-while做的事情是：把2放在4的位置，把4放在6的位置，把6放在2的位置，回到了起点2，则结束此循环。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">void rotate(int nums[], int n, int k) </span><br><span class="line">        &#123;</span><br><span class="line">            if ((n == 0) || (k &lt;= 0))</span><br><span class="line">            &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            int cntRotated = 0;</span><br><span class="line">            int start = 0;</span><br><span class="line">            int curr = 0;</span><br><span class="line">            int numToBeRotated = nums[0];</span><br><span class="line">            int tmp = 0;</span><br><span class="line">            // 循环直到旋转n个不同的元素</span><br><span class="line">            while (cntRotated &lt; n)</span><br><span class="line">            &#123;</span><br><span class="line">                do</span><br><span class="line">                &#123;</span><br><span class="line">                    tmp = nums[(curr + k)%n];</span><br><span class="line">                    nums[(curr+k)%n] = numToBeRotated;</span><br><span class="line">                    numToBeRotated = tmp;</span><br><span class="line">                    curr = (curr + k)%n;</span><br><span class="line">                    cntRotated++;</span><br><span class="line">                &#125; while (curr != start);</span><br><span class="line">                // 回到起点就结束一个循环</span><br><span class="line">                // 对下一个元素开始循环</span><br><span class="line">                start++;</span><br><span class="line">                curr = start;</span><br><span class="line">                numToBeRotated = nums[curr];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="3-先置换前n-k个元素再置换后k个元素最后整体n个元素置换">3、先置换前n-k个元素，再置换后k个元素，最后整体n个元素置换。</span></h4><p>tc：O(n)   sc：O(1)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void rotate(int nums[], int n, int k) </span><br><span class="line">       &#123;</span><br><span class="line">           k = k%n;</span><br><span class="line">   </span><br><span class="line">           // Reverse the first n - k numbers.</span><br><span class="line">           // Index i (0 &lt;= i &lt; n - k) becomes n - k - i.</span><br><span class="line">           reverse(nums, nums + n - k);</span><br><span class="line">           </span><br><span class="line">           // Reverse tha last k numbers.</span><br><span class="line">           // Index n - k + i (0 &lt;= i &lt; k) becomes n - i.</span><br><span class="line">           reverse(nums + n - k, nums + n);</span><br><span class="line">           </span><br><span class="line">           // Reverse all the numbers.</span><br><span class="line">           // Index i (0 &lt;= i &lt; n - k) becomes n - (n - k - i) = i + k.</span><br><span class="line">           // Index n - k + i (0 &lt;= i &lt; k) becomes n - (n - i) = i.</span><br><span class="line">           reverse(nums, nums + n);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/22/20190222/" data-id="cjt6i9qqm001tzwtcbmjiuk4e" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/02/24/20190224/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            hard 41 First Missing Positive
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/02/20/20190220/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">26+80 Remove Duplicates from Sorted Array</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

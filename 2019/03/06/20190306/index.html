@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    unity序列化 XML\JSON |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-20190306" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      unity序列化 XML\JSON
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/06/20190306/" class="article-date">
+  <time datetime="2019-03-06T13:36:47.000Z" itemprop="datePublished">2019-03-06</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Unity/">Unity</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p><a href="https://blog.csdn.net/y1196645376/article/details/52541882" target="_blank" rel="noopener">https://blog.csdn.net/y1196645376/article/details/52541882</a></p>
+<a id="more"></a>
+<h2><span id="1先介绍一下-xml-和-json-是什么东西吧">1.先介绍一下 XML 和 JSON 是什么东西吧？</span></h2><h3><span id="1xml">(1)XML</span></h3><p>扩展标记语言 (Extensible Markup Language, XML) ，用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，是一种允许用户对自己的标记语言进 行定义的源语言。 XML使用DTD(document type definition)文档类型定义来组织数据;格式统一，跨平台和语言，早已成为业界公认的标准。<br>XML是标准通用标记语言 (SGML) 的子集，非常适合 Web 传输。XML 提供统一的方法来描述和交换独立于应用程序或供应商的结构化数据。</p>
+<h3><span id="2json">(2)Json</span></h3><p>JSON(JavaScript Object Notation)一种轻量级的数据交换格式，具有良好的可读和便于快速编写的特性。可在不同平台之间进行数据交换。JSON采用兼容性很高的、完全独立于语言文本格式，同时也具备类似于C语言的习惯(包括C, C++, C#, Java, JavaScript, Perl,<br> Python等)体系的行为。这些特性使JSON成为理想的数据交换语言。<br>        说了那么多，其实就是数据的两种保存格式。主要用于配置文件，描述数据，存储数据，数据传输等等。</p>
+<h2><span id="2因为xml和json都可以办到这些事情那么它们之间有什么区别么各自的优缺点">2.因为Xml和Json都可以办到这些事情，那么它们之间有什么区别么？各自的优缺点？</span></h2><h3><span id="1xml">(1)XML</span></h3><p>优点：格式统一，符合标准；.容易与其他系统进行远程交互，数据共享比较方便。<br>        缺点：XML文件庞大，文件格式复杂，传输占带宽；服务器端和客户端解析XML花费较多的资源和时间；需要花费大量代码来解析XML；</p>
+<h3><span id="2json">(2)Json</span></h3><p>优点：数据格式比较简单，易于读写，格式都是压缩的，占用带宽小；.支持多种语言；<br>        缺点：可读性较xml略差；<br>         <strong><em>总而言之，两者可以相互转换，功能都是相差无几的。但是json比xml较好，但xml更加通用。</em></strong></p>
+<h2><span id="3xml使用的简单介绍">3.XML使用的简单介绍.</span></h2><p><strong>a.先来看一段简单的xml代码。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;team name=&quot;Dreamer&quot;&gt;	</span><br><span class="line">    &lt;student&gt;		</span><br><span class="line">        &lt;name&gt;Tom&lt;/name&gt;		</span><br><span class="line">        &lt;age&gt;20&lt;/age&gt;		</span><br><span class="line">        &lt;id&gt;20111234&lt;/id&gt;	</span><br><span class="line">    &lt;/student&gt;	</span><br><span class="line">        &lt;student&gt;		</span><br><span class="line">        &lt;name&gt;Shierly&lt;/name&gt;		         &lt;age&gt;19&lt;/age&gt;		</span><br><span class="line">        &lt;id&gt;20113210&lt;/id&gt;	</span><br><span class="line">    &lt;/student&gt;	</span><br><span class="line">    &lt;student&gt;		</span><br><span class="line">        &lt;name&gt;Lili&lt;/name&gt;		</span><br><span class="line">        &lt;age&gt;21&lt;/age&gt;		</span><br><span class="line">    &lt;id&gt;20111110&lt;/id&gt;	</span><br><span class="line">    &lt;/student&gt;</span><br><span class="line">&lt;/team&gt;</span><br></pre></td></tr></table></figure>
+<h4><span id="unity3d中使用可以使用c自带的库不需要引入其他库-using-systemxml">Unity3D中使用（可以使用C#自带的库,不需要引入其他库。using System.Xml</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public void CreateXML()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    //xml保存的路径，注意路径。</span><br><span class="line"></span><br><span class="line">    string filepath = &quot;E:/my.xml&quot;;</span><br><span class="line"></span><br><span class="line">    //继续判断当前路径下是否有该文件</span><br><span class="line"></span><br><span class="line">    if(!File.Exists (filepath))</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        //创建XML文档实例</span><br><span class="line"></span><br><span class="line">        XmlDocument xmlDoc = new XmlDocument();</span><br><span class="line"></span><br><span class="line">        //创建root节点，也就是最上一层节点</span><br><span class="line"></span><br><span class="line">        XmlElement root = xmlDoc.CreateElement(&quot;team&quot;);</span><br><span class="line"></span><br><span class="line">        root.SetAttribute(&quot;name&quot;, &quot;Dreamer&quot;);</span><br><span class="line"></span><br><span class="line">        //继续创建下一层节点</span><br><span class="line"></span><br><span class="line">        XmlElement student = xmlDoc.CreateElement(&quot;student&quot;);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">        //继续创建下一层节点</span><br><span class="line"></span><br><span class="line">        XmlElement name = xmlDoc.CreateElement(&quot;name&quot;);</span><br><span class="line"></span><br><span class="line">        //设置节点中的数值</span><br><span class="line"></span><br><span class="line">        name.InnerText = &quot;Tom&quot;;</span><br><span class="line"></span><br><span class="line">        XmlElement age = xmlDoc.CreateElement(&quot;age&quot;);</span><br><span class="line"></span><br><span class="line">        age.InnerText = &quot;20&quot;;</span><br><span class="line"></span><br><span class="line">        XmlElement id = xmlDoc.CreateElement(&quot;id&quot;);</span><br><span class="line"></span><br><span class="line">        id.InnerText = &quot;20111234&quot;;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">        //把节点一层一层的添加至XMLDoc中 ，请仔细看它们之间的先后顺序，这将是生成XML文件的顺序</span><br><span class="line"></span><br><span class="line">        student.AppendChild(name);</span><br><span class="line"></span><br><span class="line">        student.AppendChild(age);</span><br><span class="line"></span><br><span class="line">        student.AppendChild(id);</span><br><span class="line"></span><br><span class="line">        root.AppendChild(student);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">        student = xmlDoc.CreateElement(&quot;student&quot;);</span><br><span class="line"></span><br><span class="line">        name = xmlDoc.CreateElement(&quot;name&quot;);</span><br><span class="line"></span><br><span class="line">        name.InnerText = &quot;Shierly&quot;;</span><br><span class="line"></span><br><span class="line">        age = xmlDoc.CreateElement(&quot;age&quot;);</span><br><span class="line"></span><br><span class="line">        age.InnerText = &quot;19&quot;;</span><br><span class="line"></span><br><span class="line">        id = xmlDoc.CreateElement(&quot;id&quot;);</span><br><span class="line"></span><br><span class="line">        id.InnerText = &quot;20113210&quot;;</span><br><span class="line"></span><br><span class="line">        student.AppendChild(name);</span><br><span class="line"></span><br><span class="line">        student.AppendChild(age);</span><br><span class="line"></span><br><span class="line">        student.AppendChild(id);</span><br><span class="line"></span><br><span class="line">        root.AppendChild(student);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">        student = xmlDoc.CreateElement(&quot;student&quot;);</span><br><span class="line"></span><br><span class="line">        name = xmlDoc.CreateElement(&quot;name&quot;);</span><br><span class="line"></span><br><span class="line">        name.InnerText = &quot;Lili&quot;;</span><br><span class="line"></span><br><span class="line">        age = xmlDoc.CreateElement(&quot;age&quot;);</span><br><span class="line"></span><br><span class="line">        age.InnerText = &quot;21&quot;;</span><br><span class="line"></span><br><span class="line">        id = xmlDoc.CreateElement(&quot;id&quot;);</span><br><span class="line"></span><br><span class="line">        id.InnerText = &quot;20111110&quot;;</span><br><span class="line"></span><br><span class="line">        student.AppendChild(name);</span><br><span class="line"></span><br><span class="line">        student.AppendChild(age);</span><br><span class="line"></span><br><span class="line">        student.AppendChild(id);</span><br><span class="line"></span><br><span class="line">        root.AppendChild(student);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">        xmlDoc.AppendChild(root);</span><br><span class="line"></span><br><span class="line">        //把XML文件保存至本地</span><br><span class="line"></span><br><span class="line">        xmlDoc.Save(filepath);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个代码运行后就会在目标文件夹中生成一个xml文件而文件内容就是1中的那段xml代码。<br>可以看出来 XmlElement 是基本结构单元。也就是xml中的一对<name></name>。<br>1.我们可以对这个结构单元添加属性：xmlelement.SetAttribute(name,value)。<br>2.也可以对这个结构单元添加子结构单元：xmlelement.AppendChild(childelement)。</p>
+<p>3.如果该结构单元没有子结构了还可以设置它的内容值：xmlelement.InnerText = value.</p>
+<p>。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/06/20190306/" data-id="cjt6i9qqw002izwtcpbthz9sn" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/">Unity</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/03/08/20190308/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            Hard 128 Longest Consecutive Sequence//HashMap
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/03/05/20190305/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">Hard 42 Trapping Rain Water</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

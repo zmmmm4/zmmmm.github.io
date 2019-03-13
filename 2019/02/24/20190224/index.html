@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    hard 41 First Missing Positive |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-20190224" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hard 41 First Missing Positive
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/24/20190224/" class="article-date">
+  <time datetime="2019-02-24T12:45:26.000Z" itemprop="datePublished">2019-02-24</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a> / <a class="article-category-link" href="/categories/leetcode/array/">array</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>第一个丢失的正整数</p>
+<a id="more"></a>
+<h1><span id="问题">问题</span></h1><p>Given an unsorted integer array, find the smallest missing positive integer.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,0]</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,4,-1,1]</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [7,8,9,11,12]</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
+<p>**Note:</p>
+<p>Your algorithm should run in <em>O</em>(<em>n</em>) time and uses constant extra space.</p>
+<h1><span id="解">解</span></h1><p>这个题的意思大概就是，例如input=【1，2，0】，和【1，2，3】对比少了【1】；input=【3，4，-1，1】，和【1，2，3，4】对比少了【2】。</p>
+<p>评论区一个解是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    int firstMissingPositive(int A[], int n)</span><br><span class="line">    &#123;</span><br><span class="line">        int n=nums.size();</span><br><span class="line">        //遍历每个数字</span><br><span class="line">        for(int i = 0; i &lt; n; ++ i)&#123;  </span><br><span class="line">            while(nums[i] &gt; 0 &amp;&amp; nums[i] &lt;= n &amp;&amp; nums[nums[i] - 1] != nums[i])&#123;</span><br><span class="line">            //若A[i]-1!=i则交换到正确的位置</span><br><span class="line">            //while条件可以在交换之后再检查一次新的A[i]值，保证不遗漏</span><br><span class="line">                swap(nums[i], nums[nums[i] - 1]);//交换位置</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; n; ++ i)&#123;</span><br><span class="line">            if(nums[i] != i + 1)&#123;</span><br><span class="line">                return i + 1;</span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;</span><br><span class="line">        return n + 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>用一个等大的数组来顺序保存这些数字，把正确存在的数放在应该放的位置，丢失了也就是没存在的位置记为-1，比如数组【3，4，-1，1，8】，把其保存为【1，-1，3，4，-1】，数组的每个位置都保存着比下标+1的数。然后只需要遍历数组，第一个a[i]!=i+1，就说明缺失了i+1。</p>
+<p>于是按照以上思路，不需要用一个额外的数组，可以直接把原数组当成新数组来使用，会出现的问题就是可能覆盖掉之前的有用的数。可以采用交换的方法，把被覆盖的数移动到要去覆盖的数的位置，也就是交换一下位置，例如【3，4，-1，1，8】，要把nums[0]的数字【3】移动到【-1】，不直接覆盖，而是交换位置，变成【-1，4，3，1，8】。然后判断当前nums[0]的数字【-1】，不是正数，忽略。</p>
+<p>最后只需要遍历nums数组，第一个。nums[i]!=i+1，就说明缺失了i+1。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/24/20190224/" data-id="cjt6i9qqo001xzwtcj3vqkv8r" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/02/24/2019022402/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            Medium 299 Bulls and Cows
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/02/22/20190222/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">easy 189 Rotate Array</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

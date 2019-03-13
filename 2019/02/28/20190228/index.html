@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Easy 217 Contains Duplicate |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-20190228" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Easy 217 Contains Duplicate
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/28/20190228/" class="article-date">
+  <time datetime="2019-02-28T08:00:08.000Z" itemprop="datePublished">2019-02-28</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a> / <a class="article-category-link" href="/categories/leetcode/array/">array</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>检查数组是否内容重复</p>
+<a id="more"></a>
+<h1><span id="问题">问题</span></h1><p>Given an array of integers, find if the array contains any duplicates.</p>
+<p>Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,1]</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,4]</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,1,1,3,3,4,3,2,4,2]</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+<h1><span id="解">解</span></h1><h4><span id="hush">HUSH</span></h4><p>Time complexity: O(N), memory: O(N)</p>
+<p>我们可以使用一个众所周知的数据结构哈希表，它将帮助我们识别一个元素是否以前在数组中遇到过。</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public boolean containsDuplicate(int[] nums) &#123;</span><br><span class="line">    final Set&lt;Integer&gt; distinct = new HashSet&lt;Integer&gt;();</span><br><span class="line">    for(int num : nums) &#123;</span><br><span class="line">        if(distinct.contains(num)) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        distinct.add(num);</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是时空权衡的一个很好的例子。</p>
+<p>另外两种native方法：</p>
+<h4><span id="1">1</span></h4><p>Time complexity: O(N^2), memory: O(1)</p>
+<p>最天真烂漫的方法就是迭代每一个数字，检查是否有与它重复的，导致时间复杂度高达O(N^2)。</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public boolean containsDuplicate(int[] nums) &#123;</span><br><span class="line"></span><br><span class="line">        for(int i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">            for(int j = i + 1; j &lt; nums.length; j++) &#123;</span><br><span class="line">                if(nums[i] == nums[j]) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="2">2</span></h4><p>Time complexity: O(N lg N), memory: O(1) - not counting the memory used by sort</p>
+<p>先排序，重复的数字会排在一起，这样查重起来非常方便。</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public boolean containsDuplicate(int[] nums) &#123;</span><br><span class="line"></span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    for(int ind = 1; ind &lt; nums.length; ind++) &#123;</span><br><span class="line">        if(nums[ind] == nums[ind - 1]) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/28/20190228/" data-id="cjt6i9qqt002bzwtcpkf4pzw4" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/03/02/20190302/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            Medium 55+Hard 45 Jump Game
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/02/27/20190227/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">Medium 274 H-Index</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

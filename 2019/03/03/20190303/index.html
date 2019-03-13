@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    121+122+123 Best Time to Buy and Sell Stock |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-20190303" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      121+122+123 Best Time to Buy and Sell Stock
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/03/20190303/" class="article-date">
+  <time datetime="2019-03-03T06:27:23.000Z" itemprop="datePublished">2019-03-03</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a> / <a class="article-category-link" href="/categories/leetcode/array/">array</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>炒股票：这一系列问题是典型的dp问题，dp的关键是找到表示状态的变量，并推导出过渡函数。</p>
+<a id="more"></a>
+<p>[TOC]</p>
+<h1><span id="问题1">问题1</span></h1><p>Say you have an array for which the <em>i</em>th element is the price of a given stock on day <em>i</em>.</p>
+<p>If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
+<p>Note that you cannot sell a stock before you buy one.</p>
+<p>假设有一个数组，其中的第i<em>个元素是给定股票在第i</em>天的价格。</p>
+<p>如果只允许您完成最多一项交易(即(即买一股，卖一股)，设计一种算法来寻找最大利润。</p>
+<p>注意，你不能在买股票之前就把它卖掉。</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [7,1,5,3,6,4]</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.</span><br><span class="line">             Not 7-1 = 6, as selling price needs to be larger than buying price.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [7,6,4,3,1]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: In this case, no transaction is done, i.e. max profit = 0.</span><br></pre></td></tr></table></figure>
+<h1><span id="解">解</span></h1><h4><span id="很笨的方法">很笨的方法：</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public int maxProfit(int[] prices) &#123;</span><br><span class="line">       int profit=0;</span><br><span class="line">       for(int i=0;i&lt;prices.length-1;i++)&#123;</span><br><span class="line">           for(int j=i;j&lt;prices.length;j++)&#123;</span><br><span class="line">               if(prices[j] &lt; prices[i])&#123;</span><br><span class="line">                   continue;</span><br><span class="line">               &#125;</span><br><span class="line">               profit=Math.max(profit,prices[j]-prices[i]);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return profit;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>Runtime: 252 ms, faster than 13.07% of Java online submissions for Best Time to Buy and Sell Stock.</p>
+<p>Memory Usage: 37.3 MB, less than 71.25% of Java online submissions forBest Time to Buy and Sell Stock.</p>
+<h4><span id="一种聪明的方法">一种聪明的方法：</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public int maxProfit(int[] prices) &#123;</span><br><span class="line">        int maxCur = 0, maxSoFar = 0;</span><br><span class="line">        for(int i = 1; i &lt; prices.length; i++) &#123;</span><br><span class="line">            maxCur = Math.max(0, maxCur += prices[i] - prices[i-1]);</span><br><span class="line">            maxSoFar = Math.max(maxCur, maxSoFar);</span><br><span class="line">        &#125;</span><br><span class="line">        return maxSoFar;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>Runtime: 1 ms, faster than 99.69% of Java online submissions for Best Time to Buy and Sell Stock.</p>
+<p>Memory Usage: 35.5 MB, less than 98.16% of Java online submissions forBest Time to Buy and Sell Stock.</p>
+<h4><span id="还有一种方法找到最小值">还有一种方法：找到最小值</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int maxProfit(vector&lt;int&gt; &amp;prices) &#123;</span><br><span class="line">    int maxPro = 0;</span><br><span class="line">    int minPrice = INT_MAX;</span><br><span class="line">    for(int i = 0; i &lt; prices.size(); i++)&#123;</span><br><span class="line">        minPrice = min(minPrice, prices[i]);</span><br><span class="line">        maxPro = max(maxPro, prices[i] - minPrice);</span><br><span class="line">    &#125;</span><br><span class="line">    return maxPro;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="问题2">问题2</span></h1><p>可交易多次。</p>
+<p><strong>Example</strong> 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [7,1,5,3,6,4]</span><br><span class="line">Output: 7</span><br><span class="line">Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.</span><br><span class="line">             Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3,4,5]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.</span><br><span class="line">             Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are</span><br><span class="line">             engaging multiple transactions at the same time. You must sell before buying again.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [7,6,4,3,1]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: In this case, no transaction is done, i.e. max profit = 0.</span><br></pre></td></tr></table></figure>
+<h1><span id="解">解</span></h1><p>很简单的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public int maxProfit(int[] prices) &#123;</span><br><span class="line">        int maxCur = 0;</span><br><span class="line">        for(int i = 1; i &lt; prices.length; i++) &#123;</span><br><span class="line">            if(prices[i]&gt;prices[i-1])&#123;</span><br><span class="line">                 maxCur += prices[i] - prices[i-1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return maxCur;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="找局部最大值和最小值的方法">找局部最大值和最小值的方法：</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public int maxProfit(int[] prices) &#123;</span><br><span class="line">    int profit = 0, i = 0;</span><br><span class="line">    while (i &lt; prices.length) &#123;</span><br><span class="line">        // find next local minimum</span><br><span class="line">        while (i &lt; prices.length-1 &amp;&amp; prices[i+1] &lt;= prices[i]) i++;</span><br><span class="line">        int min = prices[i++]; // need increment to avoid infinite loop for &quot;[1]&quot;</span><br><span class="line">        // find next local maximum</span><br><span class="line">        while (i &lt; prices.length-1 &amp;&amp; prices[i+1] &gt;= prices[i]) i++;</span><br><span class="line">        profit += i &lt; prices.length ? prices[i++] - min : 0;</span><br><span class="line">    &#125;</span><br><span class="line">    return profit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="问题3">问题3</span></h1><p>最多交易两次</p>
+<p>Say you have an array for which the <em>i</em> th element is the price of a given stock on day <em>i</em>.</p>
+<p>Design an algorithm to find the maximum profit. You may complete at most <em>two</em> transactions.</p>
+<p><strong>Note:</strong> You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).</p>
+<p>假设有一个数组，其中的第i<em>个元素是给定股票在第i</em>天的价格。</p>
+<p>设计一种寻找最大利润的算法。您最多可以完成两次交易。</p>
+<p><strong>注:</strong>阁下不得同时进行多项交易(即你必须先把股票卖了，然后再买。</p>
+<h1><span id="解">解</span></h1><p>### </p>
+<h4><span id="方法一">方法一</span></h4><p>假设我们一开始只有0元，4个变量来保存一些到目前为止有趣的“上限”——</p>
+<p>如果我们只买第一支股票，</p>
+<p>如果我们只卖第一支股票，</p>
+<p>如果我们只买第二支股票，</p>
+<p>如果我们只卖第二支股票。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int maxProfit(int[] prices) &#123;</span><br><span class="line">        int hold1 = Integer.MIN_VALUE, hold2 = Integer.MIN_VALUE;</span><br><span class="line">        int release1 = 0, release2 = 0;</span><br><span class="line">        for(int i:prices)&#123;                              public int maxProfit(int[] prices) &#123;</span><br><span class="line">        int hold1 = Integer.MIN_VALUE, hold2 = Integer.MIN_VALUE;</span><br><span class="line">        int release1 = 0, release2 = 0;</span><br><span class="line">        for(int i:prices)&#123;                              </span><br><span class="line">            hold1    = Math.max(hold1,    -i);          </span><br><span class="line">            release1 = Math.max(release1, hold1+i);    </span><br><span class="line">            hold2    = Math.max(hold2,    release1-i);  </span><br><span class="line">            release2 = Math.max(release2, hold2+i);    </span><br><span class="line">        &#125;</span><br><span class="line">        return release2;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>每天，我们以尽可能低的价格买进股票，以尽可能高的价格卖出股票。对于第二笔交易，我们将第一笔交易的利润整合到第二笔购买的成本中，那么第二笔出售的利润就是两笔交易的总利润。</p>
+<h4><span id="方法二">方法二：</span></h4><p>对于第 k 轮交易、一共第 i 天，设定获利为 dp[k, i]。</p>
+<p>如果第 i 天没有进行交易，那么获利和前一天一样，即dp[k, i]= dp[k, i-1] 。</p>
+<p>如果我们在第 j 天买股票 j=[0..i-1]，然后在第 i 天卖出股票，那么利润就是 prices[i] - prices[j] + dp[k-1, j-1] 。实际上 j 也可以是 i ，当 j = i 时，prices[i] - prices[j] + dp[k-1, j] = dp[k-1, i] ，看来我们只是失去了一次交易的机会。</p>
+<p>我们希望prices[i] - prices[j] + dp[k-1, j-1] 最大，那么 prices[i]要最大，prices[j] - dp[k-1, j-1]就要最小。因此有了min = Math.Min(min, prices[i] - dp[k-1, i-1])，和dp[k, i] = Math.Max(dp[k, i-1], prices[i] - min)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public int MaxProfitDpCompact1(int[] prices) &#123;</span><br><span class="line">           if (prices.length == 0) return 0;</span><br><span class="line">        int[][] dp = new int[3][prices.length];</span><br><span class="line">        for (int k = 1; k &lt;= 2; k++) &#123;</span><br><span class="line">            int min = prices[0];</span><br><span class="line">            for (int i = 1; i &lt; prices.length; i++) &#123;</span><br><span class="line">                min = Math.min(min, prices[i] - dp[k-1][i-1]);</span><br><span class="line">                dp[k][i] = Math.max(dp[k][i-1], prices[i] - min);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return dp[2][prices.length - 1];</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>Time complexity is O(kn), space complexity is O(kn).</p>
+<h1><span id="问题309">问题309</span></h1><p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/75927/Share-my-thinking-process" target="_blank" rel="noopener">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/75927/Share-my-thinking-process</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public int maxProfit(int[] prices) &#123;</span><br><span class="line">    int sell = 0, prev_sell = 0, buy = Integer.MIN_VALUE, prev_buy;</span><br><span class="line">    for (int price : prices) &#123;</span><br><span class="line">        prev_buy = buy;</span><br><span class="line">        buy = Math.max(prev_sell - price, prev_buy);</span><br><span class="line">        prev_sell = sell;</span><br><span class="line">        sell = Math.max(prev_buy + price, prev_sell);</span><br><span class="line">    &#125;</span><br><span class="line">    return sell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/03/20190303/" data-id="cjt6i9qr0002qzwtcfoae4sma" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/03/05/20190305/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            Hard 42 Trapping Rain Water
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/03/02/20190302/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">Medium 55+Hard 45 Jump Game</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

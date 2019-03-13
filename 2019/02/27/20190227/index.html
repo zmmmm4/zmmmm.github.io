@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Medium 274 H-Index |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-20190227" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Medium 274 H-Index
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/27/20190227/" class="article-date">
+  <time datetime="2019-02-27T01:34:44.000Z" itemprop="datePublished">2019-02-27</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a> / <a class="article-category-link" href="/categories/leetcode/array/">array</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>科学家的引用文献数问题</p>
+<a id="more"></a>
+<h1><span id="问题">问题</span></h1><p>Given an array of citations (each citation is a non-negative integer) of a researcher, write a function to compute the researcher’s h-index.</p>
+<p>According to the <a href="https://en.wikipedia.org/wiki/H-index" target="_blank" rel="noopener">definition of h-index on Wikipedia</a>: “A scientist has index <em>h</em> if <em>h</em> of his/her <em>N </em>papers have <strong>at least</strong> <em>h</em> citations each, and the other <em>N − h</em> papers have <strong>no more than</strong> <em>h</em> citations each.”</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: citations = [3,0,6,1,5]</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: [3,0,6,1,5] means the researcher has 5 papers in total and each of them had </span><br><span class="line">             received 3, 0, 6, 1, 5 citations respectively. </span><br><span class="line">             Since the researcher has 3 papers with at least 3 citations each and the remaining </span><br><span class="line">             two with no more than 3 citations each, her h-index is 3.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong> If there are several possible values for <em>h</em>, the maximum one is taken as the h-index.</p>
+<h1><span id="思路">思路</span></h1><p>在一共N篇文章里，有h篇文章的索引大于等于h个，其它N-h篇文章的文献小于h个，要找到这个h值。</p>
+<p>统计有0、1、2、3、….、&gt;=h个索引的文章数分别是多少，然后把文章数从后往前累加，直到文章数&gt;=索引数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public int hIndex(int[] citations) &#123;</span><br><span class="line">      int n=citations.length;</span><br><span class="line">      int[] buckets=new int[n+1];</span><br><span class="line">      for(int i:citations)&#123;</span><br><span class="line">          if(i&gt;=n)&#123;</span><br><span class="line">              buckets[n]++;</span><br><span class="line">          &#125;</span><br><span class="line">          else&#123;</span><br><span class="line">              buckets[i]++;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      int count=0;</span><br><span class="line">      for(int j=n;j&gt;=0;j--)&#123;</span><br><span class="line">          count+=buckets[j];</span><br><span class="line">          if(count&gt;=j)</span><br><span class="line">          &#123;</span><br><span class="line">              return j;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      return 0;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/27/20190227/" data-id="cjt6i9qqr0024zwtcconhka6j" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/02/28/20190228/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            Easy 217 Contains Duplicate
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/02/26/20190226/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">Medium 134 Gas Station</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

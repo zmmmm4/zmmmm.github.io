@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Hard 128 Longest Consecutive Sequence//HashMap |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-20190308" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hard 128 Longest Consecutive Sequence//HashMap
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/03/08/20190308/" class="article-date">
+  <time datetime="2019-03-08T07:54:33.000Z" itemprop="datePublished">2019-03-08</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a> / <a class="article-category-link" href="/categories/leetcode/array/">array</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>跳一跳</p>
+<p>最长连续序列</p>
+<a id="more"></a>
+<h6><span id="hashmap相关知识">HashMap相关知识</span></h6><p><a href="https://www.cnblogs.com/skywang12345/p/3310835.html#b1" target="_blank" rel="noopener">https://www.cnblogs.com/skywang12345/p/3310835.html#b1</a></p>
+<h1><span id="问题">问题</span></h1><p>Given an unsorted array of integers, find the length of the longest consecutive elements sequence.</p>
+<p>Your algorithm should run in O(<em>n</em>) complexity.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [100, 4, 200, 1, 3, 2]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.</span><br></pre></td></tr></table></figure>
+<h1><span id="解">解</span></h1><p>使用到了JAVA中的HashMap【HashMap 是一个散列表，它存储的内容是键值对(key-value)映射。】，我们把数组中的数字设为key，包含key的最长连续子数列的长度设为value。</p>
+<ol>
+<li>遍历nums数组中的数n，对于每一个n，查看map中是否存在n-1和n+1（比如有数字3，找2和4是否存在于map中），若存在则获取其value（也就是包括该数字的当前最长的子数列长度），存为left和right。</li>
+<li>sum=left+right+1为数字n目前的最长子数列长度。</li>
+<li>把（n，sum）存入map。</li>
+<li>把（n-left，sum）和（n+right，sum）存入map。利用已知的left和right两个长度得到n当前所在连续子数列的左右两端的数字n-left和n+right，用这次得到的新的长度sum代替以前存的旧长度，也便于第1步中获取当前最长的left和right。</li>
+</ol>
+<p>总时间复杂度为O(n)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public int longestConsecutive(int[] num) &#123;</span><br><span class="line">    int res = 0;</span><br><span class="line">    HashMap&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">    for (int n : num) &#123;</span><br><span class="line">        if (!map.containsKey(n)) &#123;</span><br><span class="line">            int left = (map.containsKey(n - 1)) ? map.get(n - 1) : 0;</span><br><span class="line">            int right = (map.containsKey(n + 1)) ? map.get(n + 1) : 0;</span><br><span class="line">            // sum: length of the sequence n is in</span><br><span class="line">            int sum = left + right + 1;</span><br><span class="line">            map.put(n, sum);</span><br><span class="line">            </span><br><span class="line">            // keep track of the max length </span><br><span class="line">            res = Math.max(res, sum);</span><br><span class="line">            </span><br><span class="line">            // extend the length to the boundary(s)</span><br><span class="line">            // of the sequence</span><br><span class="line">            // will do nothing if n has no neighbors</span><br><span class="line">            map.put(n - left, sum);</span><br><span class="line">            map.put(n + right, sum);</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            // duplicates</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/08/20190308/" data-id="cjt6i9qr2002tzwtcoabqcxmh" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/03/09/20190309/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            unity XML存档和读档
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/03/06/20190306/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">unity序列化 XML\JSON</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

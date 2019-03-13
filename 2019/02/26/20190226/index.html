@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Medium 134 Gas Station |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-20190226" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Medium 134 Gas Station
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/26/20190226/" class="article-date">
+  <time datetime="2019-02-26T00:56:03.000Z" itemprop="datePublished">2019-02-26</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a> / <a class="article-category-link" href="/categories/leetcode/array/">array</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>加油站问题=￣ω￣=</p>
+<a id="more"></a>
+<h1><span id="问题">问题</span></h1><p>There are <em>N</em> gas stations along a circular route, where the amount of gas at station <em>i</em> is <code>gas[i]</code>.</p>
+<p>You have a car with an unlimited gas tank and it costs <code>cost[i]</code> of gas to travel from station <em>i</em> to its next station (<em>i</em>+1). You begin the journey with an empty tank at one of the gas stations.</p>
+<p>Return the starting gas station’s index if you can travel around the circuit once in the clockwise direction, otherwise return -1.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>If there exists a solution, it is guaranteed to be unique.</li>
+<li>Both input arrays are non-empty and have the same length.</li>
+<li>Each element in the input arrays is a non-negative integer.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">gas  = [1,2,3,4,5]</span><br><span class="line">cost = [3,4,5,1,2]</span><br><span class="line"></span><br><span class="line">Output: 3</span><br><span class="line"></span><br><span class="line">Explanation:</span><br><span class="line">Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4</span><br><span class="line">Travel to station 4. Your tank = 4 - 1 + 5 = 8</span><br><span class="line">Travel to station 0. Your tank = 8 - 2 + 1 = 7</span><br><span class="line">Travel to station 1. Your tank = 7 - 3 + 2 = 6</span><br><span class="line">Travel to station 2. Your tank = 6 - 4 + 3 = 5</span><br><span class="line">Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.</span><br><span class="line">Therefore, return 3 as the starting index.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">gas  = [2,3,4]</span><br><span class="line">cost = [3,4,3]</span><br><span class="line"></span><br><span class="line">Output: -1</span><br><span class="line"></span><br><span class="line">Explanation:</span><br><span class="line">You can&apos;t start at station 0 or 1, as there is not enough gas to travel to the next station.</span><br><span class="line">Let&apos;s start at station 2 and fill up with 4 unit of gas. Your tank = 0 + 4 = 4</span><br><span class="line">Travel to station 0. Your tank = 4 - 3 + 2 = 3</span><br><span class="line">Travel to station 1. Your tank = 3 - 3 + 3 = 3</span><br><span class="line">You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.</span><br><span class="line">Therefore, you can&apos;t travel around the circuit once no matter where you start.</span><br></pre></td></tr></table></figure>
+<h1><span id="解">解</span></h1><p>思路：</p>
+<p>假设以 i 站为起点，到 i+j 站没油了只能停止，那么从 i+1 站到 i+j-1 站中任何一站都不能到达 i+j 站。也就是说，如果A地能到B地，B地能到C地，那么A地能到C地。</p>
+<p>因此可以先写一个for循环，令起点 i 的范围是0~n-1，每次i=i+j；j是内部for循环的一个值，内部for循环代表的是以 i 为起点往后移动，计算每一步移动后的总油量，若油量为负则结束内循环，让外部 i 跳过这一段，也就是i=i+j，再在新 i 的基础上往后移动并计算。</p>
+<p>代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">int canCompleteCircuit(vector&lt;int&gt;&amp; gas, vector&lt;int&gt;&amp; cost) &#123;</span><br><span class="line">       int i,j,n=gas.size();</span><br><span class="line">       for(i=0;i&lt;n;i+=j)&#123;</span><br><span class="line">           int sum=0;</span><br><span class="line">           for(j=1;j&lt;n+1;j++)&#123;</span><br><span class="line">               sum+=gas[(i+j-1)%n]-cost[(i+j-1)%n];</span><br><span class="line">               if(sum&lt;0)&#123;</span><br><span class="line">                   break;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           if(sum&gt;=0)&#123;</span><br><span class="line">               return i;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return -1;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>评论区另外一个写法，思路是差不多的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int canCompleteCircuit(vector&lt;int&gt; &amp;gas, vector&lt;int&gt; &amp;cost) &#123;</span><br><span class="line">        int start(0),total(0),tank(0);</span><br><span class="line">        //if car fails at &apos;start&apos;, record the next station</span><br><span class="line">        for(int i=0;i&lt;gas.size();i++)&#123;</span><br><span class="line">            if((tank=tank+gas[i]-cost[i])&lt;0) </span><br><span class="line">            &#123;</span><br><span class="line">                start=i+1;</span><br><span class="line">                total+=tank;</span><br><span class="line">                tank=0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return (total+tank&lt;0)? -1:start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/26/20190226/" data-id="cjt6i9qqp0021zwtcqa0qt4v3" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/02/27/20190227/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            Medium 274 H-Index
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/02/24/2019022402/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">Medium 299 Bulls and Cows</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

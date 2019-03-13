@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Unity Lod 和 Occlusion Culling |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-20190218" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Unity Lod 和 Occlusion Culling
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/02/18/20190218/" class="article-date">
+  <time datetime="2019-02-18T04:13:18.000Z" itemprop="datePublished">2019-02-18</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/unity/">unity</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h1><span id="lod和occlusion-culling"><strong>Lod和Occlusion Culling</strong></span></h1><h3><span id="lod和遮挡剔除">Lod和遮挡剔除</span></h3><h5><span id="遮挡剔除"><strong>遮挡剔除</strong></span></h5><p>在我们的场景中，如果物体1在Camera渲染中遮挡了另一个物体2，那物体2就不会再Camera中进行渲染，虽然物体2没有在Camera中进行渲染但是在整个游戏场景中这个物体同样存在。为了优化效率，这里就需要使用遮挡剔除。</p>
+<p><strong>Lod</strong></p>
+<p>如果一个物体离我们的Camera很远，我们自然就看不见这个物体（或者只能看见一个“小点”）。但是这个物体在场景中仍然会根据它的顶点结构进行渲染并消耗性能。这时候为了优化，如果它离我们的Camera距离很远，我们就不需要对它进行渲染，也就是Lod。</p>
+<h3><span id="occlusion-culling遮挡剔除"><strong>Occlusion Culling（遮挡剔除）</strong></span></h3><p><img src="https://upload-images.jianshu.io/upload_images/3600976-226b76471d7ae219.gif?imageMogr2/auto-orient/" alt="img"></p>
+<p>遮挡剔除功能在Unity中使用Occlusion Culling（遮挡剔除）组件来进行实现</p>
+<ul>
+<li>首先我们需要对需要进行遮挡以及被遮挡的物体进行烘焙。</li>
+<li>在烘焙的时候，我们需要对遮挡的物体和被遮挡的物体进行选择不同的情况不同的解决方案。（比如一个玻璃物体遮挡住了另一个物体这时我们也应该对玻璃后的物体进行渲染）</li>
+<li>这里不考虑这种情况，直接进行烘焙。</li>
+</ul>
+<h3><span id="lod"><strong>Lod</strong></span></h3><ul>
+<li><p>Lod功能，unity内置的组件也会为我们提供了一套解决方案。（LOD Group组件）</p>
+</li>
+<li><p>首先我们先创建一个小球，可以看见camera已经距离很远，此时只能看见一个小点。但它仍然是场景中进行了渲染。</p>
+</li>
+<li><p>实现LOD优化，为它添加LOD Group组件。</p>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/3600976-372ceaa3e2fd32f9.png?imageMogr2/auto-orient/" alt="img"></p>
+<ul>
+<li>其中LOD 0，LOD 1分别为Camera距离这个球的距离区域划分。</li>
+<li>我们可以在这些相对距离区域中选择是否要在这个距离对小球渲染。</li>
+</ul>
+<h3><span id="以上方案的缺陷">以上方案的缺陷。</span></h3><ul>
+<li>以上完成的操作都是静态的物体，但是在我们的实际项目开发中，NPC,Monster，建筑物等都是动态生成的。这种情况肯定就无法烘焙成静态的。</li>
+</ul>
+<h3><span id="动态解决方案-lod">动态解决方案。（LOD）</span></h3><ul>
+<li>这时我们使用脚本来控制。而LOD的核心也就是在距离远的时候将小球的MeshRender组件失活我们根据这个核心点去编写代码。<ul>
+<li>为我们的Camera添加一个LODAndOcclusionController的脚本。</li>
+<li>完成简单的动态LOD功能。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/3600976-8f16279f0728bbd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/660" alt="img"></p>
+<p>场景测试。 </p>
+<ul>
+<li>这时我们可以发现当Camera和小球的距离超过5米的时候，小球则不会进行渲染。小球是动态运动的也同样没有关系。</li>
+</ul>
+<h3><span id="动态解决方案-遮挡剔除"><strong>动态解决方案。（遮挡剔除）</strong></span></h3><ul>
+<li><p>使用Ray射线来进行判断。</p>
+</li>
+<li><p>我们将所有需要进行遮罩剔除的物体添加Tag为Occlusion。</p>
+</li>
+<li>并为我们的Camera添加脚本。</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/3600976-03a28dc50bb5523a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/898" alt="img"></p>
+<h3><span id="总结"><strong>总结：</strong></span></h3><p>我们的LOD以及Occlusion，都是基于GameObject的MeshRender组件来实现的。只有掌握好核心点，不让它们进行渲染，这样减少了Draw Call自然就优化了性能。（主要为什么是让MeshRender组件失活，因为我们直接把整个游戏对象都失活了，那所有的碰撞信息也全部都会失效。）</p>
+<p>作者：Levi_Wan</p>
+<p>链接：<a href="https://www.jianshu.com/p/be81fd0a9380" target="_blank" rel="noopener">https://www.jianshu.com/p/be81fd0a9380</a></p>
+<p>來源：简书</p>
+<p>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/18/20190218/" data-id="cjt6i9qqh001hzwtc0ar6db0x" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/02/20/20190220/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            26+80 Remove Duplicates from Sorted Array
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/02/17/20190217/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">easy27-Remove Element</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>

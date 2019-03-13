@@ -83,7 +83,7 @@
 <p>所以我们应该做的是：</p>
 <p>​    Searching i in [0, m], to find an object <code>i</code> that:<br>​        (j == 0 or i == m or B[j-1] &lt;= A[i]) and<br>​        (i == 0 or j == n or A[i-1] &lt;= B[j])<br>​        where j = (m + n + 1)/2 - i</p>
 <p>在一个搜索循环里，我们只会遇到三种情况：</p>
-<p>​     a (j == 0 or i == m or B[j-1] &lt;= A[i]) and<br>         (i == 0 or j = n or A[i-1] &lt;= B[j])<br>          找到了i可以停止了</p>
+<p>​     a (j == 0 or i == m or B[j-1] &lt;= A[i]) and<br>​         (i == 0 or j = n or A[i-1] &lt;= B[j])<br>​          找到了i可以停止了</p>
 <p>​    b i &lt; m and B[j - 1] &gt; A[i]<br>​         i太小，需要增大</p>
 <p>​    c i &gt; 0 and A[i - 1] &gt; B[j]<br>​         i太大，需要减小</p>
 <p>   （由于i &lt; m ==&gt; j &gt; 0 和 i &gt; 0 ==&gt; j &lt; n，因此b和c不用检查j）</p>
@@ -93,9 +93,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/14/2019011401/" data-id="cjt6htpr30003uktc7s0vve03" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/14/2019011401/" data-id="cjt6i9qpd0000zwtcv2nszwq3" class="article-share-link">Share</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arrays/">Arrays</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arrays/">Arrays</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
 
     </footer>
   

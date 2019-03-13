@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="教程">
+  
+  
+    <meta name="description" content="张小姐的个人博客，主要内容是编程，个人学习记录">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    HOLOLENS入门之MRinput |
+    
+    ZhangM</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-2019012901" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HOLOLENS入门之MRinput
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/01/29/2019012901/" class="article-date">
+  <time datetime="2019-01-29T08:54:49.000Z" itemprop="datePublished">2019-01-29</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hololens/">hololens</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>大半年没看了，hololens 加了不少东西呢😄</p>
+<a id="more"></a>
+<h1><span id="环境">环境</span></h1><p><a href="https://docs.microsoft.com/en-us/windows/mixed-reality/install-the-tools" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/mixed-reality/install-the-tools</a></p>
+<p>该网址都讲了↑</p>
+<p>1、windows 10</p>
+<p>2、visual studio 2017</p>
+<p>3、windows 10 sdk</p>
+<p>4、Unity long term support（LTS）version：官网建议安装unity的LTS stream版本（17年的时候还没有这样说呢…)，但是我根据推荐安装了新的LTS版unity工具包还不支持，到底版本怎么对应的啊喂！</p>
+<p>5、MRTK for unity：工具包的版本和unity的版本一定要对应上，对上了开发就是so easy，对不上就是几百个报错贼闹心。</p>
+<p>我这次尝试的：</p>
+<p>Unity2017.4.19f1</p>
+<p>HoloToolkit-2017.4.3.0</p>
+<p>HoloToolkit-Examples-2017.4.3.0</p>
+<p>MRTK里面的封装内容博大精深，要是全都能整明白开发MR应用都不是什么难题了。</p>
+<h1><span id="unity设置">Unity设置</span></h1><ul>
+<li><strong>Edit &gt; Project Settings &gt; Player &gt; Windows Store &gt; XR Settings  </strong> 在 Virtual Reality Supported 中添加 Virtual Reality SDKs ；把Other Settings 中的 Scripting Backend 设置为 .NET</li>
+<li><strong>Edit &gt; Project Settings &gt; Quality</strong>.选择windows store图标下的default小箭头，选择 Fastest</li>
+<li><strong>导出</strong>：在unity的导出界面里—-&gt;选择<strong>Universal Windows Platform</strong>；<strong>Target device</strong>设为 <strong>HoloLens</strong>. ； <strong>Build Type </strong>设置为D3D ；<strong>SDK</strong> 设置为 <strong>Latest installed</strong> （至少为 SDK 16299)</li>
+</ul>
+<h1><span id="mr-input">MR Input</span></h1><p>在众多官方教程里，最基础的教程为MR input：210、211、212、213</p>
+<h2><span id="210gaze">210：Gaze</span></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/29/2019012901/" data-id="cjt6i9qqc0016zwtcm7ow3wc3" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hololens/">hololens</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+  
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/01/31/20190131/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            生成括号对
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/01/28/2019012801/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">简单合并两个有序链表</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <ul class="list-inline">
+      <li>&copy; 2019 ZhangM</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://zhwangart.github.io">zhwangart</a></li>
+      <!--
+      <li><a href="/">张萌</a></li>
+      -->
+    </ul>
+  </div>
+</footer>
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="ZhangM"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
