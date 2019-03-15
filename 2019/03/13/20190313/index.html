@@ -90,7 +90,19 @@
     <ul>
         <li><a href="/">Recent Posts</a></li>
         
-        
+            
+                <li class="">
+                    <a href="/categories/leetcode" data-name="LeetCode">LeetCode</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Unity" data-name="Unity">Unity</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/others" data-name="其他">其他</a>
+                </li>
+            
         
         <li class="page-search">
     <form id="search" class="search-form">
@@ -116,12 +128,45 @@
             </div>
             <h2 class="post-title">Medium 287 Find the Duplicate Number</h2>
             <div class="post-meta">
-                emm... 0 words in the article |
+                emm... 1809 words in the article |
                 you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
             </div>
         </div>
         <div class="post-content markdown-body">
-            
+            <p>leetcode第287题<br><a id="more"></a></p>
+<h1><span id="问题">问题</span></h1><p>Given an array <em>nums</em> containing <em>n</em> + 1 integers where each integer is between 1 and <em>n</em> (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,3,4,2,2]</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,1,3,4,2]</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>You <strong>must not</strong> modify the array (assume the array is read only).</li>
+<li>You must use only constant, <em>O</em>(1) extra space.</li>
+<li>Your runtime complexity should be less than <em>O</em>(<em>n</em>2).</li>
+<li>There is only one duplicate number in the array, but it could be repeated more than once.</li>
+</ol>
+<h1><span id="解">解</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public int findDuplicate(int[] nums) &#123;</span><br><span class="line">    int n = nums.length;</span><br><span class="line">    int slow = n;</span><br><span class="line">    int fast = n;</span><br><span class="line">    do&#123;</span><br><span class="line">        slow = nums[slow-1];</span><br><span class="line">        fast = nums[nums[fast-1]-1];</span><br><span class="line">    &#125;while(slow != fast);</span><br><span class="line">    slow = n;</span><br><span class="line">    while(slow != fast)&#123;</span><br><span class="line">        slow = nums[slow-1];</span><br><span class="line">        fast = nums[fast-1];</span><br><span class="line">    &#125;</span><br><span class="line">    return slow;</span><br></pre></td></tr></table></figure>
+<p>具体没咋看明白。。</p>
+<p>suppose the array is</p>
+<blockquote>
+<p>index: 0 1 2 3 4 5</p>
+<p>value: 2 5 1 1 4 3</p>
+</blockquote>
+<p>first subtract 1 from each element in the array, so it is much easy to understand.<br> use the value as pointer. the array becomes:</p>
+<blockquote>
+<p>index: 0 1 2 3 4 5</p>
+<p>value: 1 4 0 0 3 2</p>
+</blockquote>
+<p><img src="http://cyukang.com/images/cycle3.png" alt="enter image description here"></p>
+<p>Second if the array is</p>
+<blockquote>
+<p>index: 0 1 2 3 4 5</p>
+<p>value: 0 1 2 4 2 3</p>
+</blockquote>
+<p>we must choose the last element as the head of the linked list. If we choose 0, we can not detect the cycle.</p>
+<p>Now the problem is the same as find the cycle in linkedlist!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public int findDuplicate(int[] nums) &#123;</span><br><span class="line">    int n = nums.length;</span><br><span class="line">    for(int i=0;i&lt;nums.length;i++) nums[i]--;</span><br><span class="line">    int slow = n-1;</span><br><span class="line">    int fast = n-1;</span><br><span class="line">    do&#123;</span><br><span class="line">        slow = nums[slow];</span><br><span class="line">        fast = nums[nums[fast]];</span><br><span class="line">    &#125;while(slow != fast);</span><br><span class="line">    slow = n-1;</span><br><span class="line">    while(slow != fast)&#123;</span><br><span class="line">        slow = nums[slow];</span><br><span class="line">        fast = nums[fast];</span><br><span class="line">    &#125;</span><br><span class="line">    return slow+1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         <div class="post-tool">
             <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
@@ -130,6 +175,10 @@
         </div>
         
         <div class="post-tags">Tags：
+            
+            <a href="/tags/leetcode/">leetcode</a>
+            
+            <a href="/tags/array/">array</a>
             
         </div>
         
