@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://yoursite.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+<link rel="dns-prefetch" href="http://yoursite.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="prefetch" href="http://yoursite.com">
+<link rel="prefetch" href="//www.google-analytics.com">
+
+
+<link rel="prerender" href="http://yoursite.com">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://yoursite.com">
+<meta name="author" content="张萌">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>四个数字相加等于指定数 - ZhangM</title>
+
+<meta name="keywords" content="教程">
+
+<meta name="description " content="张小姐的个人博客，主要内容是编程，个人学习记录">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+    </script>
+
+
+    
+
+    
+
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="萌">萌</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-archives"></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/about" title="关于">
+            <i class="fa fa-question-circle"></i>
+            <span>关于</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">小努力</h1>
+        <h3 class="cover-siteTitle">瞎搞罢了</h3>
+        <p class="cover-siteDesc">一个菜鸟的IT博客</p>
+        <div class="cover-sns">
+            
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Recent Posts</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/leetcode" data-name="LeetCode">LeetCode</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Unity" data-name="Unity">Unity</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/others" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text" readonly="readonly" id="local-search-input-tip" placeholder="click to search...">
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://zhangmeng.ga/" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">Author</span>
+                    <a href="https://zhangmeng.ga/" target="_blank">张萌</a>
+                    <span title="Last edited at&nbsp;2019-01-22">2019-01-22</span>
+                </p>
+                <p>十分平凡可爱非常。</p>
+            </div>
+            <h2 class="post-title">四个数字相加等于指定数</h2>
+            <div class="post-meta">
+                emm... 4310 words in the article |
+                you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>leetcode第18题<br><a id="more"></a></p>
+<h1><span id="问题">问题</span></h1><p>Given an array <code>nums</code> of <em>n</em> integers and an integer <code>target</code>, are there elements <em>a</em>, <em>b</em>, <em>c</em>, and <em>d</em> in <code>nums</code> such that <em>a</em> + <em>b</em> + <em>c</em> + <em>d</em>= <code>target</code>? Find all unique quadruplets in the array which gives the sum of <code>target</code>.</p>
+<p><strong>Note:</strong></p>
+<p>The solution set must not contain duplicate quadruplets.</p>
+<h4><span id="例子">例子</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Given array nums = [1, 0, -1, 0, -2, 2], and target = 0.</span><br><span class="line">#就是看这里面哪四个数相加能等于0</span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [-1,  0, 0, 1],</span><br><span class="line">  [-2, -1, 1, 2],</span><br><span class="line">  [-2,  0, 0, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h1><span id="解">解</span></h1><p>【python】</p>
+<p>采用嵌套的方式比较好解这个题</p>
+<p>设要求nums数集里N个数的和，满足target</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">先把nums的数排序，然后调用函数findsum：</span><br><span class="line">1、检查是否为空解，以下条件满足则return：</span><br><span class="line">      nums长度&lt;N||</span><br><span class="line">      target&lt;nums最小值 * N||</span><br><span class="line">      target&gt;nums最大值 * N</span><br><span class="line">   </span><br><span class="line">2、</span><br><span class="line">if N&gt;2</span><br><span class="line">  i 从第一个到倒数第三个：</span><br><span class="line">    如果第i个和第i-1个相同，则跳过去，避免重复</span><br><span class="line">    findsum（nums[i+1:],target-nums[i],result+nums[i],results）</span><br><span class="line">    (result是每一个条目，组成了结果results)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">3、</span><br><span class="line">if N==2</span><br><span class="line">   l=0,r=nums[-1]</span><br><span class="line">   while l&lt;r:</span><br><span class="line">       如果找到了一对数 nums[l]+nums[r]==target</span><br><span class="line">           则加入results：results.append(result+[nums[l]+nums[r]])</span><br><span class="line">           左侧游标移动一位l=l+1</span><br><span class="line">           把重复的跳过去</span><br><span class="line">       如果 和小于目标，则左侧游标往右边移动</span><br><span class="line">       如果 和大于目标，则右侧游标往左侧移动</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">def fourSum(self, nums, target):</span><br><span class="line">    def findNsum(nums, target, N, result, results):</span><br><span class="line">        if len(nums) &lt; N or N &lt; 2 or target &lt; nums[0]*N or target &gt; nums[-1]*N:  # early termination</span><br><span class="line">            return</span><br><span class="line">        if N == 2: # two pointers solve sorted 2-sum problem</span><br><span class="line">            l,r = 0,len(nums)-1</span><br><span class="line">            while l &lt; r:</span><br><span class="line">                s = nums[l] + nums[r]</span><br><span class="line">                if s == target:</span><br><span class="line">                    results.append(result + [nums[l], nums[r]])</span><br><span class="line">                    l += 1</span><br><span class="line">                    while l &lt; r and nums[l] == nums[l-1]:</span><br><span class="line">                        l += 1</span><br><span class="line">                elif s &lt; target:</span><br><span class="line">                    l += 1</span><br><span class="line">                else:</span><br><span class="line">                    r -= 1</span><br><span class="line">        else: # recursively reduce N</span><br><span class="line">            for i in range(len(nums)-N+1):</span><br><span class="line">                if i == 0 or (i &gt; 0 and nums[i-1] != nums[i]):</span><br><span class="line">                    findNsum(nums[i+1:], target-nums[i], N-1, result+[nums[i]], results)</span><br><span class="line"></span><br><span class="line">    results = []</span><br><span class="line">    findNsum(sorted(nums), target, 4, [], results)</span><br><span class="line">    return results</span><br></pre></td></tr></table></figure>
+<p>【c++】</p>
+<p>不使用嵌套的话，也是一样的意思，给nums排序，先固定第一个数，再固定第二个数，找后两个数的和满足target-nums[i]-nums[j]的组合，再依次换第二个数第一个数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">第一个数i从0到倒数第四个：</span><br><span class="line">    if（第i个=第i-1个）重复了，本轮跳过去</span><br><span class="line">    if（前四个数和&gt;目标）结束，没找到符合的数</span><br><span class="line">    if（第i个+倒数3个数&lt;目标）第i个数太小，本轮跳过去</span><br><span class="line">    第二个数j从i+1到倒数第三个：</span><br><span class="line">        if（第j个=第j-1个）重复了跳过去</span><br><span class="line">        if（第一个数i+j范围内的前三个数&gt;目标）数太大，结束</span><br><span class="line">        if（第一个数i+j范围内最后三个数&lt;目标）数太小，本轮跳过去</span><br><span class="line">        设定left=j+1，right=n-1最后两个数从头和尾开始遍历</span><br><span class="line">        while（left&lt;right）</span><br><span class="line">            sum=[left]+[right]+[i]+[j]</span><br><span class="line">            if （sum&lt;目标） 和小了要增大值 left++</span><br><span class="line">            if （sum&gt;目标） 和大了要减小值 right--</span><br><span class="line">            else</span><br><span class="line">                说明sum=目标，</span><br><span class="line">                把&#123;[i],[j],[left],[right]&#125;加入结果</span><br><span class="line">                如果左右两个值重复了则跳过去</span><br><span class="line"> return</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; total;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        if(n&lt;4)  return total;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        for(int i=0;i&lt;n-3;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(i&gt;0&amp;&amp;nums[i]==nums[i-1]) continue;</span><br><span class="line">            if(nums[i]+nums[i+1]+nums[i+2]+nums[i+3]&gt;target) break;</span><br><span class="line">            if(nums[i]+nums[n-3]+nums[n-2]+nums[n-1]&lt;target) continue;</span><br><span class="line">            for(int j=i+1;j&lt;n-2;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if(j&gt;i+1&amp;&amp;nums[j]==nums[j-1]) continue;</span><br><span class="line">                if(nums[i]+nums[j]+nums[j+1]+nums[j+2]&gt;target) break;</span><br><span class="line">                if(nums[i]+nums[j]+nums[n-2]+nums[n-1]&lt;target) continue;</span><br><span class="line">                int left=j+1,right=n-1;</span><br><span class="line">                while(left&lt;right)&#123;</span><br><span class="line">                    int sum=nums[left]+nums[right]+nums[i]+nums[j];</span><br><span class="line">                    if(sum&lt;target) left++;</span><br><span class="line">                    else if(sum&gt;target) right--;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        total.push_back(vector&lt;int&gt;&#123;nums[i],nums[j],nums[left],nums[right]&#125;);</span><br><span class="line">                        do&#123;left++;&#125;while(nums[left]==nums[left-1]&amp;&amp;left&lt;right);</span><br><span class="line">                        do&#123;right--;&#125;while(nums[right]==nums[right+1]&amp;&amp;left&lt;right);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return total;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Donate
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+        </div>
+        
+    </article>
+    
+    <p style="text-align: center">This article just represents my own viewpoint. If there is something wrong, please correct me.</p>
+    
+    
+
+    
+
+</div>
+<script src="/js/busuanzi.pure.mini.js"></script>
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about" title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="Help">Help</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="Links">Links</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="SiteMap">SiteMap</a>
+        </p>
+        <p>
+            Has been established&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbspDays，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">Based on Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a><br>
+            ©2017-<span id="cpYear"></span> Based on&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，Theme by&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，Author&nbsp<a href="https://zhangmeng.ga/" target="_blank" rel="friend">张萌</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
+        </p>
+    </div>
+</footer>
+<script src="/js/SimpleCore.js"></script>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input" spellcheck="false" type="text" autocomplete="off" placeholder="Input query keywords here...">
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        var jsi_config = {
+            buildingTime: '01/10/2019',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+            localSearch: { dbPath: '' },
+            readMode: 'day'
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.json',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        SimpleCore.init(jsi_config);
+        
+    });
+</script>
+</body>
+</html>

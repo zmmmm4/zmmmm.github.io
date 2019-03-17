@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://yoursite.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+<link rel="dns-prefetch" href="http://yoursite.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="prefetch" href="http://yoursite.com">
+<link rel="prefetch" href="//www.google-analytics.com">
+
+
+<link rel="prerender" href="http://yoursite.com">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://yoursite.com">
+<meta name="author" content="张萌">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>medium 289 game of life - ZhangM</title>
+
+<meta name="keywords" content="教程">
+
+<meta name="description " content="张小姐的个人博客，主要内容是编程，个人学习记录">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+    </script>
+
+
+    
+
+    
+
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="萌">萌</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-archives"></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/about" title="关于">
+            <i class="fa fa-question-circle"></i>
+            <span>关于</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">小努力</h1>
+        <h3 class="cover-siteTitle">瞎搞罢了</h3>
+        <p class="cover-siteDesc">一个菜鸟的IT博客</p>
+        <div class="cover-sns">
+            
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Recent Posts</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/leetcode" data-name="LeetCode">LeetCode</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Unity" data-name="Unity">Unity</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/others" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text" readonly="readonly" id="local-search-input-tip" placeholder="click to search...">
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://zhangmeng.ga/" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">Author</span>
+                    <a href="https://zhangmeng.ga/" target="_blank">张小姐</a>
+                    <span title="Last edited at&nbsp;2019-03-15">2019-03-15</span>
+                </p>
+                <p>十分平凡可爱非常。</p>
+            </div>
+            <h2 class="post-title">Medium 289 Game of Life</h2>
+            <div class="post-meta">
+                emm... 4353 words in the article |
+                you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>游戏人生<br><a id="more"></a></p>
+<h1><span id="问题">问题</span></h1><p>According to the Wikipedia’s article: “The <strong>Game of Life</strong>, also known simply as <strong>Life</strong>, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.”</p>
+<p>根据维基百科的文章:“生命的游戏，也就是简单的生命，是由英国数学家约翰·霍顿·康威在1970年发明的一种细胞自动机。”  </p>
+<p>Given a <em>board</em> with <em>m</em> by <em>n</em> cells, each cell has an initial state <em>live</em> (1) or <em>dead</em> (0). Each cell interacts with its eight neighbors(horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):</p>
+<p>给定一个由m×n个单元格组成的board，每个单元格都有一个初始状态live(1)或dead(0)。  每个单元格使用以下4条规则与它的8个相邻单元格(水平、垂直、对角线)交互(摘自上面Wikipedia文章):</p>
+<ol>
+<li>Any live cell with fewer than two live neighbors dies, as if caused by under-population.</li>
+<li>Any live cell with two or three live neighbors lives on to the next generation.</li>
+<li>Any live cell with more than three live neighbors dies, as if by over-population..</li>
+<li>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</li>
+</ol>
+<p>任何活的细胞如果少于两个活的邻居，就会死亡，好像是由于人口不足造成的。</p>
+<p>任何有两个或三个邻居的活细胞都能活到下一代。</p>
+<p>任何有三个以上邻居的活细胞都会死亡，就好像是由于人口过剩。</p>
+<p>任何有三个活邻居的死细胞都会变成活细胞，就像通过繁殖一样。</p>
+<p>Write a function to compute the next state (after one update) of the board given its current state. The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously.</p>
+<p> 编写一个函数来计算给定当前状态的下一个状态(在一次更新之后)。下一个状态是通过将上述规则同时应用于当前状态中的每个细胞而创建的，此时出生和死亡同时发生。</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">[</span><br><span class="line">  [0,1,0],</span><br><span class="line">  [0,0,1],</span><br><span class="line">  [1,1,1],</span><br><span class="line">  [0,0,0]</span><br><span class="line">]</span><br><span class="line">Output: </span><br><span class="line">[</span><br><span class="line">  [0,0,0],</span><br><span class="line">  [1,0,1],</span><br><span class="line">  [0,1,1],</span><br><span class="line">  [0,1,0]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><strong>Follow up</strong>:</p>
+<ol>
+<li><p>Could you solve it in-place? Remember that the board needs to be updated at the same time: You cannot update some cells first and then use their updated values to update other cells.</p>
+<p>你能当场解决吗?请记住，board 需要同时更新:您不能先更新某些单元格，然后使用它们的更新值来更新其他单元格。</p>
+</li>
+<li><p>In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array. How would you address these problems?</p>
+<p>在这个问题中，我们使用2D数组来表示board 。从理论上讲，board 是无限的，当有源区域侵犯阵列边界时，会产生问题。你将如何解决这些问题?</p>
+</li>
+</ol>
+<h1><span id="解">解</span></h1><p>来自评论区<a href="https://leetcode.com/problems/game-of-life/discuss/73223/Easiest-JAVA-solution-with-explanation" target="_blank" rel="noopener">https://leetcode.com/problems/game-of-life/discuss/73223/Easiest-JAVA-solution-with-explanation</a></p>
+<p>为了解决这个问题，使用2bits来存储两个状态：未来和当前。</p>
+<p>[2nd bit, 1st bit] = [next state, current state]</p>
+<ul>
+<li>00  dead (next) &lt;- dead (current)</li>
+<li>01  dead (next) &lt;- live (current)  </li>
+<li>10  live (next) &lt;- dead (current)  </li>
+<li>11  live (next) &lt;- live (current) </li>
+</ul>
+<p>初始化阶段，每个cell都是 00 或 01，把未来2nd都初始化为0.</p>
+<p>未来状态2nd由当前决定。</p>
+<p>所有cells同时从1st向2nd位置变化。</p>
+<p>因此要计算每个cell的邻居的存活数lives，来得到2nd的值。</p>
+<p>得到当前状态的方法：按位与 &amp;1（二进制 &amp; 01</p>
+<p>转变到2nd位的方法：左移一位 &gt;&gt;1</p>
+<p>邻居livs数量对2nd位的影响：</p>
+<ol>
+<li>1st=1：lives=2 or lives=3   01-&gt;11-&gt;3</li>
+<li>1st=1：lives<2 or="" lives="">3   01-&gt;01-&gt;1</2></li>
+<li>1st=0：lives=3   00-&gt;10-&gt;2</li>
+</ol>
+<p>得到邻居lives的方法：</p>
+<ol>
+<li>给定当前cell在第i行第j列（从0开始），一共m行n列。</li>
+<li>对i-1行到i+1行遍历，保证i+1不大于m-1行。</li>
+<li>对j-1列到j+1列遍历，保证j+1不大于n-1列。</li>
+<li>取遍历到的cell的当前状态，也就是1st位置的值，也就是 &amp;1操作。</li>
+<li>把每个cell的状态相加（1为活0为死，故相加结果就是活的总数）</li>
+<li>最后把给定cell元素的状态减掉（也就是不能算自己为自己的邻居）</li>
+</ol>
+<h4><span id="java代码">JAVA代码</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void gameOfLife(int[][] board) &#123;</span><br><span class="line">        if(board == null||board.length == 0)return ;</span><br><span class="line">        int m = board.length, n = board[0].length;</span><br><span class="line">        for(int i=0;i&lt;m;i++)&#123;</span><br><span class="line">            for(int j=0;j&lt;n;j++)&#123;</span><br><span class="line">                int lives=liveNeighbors(board,m,n,i,j);</span><br><span class="line">                if(board[i][j]==0 &amp;&amp; lives==3)&#123;</span><br><span class="line">                    board[i][j]=2;</span><br><span class="line">                &#125;</span><br><span class="line">                else if(board[i][j]==1 &amp;&amp; (lives==2||lives==3))&#123;</span><br><span class="line">                    board[i][j]=3;</span><br><span class="line">                &#125;</span><br><span class="line">                else if(board[i][j]==1 &amp;&amp; (lives&gt;3 || lives&lt;2))&#123;</span><br><span class="line">                    board[i][j]=1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">                 board[i][j] &gt;&gt;= 1; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        public int liveNeighbors(int[][] board, int m, int n, int i, int j) &#123;</span><br><span class="line">               int lives = 0;</span><br><span class="line">               for (int x = Math.max(i - 1, 0); x &lt;= Math.min(i + 1, m - 1); x++) &#123;</span><br><span class="line">                    for (int y = Math.max(j - 1, 0); y &lt;= Math.min(j + 1, n - 1); y++) &#123;</span><br><span class="line">                         lives += board[x][y] &amp; 1;</span><br><span class="line">                     &#125;</span><br><span class="line">               &#125;</span><br><span class="line">               lives -= board[i][j] &amp; 1;</span><br><span class="line">               return lives;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Donate
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/leetcode/">leetcode</a>
+            
+            <a href="/tags/array/">array</a>
+            
+        </div>
+        
+    </article>
+    
+    <p style="text-align: center">This article just represents my own viewpoint. If there is something wrong, please correct me.</p>
+    
+    
+
+    
+
+</div>
+<script src="/js/busuanzi.pure.mini.js"></script>
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about" title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="Help">Help</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="Links">Links</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="SiteMap">SiteMap</a>
+        </p>
+        <p>
+            Has been established&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbspDays，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">Based on Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a><br>
+            ©2017-<span id="cpYear"></span> Based on&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，Theme by&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，Author&nbsp<a href="https://zhangmeng.ga/" target="_blank" rel="friend">张萌</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
+        </p>
+    </div>
+</footer>
+<script src="/js/SimpleCore.js"></script>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input" spellcheck="false" type="text" autocomplete="off" placeholder="Input query keywords here...">
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        var jsi_config = {
+            buildingTime: '01/10/2019',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+            localSearch: { dbPath: '' },
+            readMode: 'day'
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.json',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        SimpleCore.init(jsi_config);
+        
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://yoursite.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+<link rel="dns-prefetch" href="http://yoursite.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="prefetch" href="http://yoursite.com">
+<link rel="prefetch" href="//www.google-analytics.com">
+
+
+<link rel="prerender" href="http://yoursite.com">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://yoursite.com">
+<meta name="author" content="张萌">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>查找两个数组的中间值 - ZhangM</title>
+
+<meta name="keywords" content="教程">
+
+<meta name="description " content="张小姐的个人博客，主要内容是编程，个人学习记录">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+    </script>
+
+
+    
+
+    
+
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="萌">萌</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-archives"></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/about" title="关于">
+            <i class="fa fa-question-circle"></i>
+            <span>关于</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">小努力</h1>
+        <h3 class="cover-siteTitle">瞎搞罢了</h3>
+        <p class="cover-siteDesc">一个菜鸟的IT博客</p>
+        <div class="cover-sns">
+            
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Recent Posts</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/leetcode" data-name="LeetCode">LeetCode</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Unity" data-name="Unity">Unity</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/others" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text" readonly="readonly" id="local-search-input-tip" placeholder="click to search...">
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://zhangmeng.ga/" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">Author</span>
+                    <a href="https://zhangmeng.ga/" target="_blank">张萌</a>
+                    <span title="Last edited at&nbsp;2019-01-14">2019-01-14</span>
+                </p>
+                <p>十分平凡可爱非常。</p>
+            </div>
+            <h2 class="post-title">查找两个数组的中间值</h2>
+            <div class="post-meta">
+                emm... 5512 words in the article |
+                you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>leetcode第4题<br><a id="more"></a></p>
+<h1><span id="leetcode第4题"># 【leetcode第4题】</span></h1><p>There are two sorted arrays nums1 and nums2 of size m and n respectively.<br>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).<br>You may assume nums1 and nums2 cannot be both empty.</p>
+<p>分别有大小为m和n的两个排序数组nums1和nums2。</p>
+<p>求两个排序数组的中值。总的运行时复杂性应该是O(log (m+n))。</p>
+<p>您可以假设nums1和nums2不能同时为空。</p>
+<p>Example 1:<br>nums1 = [1, 3]<br>nums2 = [2]<br>The median is 2.0</p>
+<p>Example 2:<br>nums1 = [1, 2]<br>nums2 = [3, 4]<br>The median is (2 + 3)/2 = 2.5</p>
+<h1><span id="思路"># 【思路】</span></h1><p>首先理解什么是中间值，在统计学里面就是用于把一个数集分为两个等长的子集，一个子集总是比另一个大。当我们理解了中间值的使用，我们就和答案非常接近了。</p>
+<p>1、首先把A从一个随机的位置i分成两个部分：<br>           left_A             |        right_A<br>     A[0], A[1], …, A[i-1]  |  A[i], A[i+1], …, A[m-1]<br>A有m个元素，因此有m-1种切割的方式， len(left_A) = i, len(right_A) = m - i<br>（i=0时，left_A为空；i=m，right_A为空）</p>
+<p>2、同样的，把B从一个随机的位置j分成两个部分：<br>           left_B             |        right_B<br>     B[0], B[1], …, B[j-1]  |  B[j], B[j+1], …, B[n-1]</p>
+<p>3、把A和B放在一起，则有：<br>           left_part          |        right_part<br>     A[0], A[1], …, A[i-1]  |  A[i], A[i+1], …, A[m-1]<br>     B[0], B[1], …, B[j-1]  |  B[j], B[j+1], …, B[n-1]</p>
+<p>4、按照中间值的含义，如果：<br>1) len(left_part) == len(right_part)<br>2) max(left_part) &lt;= min(right_part)<br>那么median = (max(left_part) + min(right_part))/2.<br>具体表示就是：<br>    (1) i + j == m - i + n - j<br>         (or:如果m+n为奇数，i+j比m-i+n-j多1则<br>              i + j == m - i + n - j + 1)<br>            if n &gt;= m, we just need to set: i = 0 ~ m, j = (m + n + 1)/2 - i<br>         (为什么n&gt;=m，因为i有可能取到m，若同时n&lt;m则j将为负数，会得到无效解)<br>    (2) B[j-1] &lt;= A[i] and A[i-1] &lt;= B[j]</p>
+<p>5、因此我们应该做的是：<br>    Searching i in [0, m], to find an object i that:<br>        B[j-1] &lt;= A[i] and A[i-1] &lt;= B[j], ( where j = (m + n + 1)/2 - i )</p>
+<p>这个搜索i的过程具体描述为：</p>
+<p> 1 设置imin = 0, imax = m, 在[imin, imax]里面展开搜索</p>
+<p> 2 i = (imin + imax)/2, j = (m + n + 1)/2 - i</p>
+<p> 3 现在我们有len(left_part)==len(right_part).有三种情况：</p>
+<p>​     a B[j-1] &lt;= A[i] and A[i-1] &lt;= B[j]<br>​         找到了i，可以停止搜索了。<br>​     b B[j-1] &gt; A[i]<br>​         B的左侧最大值比A的右侧最小值大了，说明A[i]太小，需要向右移动i，i增大同时j会减小。<br>​         要增大i的话，要调整搜索范围变成[i+1, imax]，因此设置imin = i+1，回到2.<br>​     c A[i-1] &gt; B[j]<br>​        A的左侧最大值比B的右侧最小值大了，说明A[i-1]太大，需要向左移动i，i减小同时j会增大。<br>​        要减小i的话，要调整搜索范围变成[imin, i-1]，因此设置imax = i-1，回到2.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>6、i搜索到之后，中间值为：<br>     m+n为奇数时：max(A[i-1], B[j-1])<br>     m+n为偶数时：(max(A[i-1], B[j-1]) + min(A[i], B[j]))/2 </p>
+<p>7、接下来我们来考虑极限情况， i=0,i=m,j=0,j=n时，A[i-1],B[j-1],A[i],B[j]中的某些可能会不存在，因此我们就不用同时检查B[j-1] &lt;= A[i]和 A[i-1] &lt;= B[j].只检查其中一个就够了。</p>
+<p>所以我们应该做的是：</p>
+<p>​    Searching i in [0, m], to find an object <code>i</code> that:<br>​        (j == 0 or i == m or B[j-1] &lt;= A[i]) and<br>​        (i == 0 or j == n or A[i-1] &lt;= B[j])<br>​        where j = (m + n + 1)/2 - i</p>
+<p>在一个搜索循环里，我们只会遇到三种情况：</p>
+<p>​     a (j == 0 or i == m or B[j-1] &lt;= A[i]) and<br>​         (i == 0 or j = n or A[i-1] &lt;= B[j])<br>​          找到了i可以停止了</p>
+<p>​    b i &lt; m and B[j - 1] &gt; A[i]<br>​         i太小，需要增大</p>
+<p>​    c i &gt; 0 and A[i - 1] &gt; B[j]<br>​         i太大，需要减小</p>
+<p>   （由于i &lt; m ==&gt; j &gt; 0 和 i &gt; 0 ==&gt; j &lt; n，因此b和c不用检查j）</p>
+<h1><span id="解">【解】</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">def median(A, B):</span><br><span class="line">    m, n = len(A), len(B)</span><br><span class="line">    if m &gt; n:</span><br><span class="line">        A, B, m, n = B, A, n, m</span><br><span class="line">    if n == 0:</span><br><span class="line">        raise ValueError</span><br><span class="line">    imin, imax, half_len = 0, m, (m + n + 1) / 2</span><br><span class="line">    while imin &lt;= imax:</span><br><span class="line">        i = (imin + imax) / 2</span><br><span class="line">        j = half_len - i</span><br><span class="line">        if i &lt; m and B[j-1] &gt; A[i]:</span><br><span class="line">            # i is too small, must increase it</span><br><span class="line">            imin = i + 1</span><br><span class="line">        elif i &gt; 0 and A[i-1] &gt; B[j]:</span><br><span class="line">            # i is too big, must decrease it</span><br><span class="line">            imax = i - 1</span><br><span class="line">        else:</span><br><span class="line">            # i is perfect</span><br><span class="line">            if i == 0: max_of_left = B[j-1]</span><br><span class="line">            elif j == 0: max_of_left = A[i-1]</span><br><span class="line">            else: max_of_left = max(A[i-1], B[j-1])</span><br><span class="line">            if (m + n) % 2 == 1:</span><br><span class="line">                return max_of_left</span><br><span class="line">            if i == m: min_of_right = B[j]</span><br><span class="line">            elif j == n: min_of_right = A[i]</span><br><span class="line">            else: min_of_right = min(A[i], B[j])</span><br><span class="line">            return (max_of_left + min_of_right) / 2.0</span><br></pre></td></tr></table></figure>
+<p>【c++】<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) &#123;</span><br><span class="line">        vector&lt;int&gt; A=nums1,B=nums2,p;</span><br><span class="line">        int m=nums1.size(), n=nums2.size(),pass=0;</span><br><span class="line">        if(m&gt;n)&#123;</span><br><span class="line">            pass=m;</span><br><span class="line">            m=n;</span><br><span class="line">            n=pass;</span><br><span class="line">            p=A;</span><br><span class="line">            A=B;</span><br><span class="line">            B=p;</span><br><span class="line">        &#125;</span><br><span class="line">        int imin=0,imax=m;</span><br><span class="line">        int max_of_left=0,min_of_right=0;</span><br><span class="line">        int i=0,j=0;</span><br><span class="line">        while (imin &lt;= imax )&#123;</span><br><span class="line">            i = (imin + imax) / 2;</span><br><span class="line">            j = (m + n + 1) / 2 - i;</span><br><span class="line">            if(i &lt; m &amp;&amp; B[j-1] &gt; A[i])&#123;</span><br><span class="line">                imin=i+1;</span><br><span class="line">            &#125;</span><br><span class="line">            else if( i &gt; 0 &amp;&amp; A[i-1] &gt; B[j])&#123;</span><br><span class="line">                imax=i-1;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(i==0)&#123;</span><br><span class="line">                    max_of_left = B[j-1];</span><br><span class="line">                &#125;</span><br><span class="line">                else if(j == 0)&#123;</span><br><span class="line">                    max_of_left = A[i-1];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    max_of_left = max(A[i-1], B[j-1]);</span><br><span class="line">                &#125;</span><br><span class="line">                if ((m + n) % 2 == 1)&#123;</span><br><span class="line">                    return max_of_left;</span><br><span class="line">                &#125; </span><br><span class="line">                if(i==m)&#123;</span><br><span class="line">                    min_of_right = B[j];</span><br><span class="line">                &#125;</span><br><span class="line">                else if(j == n)&#123;</span><br><span class="line">                    min_of_right = A[i];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    min_of_right = min(A[i], B[j]);</span><br><span class="line">                &#125;</span><br><span class="line">                return (max_of_left + min_of_right) / 2.0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Donate
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/Arrays/">Arrays</a>
+            
+            <a href="/tags/leetcode/">leetcode</a>
+            
+        </div>
+        
+    </article>
+    
+    <p style="text-align: center">This article just represents my own viewpoint. If there is something wrong, please correct me.</p>
+    
+    
+
+    
+
+</div>
+<script src="/js/busuanzi.pure.mini.js"></script>
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about" title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="Help">Help</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="Links">Links</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="SiteMap">SiteMap</a>
+        </p>
+        <p>
+            Has been established&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbspDays，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">Based on Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a><br>
+            ©2017-<span id="cpYear"></span> Based on&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，Theme by&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，Author&nbsp<a href="https://zhangmeng.ga/" target="_blank" rel="friend">张萌</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
+        </p>
+    </div>
+</footer>
+<script src="/js/SimpleCore.js"></script>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input" spellcheck="false" type="text" autocomplete="off" placeholder="Input query keywords here...">
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        var jsi_config = {
+            buildingTime: '01/10/2019',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+            localSearch: { dbPath: '' },
+            readMode: 'day'
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.json',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        SimpleCore.init(jsi_config);
+        
+    });
+</script>
+</body>
+</html>
