@@ -24,7 +24,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>policy gradients - ZhangM</title>
+<title>xml到底是干什么的 - ZhangM</title>
 
 <meta name="keywords" content="教程">
 
@@ -95,7 +95,7 @@
                     <a href="/categories/leetcode" data-name="LeetCode">LeetCode</a>
                 </li>
             
-                <li class="">
+                <li class="active">
                     <a href="/categories/Unity" data-name="Unity">Unity</a>
                 </li>
             
@@ -122,51 +122,38 @@
                 </a>
                 <p><span class="label">Author</span>
                     <a href="https://zhangmeng.ga/" target="_blank">张萌</a>
-                    <span title="Last edited at&nbsp;2019-01-17">2019-01-17</span>
+                    <span title="Last edited at&nbsp;2019-02-17">2019-02-17</span>
                 </p>
                 <p>十分平凡可爱非常。</p>
             </div>
-            <h2 class="post-title">Policy Gradients</h2>
+            <h2 class="post-title">XML到底是干什么的</h2>
             <div class="post-meta">
-                emm... 2024 words in the article |
+                emm... 1392 words in the article |
                 you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>策略梯度</p>
+            <p>XML科普</p>
 <a id="more"></a>
-<p>强化学习是一个通过奖惩来学习正确行为的机制. 家族中有很多种不一样的成员, 有学习奖惩值, 根据自己认为的高价值选行为, 比如 Q learning, Deep Q Network, 也有不通过分析奖励值, 直接输出行为的方法, 这就是今天要说的 Policy Gradients 了. </p>
-<p>Policy gradient 是 RL 中另外一个大家族, 他借用神经网络，在无穷多的动作中计算价值, 从而选择行为。不像 Value-based 方法 (Q learning, Sarsa), 他也要接受环境信息 (observation), 不同的是他<strong>要输出不是 action 的 value, 而是具体的那一个 action</strong>, 这样 policy gradient 就跳过了 value 这个阶段. 而且个人认为 Policy gradient 最大的一个优势是: 输出的这个 action 可以是一个连续的值, 之前我们说到的 value-based 方法输出的都是不连续的值, 然后再选择值最大的 action. 而 policy gradient 可以在一个连续分布上选取 action.</p>
-<h3><span id="算法">算法</span></h3><p><img src="2019011701\2159902-13d5d1a3acbf2157.png" alt=""></p>
-<p>在深度强化学习中，<strong>Policy Π 可以看做是一个参数为 θ 的神经网络</strong>，输入当前的state，输出可能的action的概率分布，选择概率最大的一个action作为要执行的操作。</p>
-<p>Policy Gradient不通过误差反向传播，它通过观测信息选出一个行为直接进行反向传播，当然出人意料的是他并没有误差，而是利用reward奖励直接对选择行为的可能性进行增强和减弱，好的行为会被增加下一次被选中的概率，不好的行为会被减弱下次被选中的概率。</p>
-<p>以游戏为例，从游戏开始到结束，叫做一个episode，简单理解为回合。episode结束，游戏过程中所有的reward相加得到该回合的总reward（角色挂与未挂可能是一个负reward或一个大的正reward）。</p>
-<p><img src="D:\hexo\web2\source\_posts\2019011701\2159902-ddae732feac73216.png" alt=""></p>
-<p>这里强化学习的目标就是学习一个Policy，即一个网络，使其每看到一个画面，做出一个action, 并做到最终获得最大总reward。</p>
-<h4><span id="算法细节">算法细节</span></h4><p>游戏的进程相应的可以表示成state,action交替的序列：</p>
-<p><img src="2019011701\2159902-2083b56a56aada88.png" alt=""></p>
-<p>游戏引擎（Environment）产生一个画面（state）,接着神经网络玩家（Actor）产生一个action，接着影响Environment，并产生下一个state，如此反复到游戏结束，一个完整的序列（1-T）为一个Trajectory，一轮游戏一轮回合，或者叫一轮采样。该序列发生的概率，即在策略Π 的参数为θ 情况下Trajectory τ发生的概率：</p>
-<p><img src="2019011701\2159902-4ddd6fd020512976.png" alt=""></p>
-<p>这样在此Trajectory下会得到一个总的回报R(τ)，可以想到，玩游戏有很大的随机性，不同的action就可能会有不同的state，反之亦然。因此R(τ)实际是一个变量（根据游戏场景过程的变化而变化），因此为了衡量一个策略Π的好坏，需要考虑一个期望的回报R_E(τ)。游戏的过程当然也不可能穷举，因此就需要采样来计算期望回报（“平均”回报），可以理解为Policy固定情况下反复的试玩N回合游戏，每回合的reward<strong><em>以回合发生概率为权重相加取平均</em></strong>，即为当前策略的期望reward。目标也就是<strong><em>不断更新Policy的参数θ，使期望reward得到最大</em></strong>。<em>**</em></p>
-<p><img src="2019011701\2159902-9f56dcfcdca9ffca.png" alt=""></p>
-<h4><span id="策略梯度提升">策略梯度提升</span></h4><p>有了目标，下面就是用合适的方法，使期望reward最大，一种方法便是策略梯度提升的方法（与最小化loss的梯度下降相对）。由上面可知期望reward是参数θ的函数，所以参数更新的方式为：</p>
-<p><img src="2019011701\2159902-aea1a369ca61875b.png" alt=""></p>
-<p>下面的问题就是期望reward对θ的导数的求法，走一波公式推导：</p>
-<p><img src="2019011701\2159902-0e5293f2a59fb71f.png" alt=""></p>
-<p>公式推导并不复杂，主要是蓝框里的一个常用小技巧变换（同时乘和除f(x)）。然后第二行等式到第三行将累加转换为期望表示；接着约等于N次采样的期望值。第三行到第四行将上面的p_{θ}(τ)带入，去掉与θ无关的环境相关概率p(s_{t+1}|s_t, a_t)和p(s_1),得到最终结果：</p>
-<p><img src="2019011701\2159902-666c1f7037af194e.png" alt=""></p>
-<p>下面就是不断采样，更新参数的过程（根据当前策略玩游戏，得回报，修正策略）：</p>
-<p><img src="2019011701\2159902-8a275b32e2655751.png" alt=""></p>
-<p>图示左边表示根据当前policy参数采样得到N个Trajectory，计算一次期望reward，然后梯度上升的方法更新policy参数，用更新后的policy再进行下一轮采样，如此往复直到收敛，得到期望reward最大的policy。最终该policy（神经网络表示）就学会了根据游戏画面做合适的action，最终赢得游戏。</p>
-<h5><span id="优点">优点：</span></h5><ul>
-<li>连续的动作空间（或者高维空间）中更加高效；</li>
-<li>可以实现随机化的策略；</li>
-<li>某种情况下，价值函数可能比较难以计算，而策略函数较容易。</li>
-</ul>
-<h5><span id="缺点">缺点：</span></h5><ul>
-<li>通常收敛到局部最优而非全局最优</li>
-<li>评估一个策略通常低效（这个过程可能慢，但是具有更高的可变性，其中也会出现很多并不有效的尝试，而且方差高</li>
-</ul>
+<p>链接：<a href="https://www.zhihu.com/question/31353595/answer/60826602" target="_blank" rel="noopener">https://www.zhihu.com/question/31353595/answer/60826602</a></p>
+<p>来源：知乎</p>
+<p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>xml本身是一种格式规范，是一种包含了数据以及数据说明的文本格式规范。 </p>
+<p>接下来煮几个栗子说明一下。</p>
+<p>比如，我们要给对方传输一段数据，数据内容是“too young,too simple,sometimes naive”，要将这段话按照属性拆分为三个数据的话，就是，年龄too young，阅历too simple，结果sometimes naive。</p>
+<p>我们都知道程序不像人，可以体会字面意思，并自动拆分出数据，因此，我们需要帮助程序做拆分，因此出现了各种各样的数据格式以及拆分方式。</p>
+<p>比如，可以是这样的<br>数据为“too young,too simple,sometimes naive”<br>然后按照逗号拆分，第一部分为年龄，第二部分为阅历，第三部分为结果。</p>
+<p>也可以是这样的<br>数据为“too_young*<em>too_simple</em>sometimes_naive”<br>从数据开头开始截取前面十一个字符，去掉<em>号并把下划线替换为空格作为第一部分，再截取接下来的十一个字符同样去掉</em>并替换下划线为空格作为第二部分，最后把剩下的字符同样去*号体会空格作为第三部分。</p>
+<p>这两种方式都可以用来容纳数据并能够被解析，但是不直观，通用性也不好，而且如果出现超过限定字数的字符串就容纳不了，也可能出现数据本身就下划线字符导致需要做转义。</p>
+<p>基于这种情况，出现了xml这种数据格式， 上面的数据用XML表示的话</p>
+<p>可以是这样</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">person</span> <span class="attr">age</span>=<span class="string">"too young"</span> <span class="attr">experience</span>=<span class="string">"too simple"</span> <span class="attr">result</span>=<span class="string">"sometimes naive"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>也可以是这样</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">person</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">age</span> <span class="attr">value</span>=<span class="string">"too young"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">experience</span> <span class="attr">value</span>=<span class="string">"too simple"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">value</span>=<span class="string">"sometimes naive"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">person</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>两种方式都是xml，都很直观，附带了对数据的说明，并且具备通用的格式规范可以让程序做解析。</p>
+<p>如果用json格式来表示的话，就是下面这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;age&quot;:&quot;too young&quot;,</span><br><span class="line">    &quot;experience&quot;:&quot;too simple&quot;,</span><br><span class="line">    &quot;result&quot;:&quot;sometimes naive&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看出来没，其实数据都是一样的，不同的只是数据的格式而已，同样的数据，我用xml格式传给你，你用xml格式解析出三个数据，用json格式传给你，你就用json格式解析出三个数据，还可以我本地保存的是xml格式的数据，我自己先解析出三个数据，然后构造成json格式传给你，你解析json格式，获得三个数据，再自己构造成xml格式保存起来，说白了，不管是xml还是json，都只是包装数据的不同格式而已，重要的是其中含有的数据，而不是包装的格式。</p>
 
         </div>
         <div class="post-tool">
@@ -177,7 +164,7 @@
         
         <div class="post-tags">Tags：
             
-            <a href="/tags/reinforcement-learning/">reinforcement learning</a>
+            <a href="/tags/Unity/">Unity</a>
             
         </div>
         
