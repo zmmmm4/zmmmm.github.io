@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://yoursite.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-DNS-Prefetch-Control" content="on">
+<link rel="dns-prefetch" href="http://yoursite.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="prefetch" href="http://yoursite.com">
+<link rel="prefetch" href="//www.google-analytics.com">
+
+
+<link rel="prerender" href="http://yoursite.com">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://yoursite.com">
+<meta name="author" content="张萌">
+<link rel="stylesheet" href="/css/JSimple.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>渲染方程rendering equation - ZhangM</title>
+
+<meta name="keywords" content="教程">
+
+<meta name="description " content="张小姐的个人博客，主要内容是编程，个人学习记录">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        });
+    </script>
+
+
+    
+
+    
+
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="萌">萌</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-archives"></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/about" title="关于">
+            <i class="fa fa-question-circle"></i>
+            <span>关于</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">小努力</h1>
+        <h3 class="cover-siteTitle">瞎搞罢了</h3>
+        <p class="cover-siteDesc">一个菜鸟的IT博客</p>
+        <div class="cover-sns">
+            
+
+        </div>
+    </div>
+</div>
+
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Recent Posts</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/leetcode" data-name="LeetCode">LeetCode</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Unity" data-name="Unity">Unity</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/c,hololens,tensorflow,reinforcement-learning" data-name="其他">其他</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <input type="text" readonly="readonly" id="local-search-input-tip" placeholder="click to search...">
+        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
+    </form>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://zhangmeng.ga/" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">Author</span>
+                    <a href="https://zhangmeng.ga/" target="_blank">张萌</a>
+                    <span title="Last edited at&nbsp;2019-04-09">2019-04-09</span>
+                </p>
+                <p>十分平凡可爱非常。</p>
+            </div>
+            <h2 class="post-title">渲染方程Rendering equation</h2>
+            <div class="post-meta">
+                emm... 1286 words in the article |
+                you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <a id="more"></a>
+<p><a href="https://zhuanlan.zhihu.com/p/52497510" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/52497510</a></p>
+<h1><span id="一-光辐射">一 光辐射</span></h1><p>1、辐射：</p>
+<p>光以电磁波形式或粒子（光子）形式传播的能量，这种能量及其传播过程称为光辐射。</p>
+<p>辐射是光在环境中的分布的基本特征——<strong><em>渲染就是计算光的辐射</em></strong>。</p>
+<p>2、光子（ photon）：</p>
+<p>光量子，简称光子，是传递电磁相互作用的基本粒子，是一种规范玻色子，在1905年由爱因斯坦提出。光子是电磁辐射的载体，而在量子场论中光子被认为是电磁相互作用的媒介子。光子静止质量为零。光子以光速运动，并具有能量、动量、质量。</p>
+<p>3、<strong>辐射能（Radiant energy ）：“总击中”</strong></p>
+<p>一个想法：只在场景的整个持续时间内存储场景中任何地方出现的“击中”总数。确实，这个数字是捕获到达现场的所有光子的总能量。单位hit。</p>
+<p>每个光子的能量公式为： <img src="https://www.zhihu.com/equation?tex=Q%3D%5Cfrac%7Bhc%7D%7B%5Clambda%7D" alt="Q=\frac{hc}{\lambda}"></p>
+<p>h:普朗克常数，单位是 <img src="https://www.zhihu.com/equation?tex=j%2As" alt="j*s"><br>c:光速,单位是 <img src="https://www.zhihu.com/equation?tex=m%2Fs" alt="m/s"><br> <img src="https://www.zhihu.com/equation?tex=%5Clambda" alt="\lambda"> ：波长（颜色）,单位是 <img src="https://www.zhihu.com/equation?tex=m" alt="m"><br>所以这里的hit，其实单位是焦耳，也就是说，辐射能的单位是j<br>通常来讲能量使用字母 <img src="https://www.zhihu.com/equation?tex=Q" alt="Q"> 来表示。</p>
+<p>4、<strong>辐射通量（Radiant flux ）：“每秒击中”</strong></p>
+<p>对于人类感知水平上的光照现象，通常可以安全地假定平衡是立即达到的。因此，与其在某些(任意)时间内记录总能量，不如记录每秒的总击中次数。也就是能量的时间密度 。</p>
+<p><img src="https://www.zhihu.com/equation?tex=Watts%3Dj%2Fs" alt="Watts=j/s"> ,所以辐射通量的单位是w,瓦特。<br>通常来说，辐射通量使用字母 <img src="https://www.zhihu.com/equation?tex=%5CPhi" alt="\Phi"> 来表示。</p>
+<p>5、<strong>辐照度是（Irradiance ）“每秒每单位面积的</strong>击中<strong>”</strong></p>
+<p>通常我们想要的不仅仅是总数，还需要知道击中发生在哪里。因此，计算某些“非常小”区域的每秒击中量，除以区域面积。这也可以理解为辐射通量的面积密度。</p>
+<blockquote>
+<p>辐照度的单位应当时 <img src="https://www.zhihu.com/equation?tex=w%2Fm%5E%7B2%7D" alt="w/m^{2}"> ，这是一个导出单位。<br>通常来说辐照度使用字母 <img src="https://www.zhihu.com/equation?tex=E" alt="E"> 来表示</p>
+</blockquote>
+<p>因此：从这个角度出发，我们在图像生成方面的目标是估计图像中每个点的辐照度(或者每像素的总辐射通量)</p>
+<p>对于各项同性点源，我们的总辐射通量 <img src="https://www.zhihu.com/equation?tex=%5CPhi" alt="\Phi"> 为 <img src="https://www.zhihu.com/equation?tex=%5CPhi%3D%5Cint_%7Bs%5E%7B2%7D%7D%5E%7B%7DId%5Comega%3D4%5Cpi+I" alt="\Phi=\int_{s^{2}}^{}Id\omega=4\pi I"> ,其中I是辐射强度，表示从点源发射的每一个固体角度的功率。</p>
+<p>那么，假定光以均匀的角度分布发射通量。由于总的辐射通量是完全不变的，那么随着半径R的增加，我们的辐照度 <img src="https://www.zhihu.com/equation?tex=E" alt="E"> 就会减少。由于等量的能量分布在越来越大的球体上，所以在越远的球面上就变得更暗。</p>
+<p><strong>6.辐射度是（ radiance ）“每单位投影面积、每单位立体角上的辐射通量”</strong></p>
+<p>辐射度是辐照度的立体角度密度。</p>
+<p><img src="https://www.zhihu.com/equation?tex=L%28P%2Cw%29%3D%5Clim_%7B%5CDelta%5Crightarrow+0%7D%7B%5Cfrac%7BdE_%7Bw%7D%28p%29%7D%7Bdw%7D%7D" alt="L(P,w)=\lim_{\Delta\rightarrow 0}{\frac{dE_{w}(p)}{dw}}"> ,其中 <img src="https://www.zhihu.com/equation?tex=w" alt="w"> 代表方向， <img src="https://www.zhihu.com/equation?tex=E_%7Bw%7D" alt="E_{w}"> 表示微分表面区域朝向该方向上的面。</p>
+<p><img src="https://www.zhihu.com/equation?tex=dw%3D%5Cfrac%7BdA%7D%7Br%5E%7B2%7D%7D" alt="dw=\frac{dA}{r^{2}}"> </p>
+<p><img src="https://www.zhihu.com/equation?tex=dA%3Dr%5E%7B2%7Dsin%5Ctheta+d%5Ctheta+d%5Cphi" alt="dA=r^{2}sin\theta d\theta d\phi"> </p>
+<p>换句话说，辐射度是沿着由原点p和方向 <img src="https://www.zhihu.com/equation?tex=w" alt="w"> 定义的射线的能量！</p>
+<p><strong>7.光谱辐射（Spectral Radiance）</strong></p>
+<p>综上所述，辐射是：单位时间、单位面积、单位固体角度的辐射能。</p>
+<p>但是，我们要真正得到光的完整描述，我们必须再分解一步：单位时间、单位面积、单位固体角度、<strong>单位波长的辐射能量</strong>。</p>
+<h1><span id="二渲染方程">二.渲染方程</span></h1><p>这里我们暂且先直接给出我们的渲染方程（Kajiya)：</p>
+<p><img src="https://www.zhihu.com/equation?tex=L_%7B0%7D%28p%2C%5Comega_%7B0%7D%29%3DL_%7Be%7D%28p%2C%5Comega_%7B0%7D%29%2B%5Cint_%7B%5Cxi%5E%7B2%7D%7Df_%7Br%7D%28p%2Cw_%7Bi%7D%5Crightarrow+w_%7B0%7D%29L_%7Bi%7D%28p%2C%5Comega_%7Bi%7D%29cos%5Ctheta+d%5Comega_%7Bi%7D" alt="L_{0}(p,\omega_{0})=L_{e}(p,\omega_{0})+\int_{\xi^{2}}f_{r}(p,w_{i}\rightarrow w_{0})L_{i}(p,\omega_{i})cos\theta d\omega_{i}"> </p>
+<p><img src="https://www.zhihu.com/equation?tex=L_%7B0%7D%28p%2C%5Comega_%7B0%7D%29" alt="L_{0}(p,\omega_{0})"> ：最后观察到的辐射度</p>
+<p><img src="https://www.zhihu.com/equation?tex=p+" alt="p "> ：我们想要得到辐射度的这个点</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Comega_%7B0%7D" alt="\omega_{0}"> :这个点的方向，法线</p>
+<p><img src="https://www.zhihu.com/equation?tex=L_%7Be%7D%28p%2C%5Comega_%7B0%7D%29" alt="L_{e}(p,\omega_{0})"> ：出射辐射度</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cxi%5E%7B2%7D" alt="\xi^{2}"> :半球的各个方向</p>
+<p><img src="https://www.zhihu.com/equation?tex=f_%7Br%7D" alt="f_{r}"> :散射函数</p>
+<p><img src="https://www.zhihu.com/equation?tex=L_%7Bi%7D" alt="L_{i}"> :入射辐射度</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Comega_%7Bi%7D" alt="\omega_{i}"> :入射方向</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cvartheta+" alt="\vartheta "> ：传入方向与法线的夹角</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Donate
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/array/">array</a>
+            
+        </div>
+        
+    </article>
+    
+    <p style="text-align: center">This article just represents my own viewpoint. If there is something wrong, please correct me.</p>
+    
+    
+
+    
+
+</div>
+<script src="/js/busuanzi.pure.mini.js"></script>
+
+
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner" style="text-align: center">
+        <p>
+            <a href="/about" title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="Help">Help</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="Links">Links</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/sitemap.xml" title="SiteMap">SiteMap</a>
+        </p>
+        <p>
+            Has been established&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbspDays，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">Based on Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a><br>
+            ©2017-<span id="cpYear"></span> Based on&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
+            ，Theme by&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
+            ，Author&nbsp<a href="https://zhangmeng.ga/" target="_blank" rel="friend">张萌</a>
+            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
+        </p>
+    </div>
+</footer>
+<script src="/js/SimpleCore.js"></script>
+
+</div>
+<!-- search pop -->
+<div class="popup search-popup local-search-popup">
+    <div class="local-search-header clearfix">
+        <span class="search-icon">
+            <i class="fa fa-search"></i>
+        </span>
+        <span class="popup-btn-close">
+            <i class="fa fa-times-circle"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+            <input id="local-search-input" spellcheck="false" type="text" autocomplete="off" placeholder="Input query keywords here...">
+        </div>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        var jsi_config = {
+            buildingTime: '01/10/2019',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+            localSearch: { dbPath: '' },
+            readMode: 'day'
+        };
+        
+            jsi_config.localSearch = {
+                dbPath: '/search.json',
+                trigger: 'auto',
+                topN: '1',
+                unescape: 'false'
+            }
+        
+        SimpleCore.init(jsi_config);
+        
+    });
+</script>
+</body>
+</html>
