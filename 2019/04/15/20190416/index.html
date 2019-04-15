@@ -24,7 +24,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>实现将字符串转换为整数 - ZhangM</title>
+<title>medium 152 maximum product subarray - ZhangM</title>
 
 <meta name="keywords" content="教程">
 
@@ -122,42 +122,26 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="https://zhangmeng.ga/" target="_blank">张萌</a>
-                    <span title="最后编辑于&nbsp;2019-01-16">2019-01-16</span>
+                    <span title="最后编辑于&nbsp;2019-04-15">2019-04-15</span>
                 </p>
                 <p>十分平凡可爱非常。</p>
             </div>
-            <h2 class="post-title">实现将字符串转换为整数</h2>
+            <h2 class="post-title">Medium 152 Maximum Product Subarray</h2>
             <div class="post-meta">
-                本文共计2110个字 |
+                本文共计949个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>实现将字符串转换为整数的atoi。该函数首先丢弃尽可能多的空白字符，直到找到第一个非空白字符。然后，从这个字符开始，取一个可选的初始加号或减号，后面跟着尽可能多的数字，并将它们解释为一个数值。</p>
-<p>字符串可以在组成整数的字符之后包含其他字符，这些字符将被忽略，并且对该函数的行为没有影响。</p>
-<p>如果str中的第一个非空格字符序列不是有效的整数，或者由于str为空或只包含空格字符而不存在这样的序列，则不执行转换。如果无法执行有效的转换，则返回零值。</p>
-<a id="more"></a>
-<h2><span id="problem">Problem</span></h2><p><strong>Note:</strong></p>
-<ul>
-<li><p>Only the space character <code>&#39; &#39;</code> is considered as whitespace character.</p>
-</li>
-<li><p>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. If the numerical value is out of the range of representable values, INT_MAX (231 − 1) or INT_MIN (−231) is returned.</p>
-</li>
-<li><p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;42&quot;</span><br><span class="line">Output: 42</span><br></pre></td></tr></table></figure>
+            <a id="more"></a>
+<h1><span id="题目">题目</span></h1><p>Given an integer array <code>nums</code>, find the contiguous subarray within an array (containing at least one number) which has the largest product.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,3,-2,4]</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: [2,3] has the largest product 6.</span><br></pre></td></tr></table></figure>
 <p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;   -42&quot;</span><br><span class="line">Output: -42</span><br><span class="line">Explanation: The first non-whitespace character is &apos;-&apos;, which is the minus sign.</span><br><span class="line">             Then take as many numerical digits as possible, which gets 42.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;4193 with words&quot;</span><br><span class="line">Output: 4193</span><br><span class="line">Explanation: Conversion stops at digit &apos;3&apos; as the next character is not a numerical digit.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 4:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;words and 987&quot;</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: The first non-whitespace character is &apos;w&apos;, which is not a numerical </span><br><span class="line">             digit or a +/- sign. Therefore no valid conversion could be performed.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 5:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;-91283472332&quot;</span><br><span class="line">Output: -2147483648</span><br><span class="line">Explanation: The number &quot;-91283472332&quot; is out of the range of a 32-bit signed integer.</span><br><span class="line">             Thefore INT_MIN (−231) is returned.</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2><span id="solution">Solution</span></h2><p>【c++】</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">int myAtoi(string str) &#123;</span><br><span class="line">    long result = 0;</span><br><span class="line">    int indicator = 1;</span><br><span class="line">    for(int i = 0; i&lt;str.size();)</span><br><span class="line">    &#123;</span><br><span class="line">        i = str.find_first_not_of(&apos; &apos;);</span><br><span class="line">        if(str[i] == &apos;-&apos; || str[i] == &apos;+&apos;)</span><br><span class="line">            indicator = (str[i++] == &apos;-&apos;)? -1 : 1;</span><br><span class="line">        while(&apos;0&apos;&lt;= str[i] &amp;&amp; str[i] &lt;= &apos;9&apos;) </span><br><span class="line">        &#123;</span><br><span class="line">            result = result*10 + (str[i++]-&apos;0&apos;);</span><br><span class="line">            if(result*indicator &gt;= INT_MAX) return INT_MAX;</span><br><span class="line">            if(result*indicator &lt;= INT_MIN) return INT_MIN;                </span><br><span class="line">        &#125;</span><br><span class="line">        return result*indicator;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [-2,0,-1]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: The result cannot be 2, because [-2,-1] is not a subarray.</span><br></pre></td></tr></table></figure>
+<h1><span id="解">解</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int maxProduct(int[] nums) &#123;</span><br><span class="line">       if (nums == null || nums.length == 0) &#123;</span><br><span class="line">           return 0;</span><br><span class="line">       &#125;</span><br><span class="line">       int max = nums[0], min = nums[0], result = nums[0];</span><br><span class="line">       for (int i = 1; i &lt; nums.length; i++) &#123;</span><br><span class="line">           int temp = max;</span><br><span class="line">           max = Math.max(Math.max(max * nums[i], min * nums[i]), nums[i]);</span><br><span class="line">           min = Math.min(Math.min(temp * nums[i], min * nums[i]), nums[i]);</span><br><span class="line">           if (max &gt; result) &#123;</span><br><span class="line">               result = max;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>主要就是比较max <em> A[i]， min </em> A[i]和A[i]，因为这是乘积，负*负可以是正的。</p>
+
         </div>
         <div class="post-tool">
             <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
