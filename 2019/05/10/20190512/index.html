@@ -24,7 +24,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>categories - unity - ZhangM</title>
+<title>medium 75 sort colors - ZhangM</title>
 
 <meta name="keywords" content="教程">
 
@@ -88,21 +88,21 @@
 
             <div class="page-title">
     <ul>
-        <li class="">
-            <a href="/" data-name="Recent Posts">Recent Posts</a>
-        </li>
+        <li><a href="/">Recent Posts</a></li>
         
-        <li class="">
-            <a href="/categories/leetcode" data-name="LeetCode">LeetCode</a>
-        </li>
-        
-        <li class="active">
-            <a href="/categories/Unity" data-name="Unity">Unity</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/c,hololens,tensorflow,reinforcement-learning" data-name="其他">其他</a>
-        </li>
+            
+                <li class="">
+                    <a href="/categories/leetcode" data-name="LeetCode">LeetCode</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Unity" data-name="Unity">Unity</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/c,hololens,tensorflow,reinforcement-learning" data-name="其他">其他</a>
+                </li>
+            
         
         <li class="page-search">
     <form id="search" class="search-form">
@@ -114,184 +114,66 @@
     </ul>
 </div>
 <div class="main-inner">
-    
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
+    <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://zhangmeng.ga/" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">Author</span>
+                    <a href="https://zhangmeng.ga/" target="_blank">张萌</a>
+                    <span title="Last edited at&nbsp;2019-05-10">2019-05-10</span>
+                </p>
+                <p>十分平凡可爱非常。</p>
+            </div>
+            <h2 class="post-title">Medium 75 Sort Colors</h2>
+            <div class="post-meta">
+                emm... 1068 words in the article |
+                you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <a id="more"></a>
+<h1><span id="问题">问题</span></h1><p>Given an array with <em>n</em> objects colored red, white or blue, sort them <strong>in-place</strong> so that objects of the same color are adjacent, with the colors in the order red, white and blue.</p>
+<p>Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.</p>
+<p><strong>Note:</strong> You are not suppose to use the library’s sort function for this problem.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,0,2,1,1,0]</span><br><span class="line">Output: [0,0,1,1,2,2]</span><br></pre></td></tr></table></figure>
+<h1><span id="解答">解答</span></h1><p>就是把012三个数排序的问题，只有三个数所以可以想到最简单快速的方法就是比大小。以1为基准，比1小的放在前面，比1大的放在后面，排序就完成了。用one-pass搞定。</p>
+<p>JAVA</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void sortColors(int[] nums) &#123;</span><br><span class="line">      int red=0,white=0,blue=nums.length-1;</span><br><span class="line">      int temp=0;</span><br><span class="line">      while(white&lt;=blue)&#123;</span><br><span class="line">          if(nums[white]==1)&#123;</span><br><span class="line">              white++;</span><br><span class="line">          &#125;</span><br><span class="line">          else if(nums[white]==0)&#123;</span><br><span class="line">              temp=nums[red];</span><br><span class="line">              nums[red++]=nums[white];</span><br><span class="line">              nums[white++]=temp;</span><br><span class="line">          &#125;</span><br><span class="line">          else if(nums[white]==2)&#123;</span><br><span class="line">              temp=nums[blue];</span><br><span class="line">              nums[blue--]=nums[white];</span><br><span class="line">              nums[white]=temp;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Donate
             </a>
-            <em>·</em>2019-03-19
-            
         </div>
-        <a class="post-title" href="/2019/03/19/20190319/" target="_blank" title="Unity-Mecanim动画系统">Unity-Mecanim动画系统</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Unity/" target="_blank">Unity</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Unity-Mecanim动画系统
-    </div>
-</article>
-
-
-
         
+        <div class="post-tags">Tags：
             
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-11
+            <a href="/tags/Arrays/">Arrays</a>
+            
+            <a href="/tags/leetcode/">leetcode</a>
             
         </div>
-        <a class="post-title" href="/2019/03/11/20190311/" target="_blank" title="unity二进制存档和读档">unity二进制存档和读档</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Unity/" target="_blank">Unity</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        unity二进制存档和读档
-    </div>
-</article>
-
-
-
         
-            
-<article class="post">
+    </article>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-10
-            
-        </div>
-        <a class="post-title" href="/2019/03/10/20190310/" target="_blank" title="unity JSON存档和读档">unity JSON存档和读档</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Unity/" target="_blank">Unity</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        unity JSON存档和读档
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
+    <p style="text-align: center">This article just represents my own viewpoint. If there is something wrong, please correct me.</p>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-09
-            
-        </div>
-        <a class="post-title" href="/2019/03/09/20190309/" target="_blank" title="unity XML存档和读档">unity XML存档和读档</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Unity/" target="_blank">Unity</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        unity XML存档和读档
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-06
-            
-        </div>
-        <a class="post-title" href="/2019/03/06/20190306/" target="_blank" title="unity序列化 XML\JSON">unity序列化 XML\JSON</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Unity/" target="_blank">Unity</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        unity序列化 XML\JSON
-    </div>
-</article>
 
-
-
-        
-            
-<article class="post">
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-02-17
-            
-        </div>
-        <a class="post-title" href="/2019/02/17/2019021702/" target="_blank" title="XML到底是干什么的">XML到底是干什么的</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Unity/" target="_blank">Unity</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        XML到底是干什么的
-    </div>
-</article>
 
-
-
-        
-    
 </div>
+<script src="/js/busuanzi.pure.mini.js"></script>
 
 
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner" style="text-align: left">
+    <div class="footer-inner" style="text-align: center">
         <p>
             <a href="/about" title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->
