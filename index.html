@@ -1,797 +1,3699 @@
-<!DOCTYPE HTML>
-<html class="no-js" lang="zh-CN">
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
-    <!--[if lte IE 9]>
-<meta http-equiv="refresh" content="0;url=http://yoursite.com/warn.html">
-<![endif]-->
-<meta charset="utf-8">
-<meta http-equiv="X-DNS-Prefetch-Control" content="on">
-<link rel="dns-prefetch" href="http://yoursite.com">
-<link rel="dns-prefetch" href="//www.google-analytics.com">
-<link rel="prefetch" href="http://yoursite.com">
-<link rel="prefetch" href="//www.google-analytics.com">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
 
 
-<link rel="prerender" href="http://yoursite.com">
-
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta name="renderer" content="webkit">
-<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
-<meta http-equiv="mobile-agent" content="format=html5; url=http://yoursite.com">
-<meta name="author" content="张萌">
-<link rel="stylesheet" href="/css/JSimple.css">
-
-<link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>ZhangM - 还行</title>
-
-<meta name="keywords" content="教程">
-
-<meta name="description " content="张小姐的个人博客，主要内容是编程，个人学习记录">
-
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                processEscapes: true
-            }
-        });
-    </script>
 
 
-    
 
-    
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="张萌的blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="主要内容是Leetcode和个人学习记录">
+<meta property="og:type" content="website">
+<meta property="og:title" content="张萌的blog">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="张萌的blog">
+<meta property="og:description" content="主要内容是Leetcode和个人学习记录">
+<meta property="og:locale" content="zh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="张萌的blog">
+<meta name="twitter:description" content="主要内容是Leetcode和个人学习记录">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/">
+
+
+
+
+
+  <title>张萌的blog</title>
+  
+
+
+
+
+
+
+
 
 </head>
-<body>
-<div id="nav">
-    <nav class="nav-menu">
-        <a class="site-name current" href="/" title="萌">萌</a>
-        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
-        <a href="/archives" title="Archives"><i class="fa fa-archives"></i><span>Archives</span></a>
-        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
-        <!-- custom single page of menus -->
-        
-        
-        <a href="/about" title="关于">
-            <i class="fa fa-question-circle"></i>
-            <span>关于</span>
-        </a>
-        
-    </nav>
-</div>
 
-<div class="nav-user">
-    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
-    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
-    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
-</div>
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh">
 
-<div id="wrapper" class="clearfix">
-    <div id="body">
-        <div class="main" id="main">
-            <div id="cover">
-    <div class="cover-img"></div>
-    <div class="cover-info">
-        
-        <h1 class="cover-siteName">小努力</h1>
-        <h3 class="cover-siteTitle">瞎搞罢了</h3>
-        <p class="cover-siteDesc">一个菜鸟的IT博客</p>
-        <div class="cover-sns">
-            
+  
+  
+    
+  
 
-        </div>
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张萌的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle">还行</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-            <div class="page-title">
-    <ul>
-        <li class="active">
-            <a href="/" data-name="Recent Posts">Recent Posts</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/leetcode" data-name="LeetCode">LeetCode</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/Unity" data-name="Unity">Unity</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/c,hololens,tensorflow,reinforcement-learning" data-name="其他">其他</a>
-        </li>
-        
-        <li class="page-search">
-    <form id="search" class="search-form">
-        <input type="text" readonly="readonly" id="local-search-input-tip" placeholder="click to search...">
-        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
-    </form>
-</li>
+<nav class="site-nav">
+  
 
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
     </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/20190520/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/20/20190520/" itemprop="url">看了ARvis近期很棒的两个paper</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-20T19:37:21+08:00">
+                2019-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ARVIS/" itemprop="url" rel="index">
+                    <span itemprop="name">ARVIS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>ARvis的通用产品现在做到什么程度了？</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/20/20190520/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/18/20190518/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/18/20190518/" itemprop="url">Easy 387 字符串里的第一个不重复字母</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-18T08:13:07+08:00">
+                2019-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1><span id="问题">问题</span></h1><p>Given a string, find the first non-repeating character in it and return it’s index. If it doesn’t exist, return -1.</p>
+<p><strong>Examples:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = &quot;leetcode&quot;</span><br><span class="line">return 0.</span><br><span class="line"></span><br><span class="line">s = &quot;loveleetcode&quot;,</span><br><span class="line">return 2.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong> You may assume the string contain only lowercase letters.</p>
+<h1><span id="解答">解答</span></h1><p>c++</p>
+<p>遍历字符串两次，一次记录每个字母出现的次数，一次找到第一个只出现一次的字母。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int firstUniqChar(string s) &#123;</span><br><span class="line">       unordered_map&lt;char, int&gt; m;</span><br><span class="line">       for (auto &amp;c : s) &#123;</span><br><span class="line">           m[c]++;</span><br><span class="line">       &#125;</span><br><span class="line">       for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">           if (m[s[i]] == 1) return i;</span><br><span class="line">       &#125;</span><br><span class="line">       return -1;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public int firstUniqChar(String s) &#123;</span><br><span class="line">       int freq [] = new int[26];</span><br><span class="line">       for(int i = 0; i &lt; s.length(); i ++)</span><br><span class="line">           freq [s.charAt(i) - &apos;a&apos;] ++;</span><br><span class="line">       for(int i = 0; i &lt; s.length(); i ++)</span><br><span class="line">           if(freq [s.charAt(i) - &apos;a&apos;] == 1)</span><br><span class="line">               return i;</span><br><span class="line">       return -1;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/17/20190517/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/17/20190517/" itemprop="url">Easy 14相同词缀 + Easy58最后一个词的长度</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-17T17:27:13+08:00">
+                2019-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p>[TOC]</p>
+<h1><span id="题目">题目</span></h1><p>Write a function to find the longest common prefix string amongst an array of strings.</p>
+<p>If there is no common prefix, return an empty string <code>&quot;&quot;</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</span><br><span class="line">Output: &quot;fl&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]</span><br><span class="line">Output: &quot;&quot;</span><br><span class="line">Explanation: There is no common prefix among the input strings.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<p>All given inputs are in lowercase letters <code>a-z</code>.</p>
+<h1><span id="解答">解答</span></h1><p>思路：</p>
+<p>先把第一个单词作为词缀，和第二个词比对，若第二个词的前端没有这个词缀，则取词缀前n-1个字母作为新词缀。</p>
+<p>再和第二个词比对，直到词缀在第二个词中存在且索引为0，即找到了词缀，再和第三个单词比对。</p>
+<p>java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public String longestCommonPrefix(String[] strs) &#123;</span><br><span class="line">    if(strs == null || strs.length == 0)    return &quot;&quot;;</span><br><span class="line">    String pre = strs[0];</span><br><span class="line">    int i = 1;</span><br><span class="line">    while(i &lt; strs.length)&#123;</span><br><span class="line">        while(strs[i].indexOf(pre) != 0)</span><br><span class="line">            pre = pre.substring(0,pre.length()-1);</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    return pre;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>indexOf() 方法有以下四种形式：</p>
+<ul>
+<li><strong>public int indexOf(int ch):</strong> 返回指定字符在字符串中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1。</li>
+<li><strong>public int indexOf(int ch, int fromIndex):</strong> 返回从 fromIndex 位置开始查找指定字符在字符串中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1。</li>
+<li><strong>int indexOf(String str):</strong> 返回指定字符在字符串中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1。</li>
+<li><strong>int indexOf(String str, int fromIndex):</strong> 返回从 fromIndex 位置开始查找指定字符在字符串中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1。</li>
+</ul>
+<p>c++</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">      if(strs.size()==0)</span><br><span class="line">          return &quot;&quot;;</span><br><span class="line">      string ans=strs[0];</span><br><span class="line">      int max=INT_MAX;</span><br><span class="line">      for(auto&amp; s:strs)</span><br><span class="line">      &#123;</span><br><span class="line">          if(s.length()==0)</span><br><span class="line">              return &quot;&quot;;</span><br><span class="line">          int i=0;</span><br><span class="line">          for(i=0;i&lt;ans.length()&amp;&amp;i&lt;s.length();i++)</span><br><span class="line">          &#123;</span><br><span class="line">              if(s[i]!=ans[i])</span><br><span class="line">              break;</span><br><span class="line">          &#125;</span><br><span class="line">          ans=ans.substr(0,i);</span><br><span class="line">      &#125;</span><br><span class="line">      return ans;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="题目">题目</span></h1><p>Given a string <em>s</em> consists of upper/lower-case alphabets and empty space characters <code>&#39; &#39;</code>, return the length of last word in the string.</p>
+<p>If the last word does not exist, return 0.</p>
+<p><strong>Note:</strong> A word is defined as a character sequence consists of non-space characters only.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;Hello World&quot;</span><br><span class="line">Output: 5</span><br></pre></td></tr></table></figure>
+<h1><span id="解答">解答</span></h1><p>c++</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int lengthOfLastWord(string s) &#123;</span><br><span class="line">       int len=0,last=s.length()-1;</span><br><span class="line">       while(last&gt;0&amp;&amp;s[last]==&apos; &apos;)&#123;</span><br><span class="line">           last--;</span><br><span class="line">       &#125;</span><br><span class="line">       while(last&gt;=0&amp;&amp;s[last]!=&apos; &apos;)&#123;</span><br><span class="line">           len++;</span><br><span class="line">           last--;</span><br><span class="line">       &#125;</span><br><span class="line">       return len;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public int lengthOfLastWord(String s) &#123;</span><br><span class="line">    return s.trim().length()-s.trim().lastIndexOf(&quot; &quot;)-1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Java trim() 方法用于删除字符串的头尾空白符。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/15/20190516/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/15/20190516/" itemprop="url">Easy 28 Implement strStr() 返回子串位置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-15T19:00:17+08:00">
+                2019-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1><span id="问题">问题</span></h1><p>Implement <a href="http://www.cplusplus.com/reference/cstring/strstr/" target="_blank" rel="noopener">strStr()</a>.</p>
+<p>Return the index of the first occurrence of needle in haystack, or <strong>-1</strong> if needle is not part of haystack.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: haystack = &quot;hello&quot;, needle = &quot;ll&quot;</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: haystack = &quot;aaaaa&quot;, needle = &quot;bba&quot;</span><br><span class="line">Output: -1</span><br></pre></td></tr></table></figure>
+<p><strong>Clarification:</strong></p>
+<p>What should we return when <code>needle</code> is an empty string? This is a great question to ask during an interview.</p>
+<p>For the purpose of this problem, we will return 0 when <code>needle</code> is an empty string. This is consistent to C’s <a href="http://www.cplusplus.com/reference/cstring/strstr/" target="_blank" rel="noopener">strstr()</a>and Java’s <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html#indexOf(java.lang.String" target="_blank" rel="noopener">indexOf()</a>).</p>
+<h1><span id="解答">解答</span></h1><p>从haystack串的第i个数字开始，若和needle的第j个数字一样则继续对比两个串的下一个数字，直到遍历到needle的最后一个数字，说明needle在haystack里，返回i。</p>
+<p>若不一样则结束此循环，再从haystack第i+1个数字开始，和第j个数字对比，重复上述步骤。</p>
+<p>若i+j&gt;=haystack的长度，意味着即使haystack中有needle，也只是有一部分，从第i个开始有needle就会超出原有长度，是不现实的，则返回-1.</p>
+<p>JAVA</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public int strStr(String haystack, String needle) &#123;</span><br><span class="line">  for (int i = 0; ; i++) &#123;</span><br><span class="line">    for (int j = 0; ; j++) &#123;</span><br><span class="line">      if (j == needle.length()) return i;</span><br><span class="line">      if (i + j == haystack.length()) return -1;</span><br><span class="line">      if (needle.charAt(j) != haystack.charAt(i + j)) break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接使用indexOf()方法也是一样的效果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public int strStr(String haystack, String needle) &#123;</span><br><span class="line">       int l1 = haystack.length();</span><br><span class="line">       int l2 = needle.length();</span><br><span class="line">       if(l1&lt;l2)&#123;</span><br><span class="line">           return -1;</span><br><span class="line">       &#125;</span><br><span class="line">       for(int i=0;i&lt;l1-l2+1;i++)&#123;</span><br><span class="line">              return haystack.indexOf(needle,i);</span><br><span class="line">       &#125;</span><br><span class="line">       return -1;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>C++</p>
+<p>直接使用了substr方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int strStr(string haystack, string needle) &#123;</span><br><span class="line">       int l1 = haystack.length();</span><br><span class="line">       int l2 = needle.length();</span><br><span class="line">       if(l1&lt;l2)&#123;</span><br><span class="line">           return -1;</span><br><span class="line">       &#125;</span><br><span class="line">       else&#123;</span><br><span class="line">           for(int i=0;i&lt;l1-l2+1;i++)&#123;</span><br><span class="line">               if(haystack.substr(i,l2)==needle)&#123;</span><br><span class="line">                   return i;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           return -1;</span><br><span class="line">       &#125; </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/15/20190515/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/15/20190515/" itemprop="url">Medium 324 wiggle Sort2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-15T18:33:28+08:00">
+                2019-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Array分组最后一题！粗卡！</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/15/20190515/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/20190512/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/12/20190512/" itemprop="url">Medium 75 Sort Colors</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-12T17:08:00+08:00">
+                2019-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1><span id="问题">问题</span></h1><p>Given an array with <em>n</em> objects colored red, white or blue, sort them <strong>in-place</strong> so that objects of the same color are adjacent, with the colors in the order red, white and blue.</p>
+<p>Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.</p>
+<p><strong>Note:</strong> You are not suppose to use the library’s sort function for this problem.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,0,2,1,1,0]</span><br><span class="line">Output: [0,0,1,1,2,2]</span><br></pre></td></tr></table></figure>
+<h1><span id="解答">解答</span></h1><p>就是把012三个数排序的问题，只有三个数所以可以想到最简单快速的方法就是比大小。以1为基准，比1小的放在前面，比1大的放在后面，排序就完成了。用one-pass搞定。</p>
+<p>JAVA</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public void sortColors(int[] nums) &#123;</span><br><span class="line">      int red=0,white=0,blue=nums.length-1;</span><br><span class="line">      int temp=0;</span><br><span class="line">      while(white&lt;=blue)&#123;</span><br><span class="line">          if(nums[white]==1)&#123;</span><br><span class="line">              white++;</span><br><span class="line">          &#125;</span><br><span class="line">          else if(nums[white]==0)&#123;</span><br><span class="line">              temp=nums[red];</span><br><span class="line">              nums[red++]=nums[white];</span><br><span class="line">              nums[white++]=temp;</span><br><span class="line">          &#125;</span><br><span class="line">          else if(nums[white]==2)&#123;</span><br><span class="line">              temp=nums[blue];</span><br><span class="line">              nums[blue--]=nums[white];</span><br><span class="line">              nums[white]=temp;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/11/20190511/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/11/20190511/" itemprop="url">Easy 88 Merge Sorted Array</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-11T10:30:43+08:00">
+                2019-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1><span id="问题">问题</span></h1><p>Given two sorted integer arrays <em>nums1</em> and <em>nums2</em>, merge <em>nums2</em> into <em>nums1</em> as one sorted array.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The number of elements initialized in <em>nums1</em> and <em>nums2</em> are <em>m</em> and <em>n</em> respectively.</li>
+<li>You may assume that <em>nums1</em> has enough space (size that is greater or equal to <em>m</em> + <em>n</em>) to hold additional elements from <em>nums2</em>.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">nums1 = [1,2,3,0,0,0], m = 3</span><br><span class="line">nums2 = [2,5,6],       n = 3</span><br><span class="line"></span><br><span class="line">Output: [1,2,2,3,5,6]</span><br></pre></td></tr></table></figure>
+<h1><span id="解答">解答</span></h1><p>题目要求把第二个数组的内容都插入到第一个数组中，两个数组都是顺序的数组。第一个数组后面已经有空位了，按照从后往前的顺序插入比较好，不必再另寻空间。</p>
+<p>对比两个数组的最后一个数，把更大一些的插入到第一个数组的尾端，依次从后往前遍历即可。但是如果第二个数组的数字比第一个数组的数字多，就可能循环结束后第二个数组里还有几个没有插入，因此直接把剩下的插入到第一个数组中的剩下位置里即可。</p>
+<p>java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public void merge(int[] nums1, int m, int[] nums2, int n) &#123;</span><br><span class="line">       int i=m-1,j=n-1,k=m+n-1;</span><br><span class="line">       while(i&gt;-1&amp;&amp;j&gt;-1)&#123;</span><br><span class="line">           if(nums1[i]&gt;nums2[j])&#123;</span><br><span class="line">               nums1[k--]=nums1[i--];</span><br><span class="line">           &#125;</span><br><span class="line">           else&#123;</span><br><span class="line">               nums1[k--]=nums2[j--];</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       while(j&gt;-1)&#123;</span><br><span class="line">           nums1[k--]=nums2[j--];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/10/20190510/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/10/20190510/" itemprop="url">Medium 228 Summary Ranges</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-10T09:15:03+08:00">
+                2019-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>int和string的转换</p>
+<p>新知识点：int和string的转换</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/10/20190510/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/20190416/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/15/20190416/" itemprop="url">Medium 152 Maximum Product Subarray</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-15T19:48:17+08:00">
+                2019-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1><span id="题目">题目</span></h1><p>Given an integer array <code>nums</code>, find the contiguous subarray within an array (containing at least one number) which has the largest product.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,3,-2,4]</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: [2,3] has the largest product 6.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [-2,0,-1]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: The result cannot be 2, because [-2,-1] is not a subarray.</span><br></pre></td></tr></table></figure>
+<h1><span id="解">解</span></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int maxProduct(int[] nums) &#123;</span><br><span class="line">       if (nums == null || nums.length == 0) &#123;</span><br><span class="line">           return 0;</span><br><span class="line">       &#125;</span><br><span class="line">       int max = nums[0], min = nums[0], result = nums[0];</span><br><span class="line">       for (int i = 1; i &lt; nums.length; i++) &#123;</span><br><span class="line">           int temp = max;</span><br><span class="line">           max = Math.max(Math.max(max * nums[i], min * nums[i]), nums[i]);</span><br><span class="line">           min = Math.min(Math.min(temp * nums[i], min * nums[i]), nums[i]);</span><br><span class="line">           if (max &gt; result) &#123;</span><br><span class="line">               result = max;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>主要就是比较max <em> A[i]， min </em> A[i]和A[i]，因为这是乘积，负*负可以是正的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/20190415/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/15/20190415/" itemprop="url">Medium 238 Product of Array Except Self</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-15T18:48:23+08:00">
+                2019-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1><span id="题目">题目</span></h1><p>Given an array <code>nums</code> of <em>n</em> integers where <em>n</em> &gt; 1,  return an array <code>output</code> such that <code>output[i]</code> is equal to the product of all the elements of <code>nums</code> except <code>nums[i]</code>.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:  [1,2,3,4]</span><br><span class="line">Output: [24,12,8,6]</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong> Please solve it <strong>without division</strong> and in O(<em>n</em>).</p>
+<p><strong>Follow up:</strong><br> Could you solve it with constant space complexity? (The output array <strong>does not</strong> count as extra space for the purpose of space complexity analysis.)</p>
+<h1><span id="解">解</span></h1><p>题目的意思可理解为，输出的数组其每个位置的值是输入数组该位置以外所有数相乘的积。</p>
+<p>要求复杂度为n，则不可双层遍历，可写两个for。</p>
+<p>主要思路为：先从前往后，用left记录当前位置以前所有数相乘的积，因第一个数左边没有数字，则从1遍历到n-1（最后一个数字），res[i]=left。再从后往前，用right记录当前位置以后所有数字相乘的积，即j从n-2（倒数第二个数字）遍历到0（第一个数字），res[j]=res[j]*right。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int[] productExceptSelf(int[] nums) &#123;</span><br><span class="line">       int n = nums.length;</span><br><span class="line">       int[] res = new int[n];</span><br><span class="line">       res[0]=1;</span><br><span class="line">       int left=nums[0],right=nums[n-1];</span><br><span class="line">       for(int i=1;i&lt;n;i++)&#123;</span><br><span class="line">           res[i]=left;</span><br><span class="line">           left*=nums[i];</span><br><span class="line">       &#125;</span><br><span class="line">       for(int j=n-2;j&gt;=0;j--)&#123;</span><br><span class="line">           res[j]*=right;</span><br><span class="line">           right*=nums[j];</span><br><span class="line">       &#125;</span><br><span class="line">       return res;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/20190409/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/09/20190409/" itemprop="url">渲染方程Rendering equation</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-09T09:52:40+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ScienceVis/" itemprop="url" rel="index">
+                    <span itemprop="name">ScienceVis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p><a href="https://zhuanlan.zhihu.com/p/52497510" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/52497510</a></p>
+<h1><span id="一-光辐射">一 光辐射</span></h1><p>1、辐射：</p>
+<p>光以电磁波形式或粒子（光子）形式传播的能量，这种能量及其传播过程称为光辐射。</p>
+<p>辐射是光在环境中的分布的基本特征——<strong><em>渲染就是计算光的辐射</em></strong>。</p>
+<p>2、光子（ photon）：</p>
+<p>光量子，简称光子，是传递电磁相互作用的基本粒子，是一种规范玻色子，在1905年由爱因斯坦提出。光子是电磁辐射的载体，而在量子场论中光子被认为是电磁相互作用的媒介子。光子静止质量为零。光子以光速运动，并具有能量、动量、质量。</p>
+<p>3、<strong>辐射能（Radiant energy ）：“总击中”</strong></p>
+<p>一个想法：只在场景的整个持续时间内存储场景中任何地方出现的“击中”总数。确实，这个数字是捕获到达现场的所有光子的总能量。单位hit。</p>
+<p>每个光子的能量公式为： <img src="https://www.zhihu.com/equation?tex=Q%3D%5Cfrac%7Bhc%7D%7B%5Clambda%7D" alt="Q=\frac{hc}{\lambda}"></p>
+<p>h:普朗克常数，单位是 <img src="https://www.zhihu.com/equation?tex=j%2As" alt="j*s"><br>c:光速,单位是 <img src="https://www.zhihu.com/equation?tex=m%2Fs" alt="m/s"><br> <img src="https://www.zhihu.com/equation?tex=%5Clambda" alt="\lambda"> ：波长（颜色）,单位是 <img src="https://www.zhihu.com/equation?tex=m" alt="m"><br>所以这里的hit，其实单位是焦耳，也就是说，辐射能的单位是j<br>通常来讲能量使用字母 <img src="https://www.zhihu.com/equation?tex=Q" alt="Q"> 来表示。</p>
+<p>4、<strong>辐射通量（Radiant flux ）：“每秒击中”</strong></p>
+<p>对于人类感知水平上的光照现象，通常可以安全地假定平衡是立即达到的。因此，与其在某些(任意)时间内记录总能量，不如记录每秒的总击中次数。也就是能量的时间密度 。</p>
+<p><img src="https://www.zhihu.com/equation?tex=Watts%3Dj%2Fs" alt="Watts=j/s"> ,所以辐射通量的单位是w,瓦特。<br>通常来说，辐射通量使用字母 <img src="https://www.zhihu.com/equation?tex=%5CPhi" alt="\Phi"> 来表示。</p>
+<p>5、<strong>辐照度是（Irradiance ）“每秒每单位面积的</strong>击中<strong>”</strong></p>
+<p>通常我们想要的不仅仅是总数，还需要知道击中发生在哪里。因此，计算某些“非常小”区域的每秒击中量，除以区域面积。这也可以理解为辐射通量的面积密度。</p>
+<blockquote>
+<p>辐照度的单位应当时 <img src="https://www.zhihu.com/equation?tex=w%2Fm%5E%7B2%7D" alt="w/m^{2}"> ，这是一个导出单位。<br>通常来说辐照度使用字母 <img src="https://www.zhihu.com/equation?tex=E" alt="E"> 来表示</p>
+</blockquote>
+<p>因此：从这个角度出发，我们在图像生成方面的目标是估计图像中每个点的辐照度(或者每像素的总辐射通量)</p>
+<p>对于各项同性点源，我们的总辐射通量 <img src="https://www.zhihu.com/equation?tex=%5CPhi" alt="\Phi"> 为 <img src="https://www.zhihu.com/equation?tex=%5CPhi%3D%5Cint_%7Bs%5E%7B2%7D%7D%5E%7B%7DId%5Comega%3D4%5Cpi+I" alt="\Phi=\int_{s^{2}}^{}Id\omega=4\pi I"> ,其中I是辐射强度，表示从点源发射的每一个固体角度的功率。</p>
+<p>那么，假定光以均匀的角度分布发射通量。由于总的辐射通量是完全不变的，那么随着半径R的增加，我们的辐照度 <img src="https://www.zhihu.com/equation?tex=E" alt="E"> 就会减少。由于等量的能量分布在越来越大的球体上，所以在越远的球面上就变得更暗。</p>
+<p><strong>6.辐射度是（ radiance ）“每单位投影面积、每单位立体角上的辐射通量”</strong></p>
+<p>辐射度是辐照度的立体角度密度。</p>
+<p><img src="https://www.zhihu.com/equation?tex=L%28P%2Cw%29%3D%5Clim_%7B%5CDelta%5Crightarrow+0%7D%7B%5Cfrac%7BdE_%7Bw%7D%28p%29%7D%7Bdw%7D%7D" alt="L(P,w)=\lim_{\Delta\rightarrow 0}{\frac{dE_{w}(p)}{dw}}"> ,其中 <img src="https://www.zhihu.com/equation?tex=w" alt="w"> 代表方向， <img src="https://www.zhihu.com/equation?tex=E_%7Bw%7D" alt="E_{w}"> 表示微分表面区域朝向该方向上的面。</p>
+<p><img src="https://www.zhihu.com/equation?tex=dw%3D%5Cfrac%7BdA%7D%7Br%5E%7B2%7D%7D" alt="dw=\frac{dA}{r^{2}}"> </p>
+<p><img src="https://www.zhihu.com/equation?tex=dA%3Dr%5E%7B2%7Dsin%5Ctheta+d%5Ctheta+d%5Cphi" alt="dA=r^{2}sin\theta d\theta d\phi"> </p>
+<p>换句话说，辐射度是沿着由原点p和方向 <img src="https://www.zhihu.com/equation?tex=w" alt="w"> 定义的射线的能量！</p>
+<p><strong>7.光谱辐射（Spectral Radiance）</strong></p>
+<p>综上所述，辐射是：单位时间、单位面积、单位固体角度的辐射能。</p>
+<p>但是，我们要真正得到光的完整描述，我们必须再分解一步：单位时间、单位面积、单位固体角度、<strong>单位波长的辐射能量</strong>。</p>
+<h1><span id="二渲染方程">二.渲染方程</span></h1><p>这里我们暂且先直接给出我们的渲染方程（Kajiya)：</p>
+<p><img src="https://www.zhihu.com/equation?tex=L_%7B0%7D%28p%2C%5Comega_%7B0%7D%29%3DL_%7Be%7D%28p%2C%5Comega_%7B0%7D%29%2B%5Cint_%7B%5Cxi%5E%7B2%7D%7Df_%7Br%7D%28p%2Cw_%7Bi%7D%5Crightarrow+w_%7B0%7D%29L_%7Bi%7D%28p%2C%5Comega_%7Bi%7D%29cos%5Ctheta+d%5Comega_%7Bi%7D" alt="L_{0}(p,\omega_{0})=L_{e}(p,\omega_{0})+\int_{\xi^{2}}f_{r}(p,w_{i}\rightarrow w_{0})L_{i}(p,\omega_{i})cos\theta d\omega_{i}"> </p>
+<p><img src="https://www.zhihu.com/equation?tex=L_%7B0%7D%28p%2C%5Comega_%7B0%7D%29" alt="L_{0}(p,\omega_{0})"> ：最后观察到的辐射度</p>
+<p><img src="https://www.zhihu.com/equation?tex=p+" alt="p "> ：我们想要得到辐射度的这个点</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Comega_%7B0%7D" alt="\omega_{0}"> :这个点的方向，法线</p>
+<p><img src="https://www.zhihu.com/equation?tex=L_%7Be%7D%28p%2C%5Comega_%7B0%7D%29" alt="L_{e}(p,\omega_{0})"> ：出射辐射度</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cxi%5E%7B2%7D" alt="\xi^{2}"> :半球的各个方向</p>
+<p><img src="https://www.zhihu.com/equation?tex=f_%7Br%7D" alt="f_{r}"> :散射函数</p>
+<p><img src="https://www.zhihu.com/equation?tex=L_%7Bi%7D" alt="L_{i}"> :入射辐射度</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Comega_%7Bi%7D" alt="\omega_{i}"> :入射方向</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cvartheta+" alt="\vartheta "> ：传入方向与法线的夹角</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/24/20190324/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/24/20190324/" itemprop="url">Hard 295 Find Median from Data Stream</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-24T20:32:51+08:00">
+                2019-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/array/" itemprop="url" rel="index">
+                    <span itemprop="name">array</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><span id="问题">问题</span></h1><p>Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.</p>
+<p>中值是有序整数列表中的中间值。如果列表的大小是偶数，则没有中间值。中位数是两个中间值的均值。</p>
+<p> For example,  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[2,3,4]`, the median is `3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[2,3]`, the median is `(2 + 3) / 2 = 2.5</span><br></pre></td></tr></table></figure>
+<p>Design a data structure that supports the following two operations:</p>
+<ul>
+<li>void addNum(int num) - Add a integer number from the data stream to the data structure.</li>
+<li>double findMedian() - Return the median of all elements so far.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">addNum(1)</span><br><span class="line">addNum(2)</span><br><span class="line">findMedian() -&gt; 1.5</span><br><span class="line">addNum(3) </span><br><span class="line">findMedian() -&gt; 2</span><br></pre></td></tr></table></figure>
+<h1><span id="解">解</span></h1><p>根据评论区1位答案：</p>
+<ul>
+<li><p>把顺序数列一分为二，定义两个优先级队列small、large来分别保存更小的一半和更大的一半数字。</p>
+</li>
+<li><p>在把数字加入队列的时候：</p>
+<p>1、新来的数字先加入large的队列</p>
+<p>2、把large队列的头部元素（也就是最小的数字）移除，取负号加入small队列。</p>
+<p>【因为PriorityQueue的特点是自动按数字大小排序，large队列最后要取出最小的数时取头部数字即可，而small队列的头部数字不是我们想要的，我们想要small队列的最大值，因此在这里把small中的数都取负数，这样头部位置就是“-最大值”了】</p>
+<p>3、检查如果small的size大于large的size，移除头部数字取负号加入large队列。即始终让中间值在large队列里，或者在small和large队各取一个数字➗2.</p>
+</li>
+</ul>
+<h5><span id="java">JAVA</span></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class MedianFinder &#123;</span><br><span class="line"></span><br><span class="line">    /** initialize your data structure here. */</span><br><span class="line">    </span><br><span class="line">    Queue&lt;Long&gt; small = new PriorityQueue(),</span><br><span class="line">                        large = new PriorityQueue();</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    public void addNum(int num) &#123;</span><br><span class="line">        large.add((long) num);</span><br><span class="line">        small.add(-large.poll());</span><br><span class="line">        if (large.size() &lt; small.size())</span><br><span class="line">            large.add(-small.poll());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public double findMedian() &#123;</span><br><span class="line">        return large.size() &gt; small.size()</span><br><span class="line">               ? large.peek()</span><br><span class="line">               : (large.peek() - small.peek()) / 2.0;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>C++</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class MedianFinder &#123;</span><br><span class="line">    priority_queue&lt;long&gt; small, large;</span><br><span class="line">public:</span><br><span class="line"></span><br><span class="line">    void addNum(int num) &#123;</span><br><span class="line">        small.push(num);</span><br><span class="line">        large.push(-small.top());</span><br><span class="line">        small.pop();</span><br><span class="line">        if (small.size() &lt; large.size()) &#123;</span><br><span class="line">            small.push(-large.top());</span><br><span class="line">            large.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    double findMedian() &#123;</span><br><span class="line">        return small.size() &gt; large.size()</span><br><span class="line">               ? small.top()</span><br><span class="line">               : (small.top() - large.top()) / 2.0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>Python</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">from heapq import *</span><br><span class="line"></span><br><span class="line">class MedianFinder:</span><br><span class="line"></span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.heaps = [], []</span><br><span class="line"></span><br><span class="line">    def addNum(self, num):</span><br><span class="line">        small, large = self.heaps</span><br><span class="line">        heappush(small, -heappushpop(large, num))</span><br><span class="line">        if len(large) &lt; len(small):</span><br><span class="line">            heappush(large, -heappop(small))</span><br><span class="line"></span><br><span class="line">    def findMedian(self):</span><br><span class="line">        small, large = self.heaps</span><br><span class="line">        if len(large) &gt; len(small):</span><br><span class="line">            return float(large[0])</span><br><span class="line">        return (large[0] - small[0]) / 2.0</span><br></pre></td></tr></table></figure>
+<h1><span id="java-priorityqueue-class">Java PriorityQueue class</span></h1><p><img src="https://cdn2.howtodoinjava.com/wp-content/uploads/2018/10/priority-queue-pattern.png" alt="Priority Queue"></p>
+<h3><span id="java-priorityqueue-methods">Java PriorityQueue Methods</span></h3><p>PriorityQueue class has below given important methods, you should know.</p>
+<ul>
+<li><strong>boolean add(object)</strong> : Inserts the specified element into this priority queue.</li>
+<li><strong>boolean offer(object)</strong> : Inserts the specified element into this priority queue.</li>
+<li><strong>boolean remove(object)</strong> : Removes a single instance of the specified element from this queue, if it is present.</li>
+<li><strong>Object poll()</strong> : Retrieves and removes the head of this queue, or returns null if this queue is empty.</li>
+<li><strong>Object element()</strong> : Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.</li>
+<li><strong>Object peek()</strong> : Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.</li>
+<li><strong>void clear()</strong> : Removes all of the elements from this priority queue.</li>
+<li><strong>Comparator comparator()</strong> : Returns the comparator used to order the elements in this queue, or null if this queue is sorted according to the natural ordering of its elements.</li>
+<li><strong>boolean contains(Object o)</strong> : Returns true if this queue contains the specified element.</li>
+<li><strong>Iterator iterator()</strong> : Returns an iterator over the elements in this queue.</li>
+<li><strong>int size()</strong> : Returns the number of elements in this queue.</li>
+<li><strong>Object[] toArray()</strong> : Returns an array containing all of the elements in this queue.</li>
+</ul>
+<p>本题中用到的知识：</p>
+<p>优先队列的头是基于自然排序或者Comparator排序的最小元素。如果有多个对象拥有同样的排序，那么就可能随机地取其中任意一个。当我们获取队列时，返回队列的头对象。</p>
+<p>优先队列的大小是不受限制的，但在创建时可以指定初始大小。当我们向优先队列增加元素的时候，队列大小会自动增加。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/20190321/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/20190321/" itemprop="url">Hard 239 Sliding Window Maximum</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-20T18:54:07+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/array/" itemprop="url" rel="index">
+                    <span itemprop="name">array</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h3><span id="arraydeque">ArrayDeque</span></h3><ul>
+<li>声明：Deque<integer> q = new ArrayDeque&lt;&gt;()；</integer></li>
+<li><p>boolean offer(E e)<br>此方法将指定的元素，在此deque队列的末尾。</p>
+</li>
+<li><p>E peek()<br>此方法检索，但是<strong>不</strong>移除此deque队列表示的队列的<strong>头部</strong>，如果此deque队列为空，则返回null。</p>
+</li>
+<li>E peekLast()<br>此方法检索，但是<strong>不</strong>移除此deque队列的<strong>最后</strong>一个元素，如果此deque队列为空，则返回null。</li>
+<li>E poll()<br>此方法检索并移除此deque队列表示的队列的<strong>头部</strong>，如果此deque队列为空，则返回null。</li>
+<li>E pollLast()<br>此方法检索并移除此deque队列的<strong>最后</strong>一个元素，如果此deque队列为空，则返回nul。</li>
+</ul>
+<h1><span id="问题">问题</span></h1><p>Given an array <em>nums</em>, there is a sliding window of size <em>k</em> which is moving from the very left of the array to the very right. You can only see the <em>k</em> numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window.</p>
+<p>  给定一个数组编号，有一个大小为k的滑动窗口，它从数组的最左边移动到最右边。你只能在窗口看到k个数字。每次滑动窗口右移一个位置。返回最大滑动窗口</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3</span><br><span class="line">Output: [3,3,5,5,6,7] </span><br><span class="line">Explanation: </span><br><span class="line"></span><br><span class="line">Window position                Max</span><br><span class="line">---------------               -----</span><br><span class="line">[1  3  -1] -3  5  3  6  7       3</span><br><span class="line"> 1 [3  -1  -3] 5  3  6  7       3</span><br><span class="line"> 1  3 [-1  -3  5] 3  6  7       5</span><br><span class="line"> 1  3  -1 [-3  5  3] 6  7       5</span><br><span class="line"> 1  3  -1  -3 [5  3  6] 7       6</span><br><span class="line"> 1  3  -1  -3  5 [3  6  7]      7</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong><br> You may assume <em>k</em> is always valid, 1 ≤ k ≤ input array’s size for non-empty array.</p>
+<h1><span id="解">解</span></h1><p>定义一个队列用来保存最大值们的序号。</p>
+<p>在遍历到每一个数组元素a[i]的时候：</p>
+<ul>
+<li>从队列头部开始轮询，有超过[i-k+1，i]范围的元素则删除，因为不在窗口的范围内。（因为加入的时候是从头加入，头部的序号最旧，最可能超出范围）</li>
+<li>从队列尾部开始轮询，检查若a[q.peekLast()] &lt; a[i]，即序号指向的元素小于当前元素，说明已经不可能是最大值了，删除。（基于这种检查方法，越往尾部保存的序号，其指向的元素越小，故从尾部开始检查）</li>
+<li>把当前序号从尾部加入队列中。此时队列中没有超出窗口范围的序号，也没有指向的值更小的序号，留下的都是在窗口内且比当前指向值大的序号，并且最头部的序号，指向的元素最大。</li>
+<li>把该队列中序号指向的元素值加入结果中。因为i是从0开始的，往前k个算作窗口，故要从i=k-1开始才到第一个窗口的尾巴，进行保存到结果的操作。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public int[] maxSlidingWindow(int[] nums, int k) &#123;</span><br><span class="line">       if(nums==null || k&lt;=0)&#123;</span><br><span class="line">           return new int[0];</span><br><span class="line">       &#125;</span><br><span class="line">       int n=nums.length;</span><br><span class="line">       int[] res=new int[n-k+1];</span><br><span class="line">       int j=0;</span><br><span class="line">       Deque&lt;Integer&gt; q=new ArrayDeque&lt;&gt;();</span><br><span class="line">       for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">           while(!q.isEmpty() &amp;&amp; q.peek()&lt;i-k+1)&#123;</span><br><span class="line">               q.poll();</span><br><span class="line">           &#125;</span><br><span class="line">           while(!q.isEmpty() &amp;&amp; nums[q.peekLast()]&lt;nums[i])&#123;</span><br><span class="line">               q.pollLast();</span><br><span class="line">           &#125;</span><br><span class="line">           q.offer(i);</span><br><span class="line">           if(i&gt;k-2)&#123;</span><br><span class="line">               res[j++]=nums[q.peek()];</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return res;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/20190320/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/20190320/" itemprop="url">Hard 352 Data Stream as Disjoint Intervals</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-20T15:06:51+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/array/" itemprop="url" rel="index">
+                    <span itemprop="name">array</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>TreeMap</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/20/20190320/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/19/20190319/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/19/20190319/" itemprop="url">Unity-Mecanim动画系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-19T09:14:16+08:00">
+                2019-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Unity/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>人形角色制作</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/19/20190319/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/18/20190318/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/18/20190318/" itemprop="url">Medium 56 Merge Intervals</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-18T10:45:32+08:00">
+                2019-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/array/" itemprop="url" rel="index">
+                    <span itemprop="name">array</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>合并区间</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/18/20190318/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/17/20190317/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/17/20190317/" itemprop="url">Hard 57 Insert Interval</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-17T10:02:28+08:00">
+                2019-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/array/" itemprop="url" rel="index">
+                    <span itemprop="name">array</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>区间插入</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/17/20190317/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/20190315/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/15/20190315/" itemprop="url">Medium 289 Game of Life</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-15T10:02:53+08:00">
+                2019-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/array/" itemprop="url" rel="index">
+                    <span itemprop="name">array</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>游戏人生<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/15/20190315/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </p></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/13/20190313/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/13/20190313/" itemprop="url">Medium 287 Find the Duplicate Number</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-13T08:33:53+08:00">
+                2019-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/array/" itemprop="url" rel="index">
+                    <span itemprop="name">array</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>leetcode第287题<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/13/20190313/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </p></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/20190312/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/12/20190312/" itemprop="url">Hard 164 Maximum Gap//Bucket Sort</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T08:27:56+08:00">
+                2019-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/array/" itemprop="url" rel="index">
+                    <span itemprop="name">array</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>找到相邻顺序列的最大差</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/12/20190312/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Meng</p>
+              <p class="site-description motion-element" itemprop="description">主要内容是Leetcode和个人学习记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Meng</span>
+
+  
 </div>
-<div class="main-inner">
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
     
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
         
-            
-<article class="post">
+      </div>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-05-15
-            
-        </div>
-        <a class="post-title" href="/2019/05/15/20190516/" target="_blank" title="Easy 28 Implement strStr() 返回子串位置">Easy 28 Implement strStr() 返回子串位置</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/String/" target="_blank">String</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Easy 28 Implement strStr() 返回子串位置
-    </div>
-</article>
 
-
-
-        
-            
-<article class="post">
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-05-15
-            
-        </div>
-        <a class="post-title" href="/2019/05/15/20190515/" target="_blank" title="Medium 324 wiggle Sort2">Medium 324 wiggle Sort2</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 324 wiggle Sort2
-    </div>
-</article>
 
+  </div>
 
+  
 
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-05-12
-            
-        </div>
-        <a class="post-title" href="/2019/05/12/20190512/" target="_blank" title="Medium 75 Sort Colors">Medium 75 Sort Colors</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 75 Sort Colors
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-05-11
-            
-        </div>
-        <a class="post-title" href="/2019/05/11/20190511/" target="_blank" title="Easy 88 Merge Sorted Array">Easy 88 Merge Sorted Array</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Easy 88 Merge Sorted Array
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-05-10
-            
-        </div>
-        <a class="post-title" href="/2019/05/10/20190510/" target="_blank" title="Medium 228 Summary Ranges">Medium 228 Summary Ranges</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 228 Summary Ranges
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-04-15
-            
-        </div>
-        <a class="post-title" href="/2019/04/15/20190416/" target="_blank" title="Medium 152 Maximum Product Subarray">Medium 152 Maximum Product Subarray</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 152 Maximum Product Subarray
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>过完生日的张妹妹</strong>
-            </a>
-            <em>·</em>2019-04-15
-            
-        </div>
-        <a class="post-title" href="/2019/04/15/20190415/" target="_blank" title="Medium 238 Product of Array Except Self">Medium 238 Product of Array Except Self</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 238 Product of Array Except Self
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-04-09
-            
-        </div>
-        <a class="post-title" href="/2019/04/09/20190409/" target="_blank" title="渲染方程Rendering equation">渲染方程Rendering equation</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/ScienceVis/" target="_blank">ScienceVis</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        渲染方程Rendering equation
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-24
-            
-        </div>
-        <a class="post-title" href="/2019/03/24/20190324/" target="_blank" title="Hard 295 Find Median from Data Stream">Hard 295 Find Median from Data Stream</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 295 Find Median from Data Stream
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-20
-            
-        </div>
-        <a class="post-title" href="/2019/03/20/20190321/" target="_blank" title="Hard 239 Sliding Window Maximum">Hard 239 Sliding Window Maximum</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 239 Sliding Window Maximum
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-20
-            
-        </div>
-        <a class="post-title" href="/2019/03/20/20190320/" target="_blank" title="Hard 352 Data Stream as Disjoint Intervals">Hard 352 Data Stream as Disjoint Intervals</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 352 Data Stream as Disjoint Intervals
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-19
-            
-        </div>
-        <a class="post-title" href="/2019/03/19/20190319/" target="_blank" title="Unity-Mecanim动画系统">Unity-Mecanim动画系统</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Unity/" target="_blank">Unity</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Unity-Mecanim动画系统
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-18
-            
-        </div>
-        <a class="post-title" href="/2019/03/18/20190318/" target="_blank" title="Medium 56 Merge Intervals">Medium 56 Merge Intervals</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 56 Merge Intervals
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张小姐</strong>
-            </a>
-            <em>·</em>2019-03-17
-            
-        </div>
-        <a class="post-title" href="/2019/03/17/20190317/" target="_blank" title="Hard 57 Insert Interval">Hard 57 Insert Interval</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 57 Insert Interval
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张小姐</strong>
-            </a>
-            <em>·</em>2019-03-15
-            
-        </div>
-        <a class="post-title" href="/2019/03/15/20190315/" target="_blank" title="Medium 289 Game of Life">Medium 289 Game of Life</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 289 Game of Life
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-13
-            
-        </div>
-        <a class="post-title" href="/2019/03/13/20190313/" target="_blank" title="Medium 287 Find the Duplicate Number">Medium 287 Find the Duplicate Number</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 287 Find the Duplicate Number
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-12
-            
-        </div>
-        <a class="post-title" href="/2019/03/12/20190312/" target="_blank" title="Hard 164 Maximum Gap//Bucket Sort">Hard 164 Maximum Gap//Bucket Sort</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 164 Maximum Gap//Bucket Sort
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-11
-            
-        </div>
-        <a class="post-title" href="/2019/03/11/20190311/" target="_blank" title="unity二进制存档和读档">unity二进制存档和读档</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Unity/" target="_blank">Unity</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        unity二进制存档和读档
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-10
-            
-        </div>
-        <a class="post-title" href="/2019/03/10/20190310/" target="_blank" title="unity JSON存档和读档">unity JSON存档和读档</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Unity/" target="_blank">Unity</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        unity JSON存档和读档
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-09
-            
-        </div>
-        <a class="post-title" href="/2019/03/09/20190309/" target="_blank" title="unity XML存档和读档">unity XML存档和读档</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Unity/" target="_blank">Unity</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        unity XML存档和读档
-    </div>
-</article>
-
-
-
-        
-    
-</div>
-
-<div id="btn-pager">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next</a>
-</div>
-
-
-        </div><!-- end #main-->
-    </div><!-- end #body -->
-    <footer class="footer">
-    <div class="footer-inner" style="text-align: left">
-        <p>
-            <a href="/about" title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <!-- 自定义链接 -->
-            <a href="/help" title="Help">Help</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/links" title="Links">Links</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/sitemap.xml" title="SiteMap">SiteMap</a>
-        </p>
-        <p>
-            Has been established&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbspDays，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">Based on Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a><br>
-            ©2017-<span id="cpYear"></span> Based on&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
-            ，Theme by&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
-            ，Author&nbsp<a href="https://zhangmeng.ga/" target="_blank" rel="friend">张萌</a>
-            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
-        </p>
-    </div>
-</footer>
-<script src="/js/SimpleCore.js"></script>
-
-</div>
-<!-- search pop -->
-<div class="popup search-popup local-search-popup">
-    <div class="local-search-header clearfix">
-        <span class="search-icon">
-            <i class="fa fa-search"></i>
-        </span>
-        <span class="popup-btn-close">
-            <i class="fa fa-times-circle"></i>
-        </span>
-        <div class="local-search-input-wrapper">
-            <input id="local-search-input" spellcheck="false" type="text" autocomplete="off" placeholder="Input query keywords here...">
-        </div>
-    </div>
-    <div id="local-search-result"></div>
-</div>
-<div class="fixed-btn">
-    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
-</div>
-<script>
-    $(function () {
-        var jsi_config = {
-            buildingTime: '01/10/2019',
-            current: $('.post-tags').length > 0 ? 'post' : 'archive',
-            snsQRCode: '/images/sns-qrcode.png',
-            donateImg: '/images/donate-qr.png',
-            localSearch: { dbPath: '' },
-            readMode: 'day'
-        };
-        
-            jsi_config.localSearch = {
-                dbPath: '/search.json',
-                trigger: 'auto',
-                topN: '1',
-                unescape: 'false'
-            }
-        
-        SimpleCore.init(jsi_config);
-        
-    });
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

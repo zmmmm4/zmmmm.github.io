@@ -1,812 +1,1058 @@
-<!DOCTYPE HTML>
-<html class="no-js" lang="zh-CN">
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
-    <!--[if lte IE 9]>
-<meta http-equiv="refresh" content="0;url=http://yoursite.com/warn.html">
-<![endif]-->
-<meta charset="utf-8">
-<meta http-equiv="X-DNS-Prefetch-Control" content="on">
-<link rel="dns-prefetch" href="http://yoursite.com">
-<link rel="dns-prefetch" href="//www.google-analytics.com">
-<link rel="prefetch" href="http://yoursite.com">
-<link rel="prefetch" href="//www.google-analytics.com">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
 
 
-<link rel="prerender" href="http://yoursite.com">
-
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta name="renderer" content="webkit">
-<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
-<meta http-equiv="mobile-agent" content="format=html5; url=http://yoursite.com">
-<meta name="author" content="张萌">
-<link rel="stylesheet" href="/css/JSimple.css">
-
-<link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>categories - leetcode - ZhangM</title>
-
-<meta name="keywords" content="教程">
-
-<meta name="description " content="张小姐的个人博客，主要内容是编程，个人学习记录">
-
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                processEscapes: true
-            }
-        });
-    </script>
 
 
-    
 
-    
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="张萌的blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="主要内容是Leetcode和个人学习记录">
+<meta property="og:type" content="website">
+<meta property="og:title" content="张萌的blog">
+<meta property="og:url" content="http://yoursite.com/categories/leetcode/index.html">
+<meta property="og:site_name" content="张萌的blog">
+<meta property="og:description" content="主要内容是Leetcode和个人学习记录">
+<meta property="og:locale" content="zh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="张萌的blog">
+<meta name="twitter:description" content="主要内容是Leetcode和个人学习记录">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/categories/leetcode/">
+
+
+
+
+
+  <title>Category: leetcode | 张萌的blog</title>
+  
+
+
+
+
+
+
+
 
 </head>
-<body>
-<div id="nav">
-    <nav class="nav-menu">
-        <a class="site-name current" href="/" title="萌">萌</a>
-        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
-        <a href="/archives" title="Archives"><i class="fa fa-archives"></i><span>Archives</span></a>
-        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
-        <!-- custom single page of menus -->
-        
-        
-        <a href="/about" title="关于">
-            <i class="fa fa-question-circle"></i>
-            <span>关于</span>
-        </a>
-        
-    </nav>
-</div>
 
-<div class="nav-user">
-    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
-    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
-    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
-</div>
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh">
 
-<div id="wrapper" class="clearfix">
-    <div id="body">
-        <div class="main" id="main">
-            <div id="cover">
-    <div class="cover-img"></div>
-    <div class="cover-info">
-        
-        <h1 class="cover-siteName">小努力</h1>
-        <h3 class="cover-siteTitle">瞎搞罢了</h3>
-        <p class="cover-siteDesc">一个菜鸟的IT博客</p>
-        <div class="cover-sns">
-            
+  
+  
+    
+  
 
-        </div>
+  <div class="container sidebar-position-left ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张萌的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle">还行</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-            <div class="page-title">
-    <ul>
-        <li class="">
-            <a href="/" data-name="Recent Posts">Recent Posts</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/leetcode" data-name="LeetCode">LeetCode</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/Unity" data-name="Unity">Unity</a>
-        </li>
-        
-        <li class="">
-            <a href="/categories/c,hololens,tensorflow,reinforcement-learning" data-name="其他">其他</a>
-        </li>
-        
-        <li class="page-search">
-    <form id="search" class="search-form">
-        <input type="text" readonly="readonly" id="local-search-input-tip" placeholder="click to search...">
-        <button type="button" disabled="disabled" class="search-form-submit"><i class="fa fa-search"></i></button>
-    </form>
-</li>
+<nav class="site-nav">
+  
 
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
     </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  
+  
+  
+  <div class="post-block category">
+
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>leetcode<small>Category</small>
+        </h1>
+      </div>
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/05/18/20190518/" itemprop="url">
+              
+                <span itemprop="name">Easy 387 字符串里的第一个不重复字母</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-18T08:13:07+08:00" content="2019-05-18">
+          05-18
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/05/17/20190517/" itemprop="url">
+              
+                <span itemprop="name">Easy 14相同词缀 + Easy58最后一个词的长度</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-17T17:27:13+08:00" content="2019-05-17">
+          05-17
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/05/15/20190516/" itemprop="url">
+              
+                <span itemprop="name">Easy 28 Implement strStr() 返回子串位置</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-15T19:00:17+08:00" content="2019-05-15">
+          05-15
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/05/15/20190515/" itemprop="url">
+              
+                <span itemprop="name">Medium 324 wiggle Sort2</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-15T18:33:28+08:00" content="2019-05-15">
+          05-15
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/05/12/20190512/" itemprop="url">
+              
+                <span itemprop="name">Medium 75 Sort Colors</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-12T17:08:00+08:00" content="2019-05-12">
+          05-12
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/05/11/20190511/" itemprop="url">
+              
+                <span itemprop="name">Easy 88 Merge Sorted Array</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-11T10:30:43+08:00" content="2019-05-11">
+          05-11
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/05/10/20190510/" itemprop="url">
+              
+                <span itemprop="name">Medium 228 Summary Ranges</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-10T09:15:03+08:00" content="2019-05-10">
+          05-10
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/04/15/20190416/" itemprop="url">
+              
+                <span itemprop="name">Medium 152 Maximum Product Subarray</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-04-15T19:48:17+08:00" content="2019-04-15">
+          04-15
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/04/15/20190415/" itemprop="url">
+              
+                <span itemprop="name">Medium 238 Product of Array Except Self</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-04-15T18:48:23+08:00" content="2019-04-15">
+          04-15
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/24/20190324/" itemprop="url">
+              
+                <span itemprop="name">Hard 295 Find Median from Data Stream</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-24T20:32:51+08:00" content="2019-03-24">
+          03-24
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/20/20190321/" itemprop="url">
+              
+                <span itemprop="name">Hard 239 Sliding Window Maximum</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-20T18:54:07+08:00" content="2019-03-20">
+          03-20
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/20/20190320/" itemprop="url">
+              
+                <span itemprop="name">Hard 352 Data Stream as Disjoint Intervals</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-20T15:06:51+08:00" content="2019-03-20">
+          03-20
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/18/20190318/" itemprop="url">
+              
+                <span itemprop="name">Medium 56 Merge Intervals</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-18T10:45:32+08:00" content="2019-03-18">
+          03-18
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/17/20190317/" itemprop="url">
+              
+                <span itemprop="name">Hard 57 Insert Interval</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-17T10:02:28+08:00" content="2019-03-17">
+          03-17
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/15/20190315/" itemprop="url">
+              
+                <span itemprop="name">Medium 289 Game of Life</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-15T10:02:53+08:00" content="2019-03-15">
+          03-15
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/13/20190313/" itemprop="url">
+              
+                <span itemprop="name">Medium 287 Find the Duplicate Number</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-13T08:33:53+08:00" content="2019-03-13">
+          03-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/12/20190312/" itemprop="url">
+              
+                <span itemprop="name">Hard 164 Maximum Gap//Bucket Sort</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-12T08:27:56+08:00" content="2019-03-12">
+          03-12
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/08/20190308/" itemprop="url">
+              
+                <span itemprop="name">Hard 128 Longest Consecutive Sequence//HashMap</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-08T15:54:33+08:00" content="2019-03-08">
+          03-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/05/20190305/" itemprop="url">
+              
+                <span itemprop="name">Hard 42 Trapping Rain Water</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-05T17:28:16+08:00" content="2019-03-05">
+          03-05
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/03/03/20190303/" itemprop="url">
+              
+                <span itemprop="name">121+122+123 Best Time to Buy and Sell Stock</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-03T14:27:23+08:00" content="2019-03-03">
+          03-03
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+    </div>
+
+  </div>
+  
+  
+  
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/categories/leetcode/page/2/">2</a><a class="page-number" href="/categories/leetcode/page/3/">3</a><a class="extend next" rel="next" href="/categories/leetcode/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Meng</p>
+              <p class="site-description motion-element" itemprop="description">主要内容是Leetcode和个人学习记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Meng</span>
+
+  
 </div>
-<div class="main-inner">
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
     
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
         
-            
-<article class="post">
+      </div>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-05-15
-            
-        </div>
-        <a class="post-title" href="/2019/05/15/20190516/" target="_blank" title="Easy 28 Implement strStr() 返回子串位置">Easy 28 Implement strStr() 返回子串位置</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/String/" target="_blank">String</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Easy 28 Implement strStr() 返回子串位置
-    </div>
-</article>
 
-
-
-        
-            
-<article class="post">
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-05-15
-            
-        </div>
-        <a class="post-title" href="/2019/05/15/20190515/" target="_blank" title="Medium 324 wiggle Sort2">Medium 324 wiggle Sort2</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 324 wiggle Sort2
-    </div>
-</article>
 
+  </div>
 
+  
 
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-05-12
-            
-        </div>
-        <a class="post-title" href="/2019/05/12/20190512/" target="_blank" title="Medium 75 Sort Colors">Medium 75 Sort Colors</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 75 Sort Colors
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-05-11
-            
-        </div>
-        <a class="post-title" href="/2019/05/11/20190511/" target="_blank" title="Easy 88 Merge Sorted Array">Easy 88 Merge Sorted Array</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Easy 88 Merge Sorted Array
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-05-10
-            
-        </div>
-        <a class="post-title" href="/2019/05/10/20190510/" target="_blank" title="Medium 228 Summary Ranges">Medium 228 Summary Ranges</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 228 Summary Ranges
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-04-15
-            
-        </div>
-        <a class="post-title" href="/2019/04/15/20190416/" target="_blank" title="Medium 152 Maximum Product Subarray">Medium 152 Maximum Product Subarray</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 152 Maximum Product Subarray
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>过完生日的张妹妹</strong>
-            </a>
-            <em>·</em>2019-04-15
-            
-        </div>
-        <a class="post-title" href="/2019/04/15/20190415/" target="_blank" title="Medium 238 Product of Array Except Self">Medium 238 Product of Array Except Self</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/Arrays/" target="_blank">Arrays</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 238 Product of Array Except Self
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-24
-            
-        </div>
-        <a class="post-title" href="/2019/03/24/20190324/" target="_blank" title="Hard 295 Find Median from Data Stream">Hard 295 Find Median from Data Stream</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 295 Find Median from Data Stream
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-20
-            
-        </div>
-        <a class="post-title" href="/2019/03/20/20190321/" target="_blank" title="Hard 239 Sliding Window Maximum">Hard 239 Sliding Window Maximum</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 239 Sliding Window Maximum
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-20
-            
-        </div>
-        <a class="post-title" href="/2019/03/20/20190320/" target="_blank" title="Hard 352 Data Stream as Disjoint Intervals">Hard 352 Data Stream as Disjoint Intervals</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 352 Data Stream as Disjoint Intervals
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-18
-            
-        </div>
-        <a class="post-title" href="/2019/03/18/20190318/" target="_blank" title="Medium 56 Merge Intervals">Medium 56 Merge Intervals</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 56 Merge Intervals
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张小姐</strong>
-            </a>
-            <em>·</em>2019-03-17
-            
-        </div>
-        <a class="post-title" href="/2019/03/17/20190317/" target="_blank" title="Hard 57 Insert Interval">Hard 57 Insert Interval</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 57 Insert Interval
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张小姐</strong>
-            </a>
-            <em>·</em>2019-03-15
-            
-        </div>
-        <a class="post-title" href="/2019/03/15/20190315/" target="_blank" title="Medium 289 Game of Life">Medium 289 Game of Life</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 289 Game of Life
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-13
-            
-        </div>
-        <a class="post-title" href="/2019/03/13/20190313/" target="_blank" title="Medium 287 Find the Duplicate Number">Medium 287 Find the Duplicate Number</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 287 Find the Duplicate Number
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-12
-            
-        </div>
-        <a class="post-title" href="/2019/03/12/20190312/" target="_blank" title="Hard 164 Maximum Gap//Bucket Sort">Hard 164 Maximum Gap//Bucket Sort</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 164 Maximum Gap//Bucket Sort
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-08
-            
-        </div>
-        <a class="post-title" href="/2019/03/08/20190308/" target="_blank" title="Hard 128 Longest Consecutive Sequence//HashMap">Hard 128 Longest Consecutive Sequence//HashMap</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 128 Longest Consecutive Sequence//HashMap
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-05
-            
-        </div>
-        <a class="post-title" href="/2019/03/05/20190305/" target="_blank" title="Hard 42 Trapping Rain Water">Hard 42 Trapping Rain Water</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Hard 42 Trapping Rain Water
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-03
-            
-        </div>
-        <a class="post-title" href="/2019/03/03/20190303/" target="_blank" title="121+122+123 Best Time to Buy and Sell Stock">121+122+123 Best Time to Buy and Sell Stock</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        121+122+123 Best Time to Buy and Sell Stock
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-03-02
-            
-        </div>
-        <a class="post-title" href="/2019/03/02/20190302/" target="_blank" title="Medium 55+Hard 45 Jump Game">Medium 55+Hard 45 Jump Game</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Medium 55+Hard 45 Jump Game
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://zhangmeng.ga/" target="_blank">
-                <strong>张萌</strong>
-            </a>
-            <em>·</em>2019-02-28
-            
-        </div>
-        <a class="post-title" href="/2019/02/28/20190228/" target="_blank" title="Easy 217 Contains Duplicate">Easy 217 Contains Duplicate</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/leetcode/" target="_blank">leetcode</a>
-            
-                <em>·</em>
-                <a href="http://yoursite.com/tags/array/" target="_blank">array</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        Easy 217 Contains Duplicate
-    </div>
-</article>
-
-
-
-        
-    
-</div>
-
-<div id="btn-pager">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/categories/leetcode/page/2/">2</a><a class="extend next" rel="next" href="/categories/leetcode/page/2/">Next</a>
-</div>
-
-
-        </div><!-- end #main-->
-    </div><!-- end #body -->
-    <footer class="footer">
-    <div class="footer-inner" style="text-align: left">
-        <p>
-            <a href="/about" title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <!-- 自定义链接 -->
-            <a href="/help" title="Help">Help</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/links" title="Links">Links</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
-            <a href="/sitemap.xml" title="SiteMap">SiteMap</a>
-        </p>
-        <p>
-            Has been established&nbsp<a href="/timeline" id="siteBuildingTime"></a>&nbspDays，<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="licence">Based on Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a><br>
-            ©2017-<span id="cpYear"></span> Based on&nbsp<a href="http://hexo.io" target="_blank" rel="nofollow">Hexo</a>
-            ，Theme by&nbsp&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank" rel="bookmark">JSimple</a>
-            ，Author&nbsp<a href="https://zhangmeng.ga/" target="_blank" rel="friend">张萌</a>
-            ，Hosted by <a href="https://pages.github.com/" target="_blank" rel="nofollow">GitHub Pages</a>
-        </p>
-    </div>
-</footer>
-<script src="/js/SimpleCore.js"></script>
-
-</div>
-<!-- search pop -->
-<div class="popup search-popup local-search-popup">
-    <div class="local-search-header clearfix">
-        <span class="search-icon">
-            <i class="fa fa-search"></i>
-        </span>
-        <span class="popup-btn-close">
-            <i class="fa fa-times-circle"></i>
-        </span>
-        <div class="local-search-input-wrapper">
-            <input id="local-search-input" spellcheck="false" type="text" autocomplete="off" placeholder="Input query keywords here...">
-        </div>
-    </div>
-    <div id="local-search-result"></div>
-</div>
-<div class="fixed-btn">
-    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
-</div>
-<script>
-    $(function () {
-        var jsi_config = {
-            buildingTime: '01/10/2019',
-            current: $('.post-tags').length > 0 ? 'post' : 'archive',
-            snsQRCode: '/images/sns-qrcode.png',
-            donateImg: '/images/donate-qr.png',
-            localSearch: { dbPath: '' },
-            readMode: 'day'
-        };
-        
-            jsi_config.localSearch = {
-                dbPath: '/search.json',
-                trigger: 'auto',
-                topN: '1',
-                unescape: 'false'
-            }
-        
-        SimpleCore.init(jsi_config);
-        
-    });
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
