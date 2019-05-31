@@ -234,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/20190520/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/31/20190531/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Meng">
@@ -253,7 +253,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/20/20190520/" itemprop="url">看了ARvis近期很棒的两个paper</a></h1>
+                <a class="post-title-link" href="/2019/05/31/20190531/" itemprop="url">Medium 151 Reverse Words in a String</a></h1>
         
 
         <div class="post-meta">
@@ -265,8 +265,381 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-20T19:37:21+08:00">
-                2019-05-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-31T10:08:41+08:00">
+                2019-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/String/" itemprop="url" rel="index">
+                    <span itemprop="name">String</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1><span id="问题">问题</span></h1><p>Given an input string, reverse the string word by word.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;the sky is blue&quot;</span><br><span class="line">Output: &quot;blue is sky the&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;  hello world!  &quot;</span><br><span class="line">Output: &quot;world! hello&quot;</span><br><span class="line">Explanation: Your reversed string should not contain leading or trailing spaces.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;a good   example&quot;</span><br><span class="line">Output: &quot;example good a&quot;</span><br><span class="line">Explanation: You need to reduce multiple spaces between two words to a single space in the reversed string.</span><br></pre></td></tr></table></figure>
+<h1><span id="解">解</span></h1><p>主要思路：</p>
+<p>循环{</p>
+<p>1、用 i 记录待转换旧字符串里，不是空格的第一个字符的位置，</p>
+<p>2、如果 i 到了整个字符串的结尾，则结束此遍历循环，</p>
+<p>3、用 j 记录转换完的新位置，如果将要遍历的不是整个字符串里的第一个词，则先记一个空格，</p>
+<p>4、依次将 i 指向的字符复制到 j 位置，直到遇到空格停止，该词语遍历完成，</p>
+<p>5、用count记录词语的个数，把每个词语前后翻转，如cat转变成tac</p>
+<p>}</p>
+<p>遍历完字符串之后，得到的是空格数符合标准，单词顺序是原来的顺序，但是单词内的字母顺序是倒序的字符串，此时再将整个字符串头尾依次翻转，得到的正好是结果。</p>
+<h4><span id="java">JAVA</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public String reverseWords(String s) &#123;</span><br><span class="line">      int sz=s.length();</span><br><span class="line">      int i=0,j=0,count=0;</span><br><span class="line">      char[] a = s.toCharArray();</span><br><span class="line">      while(i&lt;sz)&#123;</span><br><span class="line">          while(i&lt;sz &amp;&amp; a[i]==&apos; &apos;)i++;</span><br><span class="line">          if(i==sz)break;</span><br><span class="line">          if(count&gt;0)a[j++]=&apos; &apos;;</span><br><span class="line">          int start=j;</span><br><span class="line">          while(i&lt;sz &amp;&amp; a[i]!=&apos; &apos;)a[j++]=a[i++];</span><br><span class="line">          reverse(a,start,j-1);</span><br><span class="line">          count++;</span><br><span class="line">      &#125;</span><br><span class="line">      reverse(a,0,j-1);</span><br><span class="line">      return new String(a).substring(0,j);</span><br><span class="line">  &#125;</span><br><span class="line">  void reverse(char[] s,int i,int j)&#123;</span><br><span class="line">      char temp=1;</span><br><span class="line">      while(i&lt;j)&#123;</span><br><span class="line">          temp=s[i];</span><br><span class="line">          s[i++]=s[j];</span><br><span class="line">          s[j--]=temp;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="c">C++</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">string reverseWords(string s) &#123;</span><br><span class="line">       int sz=s.size();</span><br><span class="line">       int i=0,j=0,count=0;</span><br><span class="line">       while(i&lt;sz)&#123;</span><br><span class="line">           while(i&lt;sz &amp;&amp; s[i]==&apos; &apos;)i++;</span><br><span class="line">           if(i==sz)break;</span><br><span class="line">           if(count&gt;0)s[j++]=&apos; &apos;;</span><br><span class="line">           int start=j;</span><br><span class="line">           while(i&lt;sz &amp;&amp; s[i]!=&apos; &apos;)&#123;</span><br><span class="line">               s[j++]=s[i++];</span><br><span class="line">           &#125;</span><br><span class="line">           reverse(s,start,j-1);</span><br><span class="line">           count++;</span><br><span class="line">       &#125;</span><br><span class="line">       s.resize(j);</span><br><span class="line">       reverse(s,0,j-1);</span><br><span class="line">       return s;</span><br><span class="line">   &#125;</span><br><span class="line">   void reverse(string&amp; s,int i,int j)&#123;</span><br><span class="line">       char temp=1;</span><br><span class="line">       while(i&lt;j)&#123;</span><br><span class="line">           temp=s[i];</span><br><span class="line">           s[i++]=s[j];</span><br><span class="line">           s[j--]=temp;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/20190530/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/30/20190530/" itemprop="url">MARVisT读后笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-30T14:57:55+08:00">
+                2019-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ARVIS/" itemprop="url" rel="index">
+                    <span itemprop="name">ARVIS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>MARVisT: Authoring Glyph-based Visualization in Mobile Augmented Reality</p>
+<p>作者： <a href="http://xueshu.baidu.com/s?wd=author%3A%28Zhutian%20Chen%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" rel="noopener">Zhutian Chen</a>，<a href="http://xueshu.baidu.com/s?wd=author%3A%28Yijia%20Su%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" rel="noopener">Yijia Su</a>。。。</p>
+<p>DOI：10.1109/TVCG.2019.2892415 </p>
+<p>personal visualization（PV）让大众能更好地在个人的文件中探索感兴趣的数据。作者认为，移动端AR技术在使用PV上有更大的潜力。然而，主流的基于桌面的AR内容创作工具(如Unity和Vuforia)并不适合非专家创建移动AR可视化。主要原因有两个：1）这些功能齐全的工具学习曲线陡峭，2）用户必须在移动设备和台式电脑之间来回工作的离线工作流不方便。本文将注意力集中在了基于图形的数据可视化，称AR基于图形的可视化为ARGVis。</p>
+<h1><span id="1-设计原则"><strong>1、</strong>    <strong>设计原则</strong></span></h1><p>与传统的可视化创作工具相比，ARGVis创作工具具有两个不同的特性：</p>
+<p>1)      额外的输入，即关于真实环境的信息;</p>
+<p>2)      不同的输出，即ARGVis。</p>
+<p>这些差异提出了一个设计ARGVis创作工具的关键问题:ARGVis的特性是什么?</p>
+<p>通过研究AR可视化、物理化、基于符号的可视化以及具体尺度下的真实感和虚拟性，以及它们之间的关系，得出了ARGVis的两个关键组成部分：Virtuality和Reality，并且总结了它们之间的三种关系，并描述了创建ARGVis的原理和挑战，如下：</p>
+<p>1） 弱关系：现实只提供了一个情景背景，并不直接与虚拟交互。用户主要关注将数据属性映射到可视化通道。</p>
+<p>2） 媒介关系：作为引用的真实对象(例如容器或锚)在视觉上与3D虚拟符号相关。通常，一个真实的对象沿着它的一个属性被用作度量</p>
+<p>3） 强关系：实际对象作为物理引用与3D符号相联系。其中一个特征是“将数据的单独表示形式定位在其对应的物理引用附近”。 即用户手工地将虚拟符号逐个放置在其物理引用的附近。</p>
+<p>本文作者采用迭代策略来制定设计考虑事项来指导设计：</p>
+<p>DC1平衡表达性和简单性</p>
+<p>DC2用上下文信息辅助可视化映射</p>
+<p>DC3启用真实对象和虚拟符号之间的视觉缩放同步</p>
+<p>DC4支持虚拟符号的自动布局</p>
+<h1><span id="2-marvist"><strong>2、</strong>    <strong>MARVisT</strong></span></h1><p>本文作者依据上述原则，设计实现了一个移动端工具，MARVisT，先用一个实际应用的例子说明其工作流程，再详细介绍其工作流程。</p>
+<h4><span id="1-实例">1、实例</span></h4><p><strong>背景</strong>：假设Bob在旅行的最后一天去博物馆，一张描绘拿破仑进军莫斯科路线的信息图引起了注意，因而想把他在俄罗斯的旅行路线在地图上可视化，比较从而获得历史感。他的移动手机里有旅行数据，包括路线（距离和旅行的时长），宾馆（花费和等级），日常开销。Bob把数据导入到MARVisT中，他选择了【鞋子】、【房子】、【钱堆】模型来代表路线、宾馆和日常开销数据。</p>
+<p><strong>Palette：</strong>为了对路线的距离进行编码，他点击一只鞋子模型，打开调色板palette，创建视觉映射。调色板看起来像一个双半环(图b)，其中内环表示数据属性，外环显示可视化属性。MARVisT自动复制每个数据点的模型，并在地图上分布它们。MARVisT支持一组常用的可视化属性，比如大小(1 -length、2 - area、3 -volume)、颜色、角度和不透明度。考虑到Bob的当前视角和提供的距离数据类型，MARVisT用高亮的方式推荐使用X-width可视化属性。Bob听从了建议，把X-width图标（在外环）拖到了距离图标（在内环）上，他修改了x-width的值，使鞋子模型具有与地图相同的比例。其它数据属性与模型、可视化通道类型之间的映射都可以依次选择，如果某可视化通道类型已经被用过，软件会发出警告。</p>
+<p><strong>绘制地图上的行程：</strong>虽然可以自动识别地图并基于GPS数据放置虚拟模型，但由于信息地形图是定制的，导致识别困难，路线数据与地图之间存在不可预测的不匹配。因此，Bob需要自己放置这些虚拟符号。通过使用Layout Sketch功能，他在屏幕上勾勒出一条路径，连同房子和钱箱一起分布在地图上(图d)，显示出他的旅行路线。将他的路线与拿破仑的相比，发现他的路线与拿破仑从莫斯科撤退的路线相似(图c)，其个人可视化工作结束。</p>
+<h4><span id="2-基本流水线"><strong>2、</strong>  <strong>基本流水线</strong></span></h4><p><strong>A</strong>将数据点映射到可视标记：</p>
+<p>目前，MARVisT只支持表格形式的数据。导入数据后，用户可以从数据库中拖动不同组的数据点和从glyph库中拖动3Dglyph，到中间的槽中(图1a)，以指定它们之间的映射。只支持从服务器获取模型，使用深度相机对真实物体进行重建，获取三维模型超出了本研究的范围。</p>
+<p><strong>B</strong>创建、修改和删除可视化映射：</p>
+<p>考虑到表单填充范式的UI冗长且容易出错，选择了双半环形的珠子UI，并且用户可以把外环拖到内环上，完成从可视化通道到数据的指定。要修改绑定的可视通道的比例，用户可以激活修改状态，然后稍微向上或向下拖动珠子，修改将再次传播到所有glyph。对于删除，用户需要将可视通道从成对的数据属性中拖出，该动作将清除所有符号的映射。</p>
+<p><strong>C</strong> 布局glyphs：</p>
+<p>支持四种交互，即(2D,3D)×(Glyph,Collection)来布局虚拟的glyphs。</p>
+<p>2D glyph：水平移动。</p>
+<p>3D glyph：上下移动。</p>
+<p>2D collection：基于数据属性把glyphs组成集合。本文设计了一个Layout Sketch方法，让用户在屏幕上画一条线，用glyphs组成路径，目前仅支持水平方向。</p>
+<p>3D collection: 设计了一个Layout Brush功能，可在三维空间里布局glyphs。用户可以像在空中挥动画笔一样挥动他们的移动设备，将所选集合中的虚拟符号分布到真实的3D空间中。</p>
+<h4><span id="3-上下文感知"><strong>3、</strong>  <strong>上下文感知</strong></span></h4><p>MARVisT在创建可视化映射之前和之后验证可视化通道的使用，并通过一种间接的方式(DC2)指导用户使用验证结果。</p>
+<p><strong>A Validation.</strong>验证</p>
+<p>方向：（size通道不可用于深度轴）例如，一维长度、二维面积和三维体积。在AR环境中透视畸变严重干扰了这些尺寸通道，因此，一个直观的假设是，如果一个size通道的组件在深度方向的轴上，它将是无效的。MARVisT根据用户感知的方向计算每个大小通道的深度组件，并使具有深度组件的通道失效。</p>
+<p>亮度对比：（AR环境与真实环境对比度接近）每当用户使用光学通道(如颜色和不透明度)时，MARVisT都会验证虚拟与真实背景之间的亮度对比，采用均方根(root-mean-squared, RMS)方法计算AR环境更接近自然图像的对比度。建议模式与其背景之间的最小对比度为3:1。如果视觉编码不能满足最小对比度，MARVisT将无法通过验证。</p>
+<p>轴对称：（要看得出角度的变化）如果三维glyph的轴对称的顺序大于4，即旋转90度不会改变对象，将无法通过验证。因为角度的感知精度在准确的水平和垂直范围内下降。</p>
+<p>可分性：（一个属性只能使用一类可视化通道中的一个）可视化通道已经被使用的情况下，避免包含和感知整合。例如，x-width通道被使用于一个属性时，area通道就要设为无效，y-height通道也将被设为无效，为了维护通道的独立性。</p>
+<p><strong>B Nudging</strong></p>
+<p>MARVisT集成了一种双重推动机制，即引导用户做什么和不做什么。当用户准备编码数据属性与可视化通道，MARVisT将生成一个有效的可视化通道列表，里面是与数据类型相关的感知有效性（图4），它会通过图标的动画向用户推荐最有效的一个。当用户完成创建或修改可视编码时，MARVisT将验证可视编码，并在验证失败时通过消息警告用户。</p>
+<h4><span id="4-视觉尺度同步"><strong>4、</strong>  <strong>视觉尺度同步</strong></span></h4><p>虽然用户可以通过基本的交互手动调整虚拟对象来和真实对象同步，但这是冗长且无效的。设计了一种半自动目标检测功能，提高了检测效率。在检测到一个真实的物体后，MARVisT自动提取其视觉通道的值，例如大小、位置、文本等等。受计算机视觉技术的限制，目前，MARVisT只支持这些值的近似。例如，我们根据实际对象的边界框估计其大小通道。此外，MARVisT只能检测纯颜色背景上的文本。</p>
+<p>当用户轻击这个实际对象时，将弹出一个单环半环。半环由表示真实物体可用的视觉通道的珠子组成。通过类似的交互，用户可以将一个珠子拖放到虚拟符号上，并将其赋值给虚拟符号的相应金额实话通道。如果这个可视化通道已经被用来编码一个数据属性，MARVisT将根据真实对象的值和与虚拟符号绑定的数据反向计算新的比例。然后，新的比例将自动传播到所有具有相同可视化映射的虚拟符号，从而更新相应的虚拟对象。</p>
+<h4><span id="5-虚拟glyphs自动布局"><strong>5、</strong>  <strong>虚拟glyphs自动布局</strong></span></h4><p>要指定映射，用户可以将真实对象的可视化通道的珠子图标拖放到虚拟对象的数据属性的珠子上。MARVisT将通过所选通道和属性中的索引将真实对象映射到数据点。MARVisT会自动将每个虚拟对象放置到它对应的真实物体的位置，用户可以通进一步微调虚拟对象的位置。前，MARVisT只支持具有单调关系的范畴数据与序数数据之间的映射。其他案例留给未来的工作。</p>
+<h1><span id="3-实现和性能"><strong>3、</strong>    <strong>实现和性能</strong></span></h1><p>MARVisT是一个在iOS上实现的通用移动应用程序，其技术包括React Native、ARKit、Vision和SceneKit。ARKit支持跟踪真实环境和注册虚拟符号，在ARKit会话的每一帧中，我们利用视场的HSL图像计算亮度对比度和环境光估计，以提高真实感。为了识别真实的物体并从中估计视觉通道的价值，MARVisT同时利用了视觉(使用Darknet YOLO实现对物体的认知)和ARKit。我们在MARVisT中嵌入了一个玩具参考对象数据集，以补充和提高提取视觉通道值的性能。然后，该数据集可以在未来扩展并转移到云中。</p>
+<p>我们做了一些实验来评估在iPhone 8 Plus和iPad Pro上运行的不同数据大小的静态场景和动态场景的构建时间、帧率，以确定MARVisT的极限。详细的实验设置和结果见附录b。总的来说，对于大小合理的数据集(1000个模型或更少)，我们的实现实现了较低的构建时间(大约2秒)和实时帧率(大多数情况下超过50帧)。考虑使用场景(即在MARVisT中，用户可能没有可以可视化的大数据集，我们认为当前实现的性能是可以接受的。我们相信在未来，MARVisT仍然可以得到改进，比如优化内存使用和遵循最佳实践等等。</p>
+<h1><span id="4-评估"><strong>4、</strong>    <strong>评估</strong></span></h1><p>个人可视化的例子：</p>
+<p>A） 同型图结合了现实(白板上的草图)和虚拟符号(八部手机)。第二排的四部手机使用尺寸通道显示价格。</p>
+<p>B） Michael Knuepfel的键盘频率雕塑使用MARVisT重新创建和增强。颜色和高度通道都用于双重编码。</p>
+<p>C） Moodley brand identity的物理信息图是由MARVisT公司使用颜色和高度来编码各种数据属性重新创建的。</p>
+<p>D）使用布局草图方法创建的笑脸。脸由设计师一周内吃的水果组成。</p>
+<p>E）  使用自动布局方法创建的日历可视化。该设计使用双重编码的颜色和不透明度显示了2018年3月每晚的睡眠时间。</p>
+<p>F）  使用布局笔刷和自动叠加功能创建的堆叠字形图表。它描绘了设计师在图书馆里最喜欢的座位。颜色代表一周中的哪一天。</p>
+<p>用户研究：</p>
+<h1><span id="5-讨论"><strong>5、</strong>    <strong>讨论</strong></span></h1><p><strong>用于个人可视化的移动AR：</strong></p>
+<p>一方面，AR可视化提供了两个固有的好处，即从现有媒体中脱颖而出的参与式表示，以及它的上下文保存功能，该功能无缝地将数字信息与真实世界的上下文混合。另一方面，AR环境中的可视化由于其三维形态和渲染空间的遮挡和失真问题而受到批评，导致数据呈现不准确和分析任务错误。AR非常适合个人情境，在这种情境中，准确性并不是首要考虑因素，而美学和参与性等其他方面发挥着重要作用。在个人环境中使用AR技术可以充分利用AR的优势进行创造性的、引人入胜的演示，并规避不适合用于分析目的的3D可视化的缺点。此外，移动设备作为可访问的一体式平台，弥补了AR技术与普通用户之间的差距，为利用AR带来了现实的机会。虽然MARVisT是一个针对非专业人士的创作工具，但是概括出了现实与虚拟之间的三个确定关系，以及提出了四个设计考虑事项，并为其他用户设计高级工具提供指导。此外，本文设计的交互可以很容易地适应其他各种目的的移动AR应用。</p>
+<p>从本质上说，在AR中可视化信息和创作AR可视化有不同的挑战。前者关注的是挑战，比如如何避免视觉杂乱和遮挡，选择哪种可视化类型，如何保持正确的感知，诸如此类，同时考虑表达能力、效率和可用性等等。然而，对AR可视化的研究可以指导和促进AR可视化创作工具的设计。没有对AR可视化的进一步研究，许多marvel的设计决策仍然不清楚。</p>
+<p>此外，创作工具的设计也受到其他研究领域进展的影响。例如，先进的对象检测技术可以增强视觉尺度的同步和自动布局功能。随着3D扫描技术的进步，允许从现实中提取高质量和结构化的信息，MARVisT可以支持用户从真实对象重构3D符号，而不是从远程服务器获取它们。</p>
+<p><strong>限制与未来工作：</strong></p>
+<p>A） 首先，如果用户希望使用位置通道编码数据属性，或者在不创建它们之间的一对一映射的情况下将虚拟符号放置到物理引用，则必须手动放置虚拟符号。MARVisT应该更好地支持位置通道上的数据绑定，以防止错误的定位。</p>
+<p>B） 其次，MARVisT目前不支持某些类型的可视化，比如节点链接图和带有轴的图表。在有限屏幕大小的移动设备中设计支持这些可视化的方法需要进一步的工作。</p>
+<p>C） 第三，虽然三维的主要缺点在为分析目的服务的可视化方面不像在pv中那样重要，但这些问题仍然在用户感知设计时困扰着他们。</p>
+<p>D）第四，基于启发式规则的上下文感知推送机制不够灵活。我们留下了更强大的机制，这可能不仅仅是建立在启发式规则之上，用于未来的研究。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/20190520/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Meng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张萌的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/26/20190520/" itemprop="url">关于ARvis的感想</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-26T19:37:21+08:00">
+                2019-05-26
               </time>
             
 
@@ -329,7 +702,7 @@
           <p>ARvis的通用产品现在做到什么程度了？</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/05/20/20190520/#more" rel="contents">
+            <a class="btn" href="/2019/05/26/20190520/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -3084,320 +3457,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/13/20190313/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Meng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张萌的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/13/20190313/" itemprop="url">Medium 287 Find the Duplicate Number</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-13T08:33:53+08:00">
-                2019-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/array/" itemprop="url" rel="index">
-                    <span itemprop="name">array</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>leetcode第287题<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/13/20190313/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/20190312/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Meng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张萌的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/12/20190312/" itemprop="url">Hard 164 Maximum Gap//Bucket Sort</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T08:27:56+08:00">
-                2019-03-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/array/" itemprop="url" rel="index">
-                    <span itemprop="name">array</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>找到相邻顺序列的最大差</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/12/20190312/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3448,7 +3507,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -3459,7 +3518,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
